@@ -1,0 +1,56 @@
+
+> micrograd-viz@0.1.0 test
+> node --test
+
+✔ gradient of a*b + c (0.845666ms)
+✔ gradient through tanh (0.111542ms)
+✔ gradient through relu (positive branch) (0.089875ms)
+✔ gradient through relu (zero branch) (0.077ms)
+✔ gradient through exp (0.086583ms)
+✔ gradient through a**3 * b (0.08025ms)
+✔ gradient through a**b with a positive base (0.063458ms)
+✔ gradient through a composite tanh(exp * tanh)**2 (0.075709ms)
+✔ gradient with a repeated leaf (diamond) (0.0725ms)
+✔ gradient through a deep chain (0.115333ms)
+✔ layoutGraph lays a diamond out left to right (0.928167ms)
+✔ layoutGraph works on an arbitrary deep expression (0.178833ms)
+✔ layoutGraph gives unique ids to duplicate labels (0.094375ms)
+✔ layoutGraph rejects non-Value input (0.22975ms)
+✔ formatNumber keeps labels compact (0.112667ms)
+✔ graph metrics are positive (0.052208ms)
+✔ scene 1 builds d = a*b + c with the expected values (1.054458ms)
+✔ scene 1 graph has 5 nodes and 4 dependency edges (0.695458ms)
+✔ scene 1 keyframes grow the graph monotonically and end with grads (0.202833ms)
+✔ sampleKeyframes returns the latest keyframe at or before time (0.744208ms)
+✔ sampleKeyframes rejects an empty scene (0.1605ms)
+✔ sceneAt handles boundaries and the total duration (0.091083ms)
+✔ nextKeyframeTime walks across scenes and stops at the last keyframe (0.064916ms)
+✔ Timeline starts paused at the first keyframe (0.137917ms)
+✔ play + advance honour the speed multiplier (0.134125ms)
+✔ pause stops advancing (0.068917ms)
+✔ step jumps to the next keyframe, across scene boundaries, and pauses (0.086833ms)
+✔ seek clamps to the timeline and stops at the end (0.053875ms)
+✔ playing from the end restarts at zero (0.080291ms)
+✔ advance stops and pauses at the total duration (0.055208ms)
+✔ setSpeed validates its input (0.063333ms)
+✔ subscribers receive snapshots and can unsubscribe (0.634167ms)
+✔ Timeline rejects malformed scenes (0.057708ms)
+✔ Value starts with data and a zero gradient (0.701ms)
+✔ Value rejects non-numeric data (0.172ms)
+✔ toValue wraps numbers and passes Values through (0.05ms)
+✔ arithmetic forward pass (0.168083ms)
+✔ backward computes chain-rule gradients for a*b + c (0.10825ms)
+✔ gradients accumulate across shared subexpressions (0.05075ms)
+✔ backward is repeatable and resets stale gradients (0.061333ms)
+✔ relu passes gradient only on the positive side (0.05225ms)
+✔ tanh and exp derivatives match their analytic forms (0.105666ms)
+✔ pow with a Value exponent uses the log derivative (0.131458ms)
+✔ Value.pow rejects a non-numeric exponent (0.07575ms)
+ℹ tests 44
+ℹ suites 0
+ℹ pass 44
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 104.07625

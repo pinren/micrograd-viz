@@ -1,0 +1,634 @@
+{
+  "generatedAt": "2026-11-14T23:42:41.191Z",
+  "url": "file:///Users/pinren/src/micrograd-viz-work/engine-expression-graph-440450cd430f/index.html",
+  "command": "node tools/capture-evidence.mjs",
+  "viewport": {
+    "width": 1280,
+    "height": 1000
+  },
+  "screenshots": [
+    "docs/evidence/seed-panel.png",
+    "docs/evidence/scene1-mid.png",
+    "docs/evidence/scene1-gradients.png"
+  ],
+  "states": {
+    "initial": {
+      "ready": true,
+      "scene": "scene-1",
+      "keyframe": 0,
+      "playing": false,
+      "speed": 1,
+      "time": 0,
+      "timeLabel": "0.0s / 13.0s",
+      "playLabel": "Play",
+      "playPressed": "false",
+      "stepDisabled": false,
+      "speedOptions": [
+        "0.5",
+        "1",
+        "2"
+      ],
+      "speedValue": "1",
+      "caption": "Start with a = 2. A Value holds one number (data) and one gradient (grad), which is still zero.",
+      "badge": "KEYFRAME 1 / 6",
+      "sceneTitle": "Scene 1 · Build the expression graph",
+      "chips": [
+        {
+          "index": 0,
+          "label": "a",
+          "active": true,
+          "done": false
+        },
+        {
+          "index": 1,
+          "label": "b",
+          "active": false,
+          "done": false
+        },
+        {
+          "index": 2,
+          "label": "a × b",
+          "active": false,
+          "done": false
+        },
+        {
+          "index": 3,
+          "label": "c",
+          "active": false,
+          "done": false
+        },
+        {
+          "index": 4,
+          "label": "a × b + c",
+          "active": false,
+          "done": false
+        },
+        {
+          "index": 5,
+          "label": "grads",
+          "active": false,
+          "done": false
+        }
+      ],
+      "showGrads": false,
+      "visibleNodes": "a",
+      "showGradsDataset": "false",
+      "ariaLabel": "Expression graph. 1 of 5 nodes visible; a=2",
+      "viewBox": "0 0 648 382",
+      "nodeCount": 1,
+      "edgeCount": 0,
+      "nodes": [
+        {
+          "key": "a",
+          "label": "a",
+          "data": "data 2",
+          "grad": "grad -3",
+          "transform": "translate(44 44)",
+          "active": true
+        }
+      ],
+      "edges": []
+    },
+    "after2xPlay": {
+      "whilePlaying": {
+        "ready": true,
+        "scene": "scene-1",
+        "keyframe": 0,
+        "playing": true,
+        "speed": 2,
+        "time": 0,
+        "timeLabel": "0.0s / 13.0s",
+        "playLabel": "Pause",
+        "playPressed": "true",
+        "stepDisabled": false,
+        "speedOptions": [
+          "0.5",
+          "1",
+          "2"
+        ],
+        "speedValue": "2",
+        "caption": "Start with a = 2. A Value holds one number (data) and one gradient (grad), which is still zero.",
+        "badge": "KEYFRAME 1 / 6",
+        "sceneTitle": "Scene 1 · Build the expression graph",
+        "chips": [
+          {
+            "index": 0,
+            "label": "a",
+            "active": true,
+            "done": false
+          },
+          {
+            "index": 1,
+            "label": "b",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 2,
+            "label": "a × b",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 3,
+            "label": "c",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 4,
+            "label": "a × b + c",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 5,
+            "label": "grads",
+            "active": false,
+            "done": false
+          }
+        ],
+        "showGrads": false,
+        "visibleNodes": "a",
+        "showGradsDataset": "false",
+        "ariaLabel": "Expression graph. 1 of 5 nodes visible; a=2",
+        "viewBox": "0 0 648 382",
+        "nodeCount": 1,
+        "edgeCount": 0,
+        "nodes": [
+          {
+            "key": "a",
+            "label": "a",
+            "data": "data 2",
+            "grad": "grad -3",
+            "transform": "translate(44 44)",
+            "active": true
+          }
+        ],
+        "edges": []
+      },
+      "afterPlay": {
+        "ready": true,
+        "scene": "scene-1",
+        "keyframe": 1,
+        "playing": true,
+        "speed": 2,
+        "time": 2.07,
+        "timeLabel": "2.1s / 13.0s",
+        "playLabel": "Pause",
+        "playPressed": "true",
+        "stepDisabled": false,
+        "speedOptions": [
+          "0.5",
+          "1",
+          "2"
+        ],
+        "speedValue": "2",
+        "caption": "Add b = -3. Inputs are plain Values; no operation connects them yet.",
+        "badge": "KEYFRAME 2 / 6",
+        "sceneTitle": "Scene 1 · Build the expression graph",
+        "chips": [
+          {
+            "index": 0,
+            "label": "a",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 1,
+            "label": "b",
+            "active": true,
+            "done": false
+          },
+          {
+            "index": 2,
+            "label": "a × b",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 3,
+            "label": "c",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 4,
+            "label": "a × b + c",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 5,
+            "label": "grads",
+            "active": false,
+            "done": false
+          }
+        ],
+        "showGrads": false,
+        "visibleNodes": "a,b",
+        "showGradsDataset": "false",
+        "ariaLabel": "Expression graph. 2 of 5 nodes visible; a=2, b=-3",
+        "viewBox": "0 0 648 382",
+        "nodeCount": 2,
+        "edgeCount": 0,
+        "nodes": [
+          {
+            "key": "a",
+            "label": "a",
+            "data": "data 2",
+            "grad": "grad -3",
+            "transform": "translate(44 44)",
+            "active": false
+          },
+          {
+            "key": "b",
+            "label": "b",
+            "data": "data -3",
+            "grad": "grad 2",
+            "transform": "translate(44 152)",
+            "active": true
+          }
+        ],
+        "edges": []
+      },
+      "afterPause": {
+        "ready": true,
+        "scene": "scene-1",
+        "keyframe": 1,
+        "playing": false,
+        "speed": 2,
+        "time": 2.07,
+        "timeLabel": "2.1s / 13.0s",
+        "playLabel": "Play",
+        "playPressed": "false",
+        "stepDisabled": false,
+        "speedOptions": [
+          "0.5",
+          "1",
+          "2"
+        ],
+        "speedValue": "2",
+        "caption": "Add b = -3. Inputs are plain Values; no operation connects them yet.",
+        "badge": "KEYFRAME 2 / 6",
+        "sceneTitle": "Scene 1 · Build the expression graph",
+        "chips": [
+          {
+            "index": 0,
+            "label": "a",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 1,
+            "label": "b",
+            "active": true,
+            "done": false
+          },
+          {
+            "index": 2,
+            "label": "a × b",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 3,
+            "label": "c",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 4,
+            "label": "a × b + c",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 5,
+            "label": "grads",
+            "active": false,
+            "done": false
+          }
+        ],
+        "showGrads": false,
+        "visibleNodes": "a,b",
+        "showGradsDataset": "false",
+        "ariaLabel": "Expression graph. 2 of 5 nodes visible; a=2, b=-3",
+        "viewBox": "0 0 648 382",
+        "nodeCount": 2,
+        "edgeCount": 0,
+        "nodes": [
+          {
+            "key": "a",
+            "label": "a",
+            "data": "data 2",
+            "grad": "grad -3",
+            "transform": "translate(44 44)",
+            "active": false
+          },
+          {
+            "key": "b",
+            "label": "b",
+            "data": "data -3",
+            "grad": "grad 2",
+            "transform": "translate(44 152)",
+            "active": true
+          }
+        ],
+        "edges": []
+      }
+    },
+    "mid": {
+      "ready": true,
+      "scene": "scene-1",
+      "keyframe": 3,
+      "playing": false,
+      "speed": 1,
+      "time": 6,
+      "timeLabel": "6.0s / 13.0s",
+      "playLabel": "Play",
+      "playPressed": "false",
+      "stepDisabled": false,
+      "speedOptions": [
+        "0.5",
+        "1",
+        "2"
+      ],
+      "speedValue": "1",
+      "caption": "Add the third input: c = 10.",
+      "badge": "KEYFRAME 4 / 6",
+      "sceneTitle": "Scene 1 · Build the expression graph",
+      "chips": [
+        {
+          "index": 0,
+          "label": "a",
+          "active": false,
+          "done": true
+        },
+        {
+          "index": 1,
+          "label": "b",
+          "active": false,
+          "done": true
+        },
+        {
+          "index": 2,
+          "label": "a × b",
+          "active": false,
+          "done": true
+        },
+        {
+          "index": 3,
+          "label": "c",
+          "active": true,
+          "done": false
+        },
+        {
+          "index": 4,
+          "label": "a × b + c",
+          "active": false,
+          "done": false
+        },
+        {
+          "index": 5,
+          "label": "grads",
+          "active": false,
+          "done": false
+        }
+      ],
+      "showGrads": false,
+      "visibleNodes": "a,b,mul,c",
+      "showGradsDataset": "false",
+      "ariaLabel": "Expression graph. 4 of 5 nodes visible; a=2, b=-3, mul=-6, c=10",
+      "viewBox": "0 0 648 382",
+      "nodeCount": 4,
+      "edgeCount": 2,
+      "nodes": [
+        {
+          "key": "a",
+          "label": "a",
+          "data": "data 2",
+          "grad": "grad -3",
+          "transform": "translate(44 44)",
+          "active": false
+        },
+        {
+          "key": "b",
+          "label": "b",
+          "data": "data -3",
+          "grad": "grad 2",
+          "transform": "translate(44 152)",
+          "active": false
+        },
+        {
+          "key": "mul",
+          "label": "×",
+          "data": "data -6",
+          "grad": "grad 1",
+          "transform": "translate(258 152)",
+          "active": false
+        },
+        {
+          "key": "c",
+          "label": "c",
+          "data": "data 10",
+          "grad": "grad 1",
+          "transform": "translate(44 260)",
+          "active": true
+        }
+      ],
+      "edges": [
+        "a->mul",
+        "b->mul"
+      ]
+    },
+    "final": {
+      "ready": true,
+      "scene": "scene-1",
+      "keyframe": 5,
+      "playing": false,
+      "speed": 1,
+      "time": 10.5,
+      "timeLabel": "10.5s / 13.0s",
+      "playLabel": "Play",
+      "playPressed": "false",
+      "stepDisabled": true,
+      "speedOptions": [
+        "0.5",
+        "1",
+        "2"
+      ],
+      "speedValue": "1",
+      "caption": "Backward pass: d.grad = 1. Then mul.grad = 1 and c.grad = 1; the chain rule gives a.grad = b = -3 and b.grad = a = 2.",
+      "badge": "KEYFRAME 6 / 6",
+      "sceneTitle": "Scene 1 · Build the expression graph",
+      "chips": [
+        {
+          "index": 0,
+          "label": "a",
+          "active": false,
+          "done": true
+        },
+        {
+          "index": 1,
+          "label": "b",
+          "active": false,
+          "done": true
+        },
+        {
+          "index": 2,
+          "label": "a × b",
+          "active": false,
+          "done": true
+        },
+        {
+          "index": 3,
+          "label": "c",
+          "active": false,
+          "done": true
+        },
+        {
+          "index": 4,
+          "label": "a × b + c",
+          "active": false,
+          "done": true
+        },
+        {
+          "index": 5,
+          "label": "grads",
+          "active": true,
+          "done": false
+        }
+      ],
+      "showGrads": true,
+      "visibleNodes": "a,b,mul,c,add",
+      "showGradsDataset": "true",
+      "ariaLabel": "Expression graph. 5 of 5 nodes visible; a=2 (grad -3), b=-3 (grad 2), mul=-6 (grad 1), c=10 (grad 1), add=4 (grad 1)",
+      "viewBox": "0 0 648 382",
+      "nodeCount": 5,
+      "edgeCount": 4,
+      "nodes": [
+        {
+          "key": "a",
+          "label": "a",
+          "data": "data 2",
+          "grad": "grad -3",
+          "transform": "translate(44 44)",
+          "active": false
+        },
+        {
+          "key": "b",
+          "label": "b",
+          "data": "data -3",
+          "grad": "grad 2",
+          "transform": "translate(44 152)",
+          "active": false
+        },
+        {
+          "key": "mul",
+          "label": "×",
+          "data": "data -6",
+          "grad": "grad 1",
+          "transform": "translate(258 152)",
+          "active": false
+        },
+        {
+          "key": "c",
+          "label": "c",
+          "data": "data 10",
+          "grad": "grad 1",
+          "transform": "translate(44 260)",
+          "active": false
+        },
+        {
+          "key": "add",
+          "label": "+",
+          "data": "data 4",
+          "grad": "grad 1",
+          "transform": "translate(472 152)",
+          "active": true
+        }
+      ],
+      "edges": [
+        "a->mul",
+        "b->mul",
+        "mul->add",
+        "c->add"
+      ]
+    }
+  },
+  "checks": {
+    "page loads from file://": {
+      "pass": true
+    },
+    "initial state is keyframe 0 with only node a": {
+      "pass": true,
+      "detail": "keyframe=0 nodes=1"
+    },
+    "six keyframe chips are rendered": {
+      "pass": true,
+      "detail": "chips=6"
+    },
+    "all three speeds are offered": {
+      "pass": true,
+      "detail": "0.5,1,2"
+    },
+    "play button enters playing state": {
+      "pass": true,
+      "detail": "label=Pause"
+    },
+    "2x speed advances roughly twice as fast": {
+      "pass": true,
+      "detail": "delta=2.07s"
+    },
+    "pause stops playback and updates the button": {
+      "pass": true,
+      "detail": "label=Play"
+    },
+    "Step advances to the third keyframe and grows the graph": {
+      "pass": true,
+      "detail": "keyframe=3 nodes=4"
+    },
+    "mid scene caption describes c": {
+      "pass": true,
+      "detail": "Add the third input: c = 10."
+    },
+    "final keyframe shows all five nodes and four edges": {
+      "pass": true,
+      "detail": "keyframe=5 nodes=5 edges=4"
+    },
+    "final state reveals gradients": {
+      "pass": true
+    },
+    "gradients match d = a*b + c": {
+      "pass": true,
+      "detail": "{\"a\":\"grad -3\",\"b\":\"grad 2\",\"mul\":\"grad 1\",\"c\":\"grad 1\",\"add\":\"grad 1\"}"
+    },
+    "Step is disabled after the last keyframe": {
+      "pass": true
+    },
+    "final scene caption explains the chain rule": {
+      "pass": true,
+      "detail": "Backward pass: d.grad = 1. Then mul.grad = 1 and c.grad = 1; the chain rule gives a.grad = b = -3 and b.grad = a = 2."
+    },
+    "no page exceptions or console errors": {
+      "pass": true,
+      "detail": "[]"
+    },
+    "no external network requests (no CDN)": {
+      "pass": true,
+      "detail": ""
+    }
+  },
+  "consoleErrors": [],
+  "externalRequests": [],
+  "chrome": "Chrome/157.0.8103.78",
+  "gradients": {
+    "a": "grad -3",
+    "b": "grad 2",
+    "mul": "grad 1",
+    "c": "grad 1",
+    "add": "grad 1"
+  },
+  "failures": []
+}
