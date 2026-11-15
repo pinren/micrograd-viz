@@ -13,6 +13,7 @@
   --blue: #60a5fa;
   --violet: #a78bfa;
   --amber: #fbbf24;
+  --rose: #fb7185;
   --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "SF Pro Text", Inter,
     ui-sans-serif, system-ui, sans-serif;
@@ -155,16 +156,34 @@ h1 span {
   background-position: -1px -1px;
 }
 
-#graph {
+#graph,
+#plot {
   display: block;
   width: 100%;
   height: clamp(300px, 36vh, 380px);
   overflow: visible;
 }
 
+#graph[hidden],
+#plot[hidden],
+.skip-controls[hidden],
+.readout[hidden] {
+  display: none;
+}
+
 /* The neuron graph has 14 nodes and seven input rows; give it more room. */
 body[data-scene="scene-3"] #graph {
   height: clamp(420px, 58vh, 620px);
+}
+
+/* Scene 4 adds the target and the loss node below the neuron. */
+body[data-scene="scene-4"] #graph {
+  height: clamp(460px, 60vh, 680px);
+}
+
+/* Scene 5 is a data plot with the loss curve beside it. */
+body[data-scene="scene-5"] #plot {
+  height: clamp(380px, 54vh, 560px);
 }
 
 .caption {
@@ -211,6 +230,24 @@ body[data-scene="scene-3"] #graph {
   fill: var(--amber);
   font-family: var(--mono);
   font-size: 11.5px;
+}
+
+.node-update {
+  fill: var(--teal);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  paint-order: stroke;
+  stroke: #0b111a;
+  stroke-width: 4px;
+  stroke-linejoin: round;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.node.has-update .update-text {
+  opacity: 1;
+  transition-delay: 0.15s;
 }
 
 .grad-text {
@@ -338,6 +375,181 @@ body[data-scene="scene-3"] #graph {
   }
 }
 
+/* ---------- training plot ---------- */
+
+.plot-frame,
+.chart-frame {
+  fill: rgba(255, 255, 255, 0.022);
+  stroke: var(--line-strong);
+  stroke-width: 1;
+}
+
+.plot-grid,
+.chart-grid {
+  stroke: rgba(148, 163, 184, 0.12);
+  stroke-width: 1;
+}
+
+.plot-tick,
+.plot-axis-label,
+.chart-label {
+  fill: var(--muted);
+  font-family: var(--mono);
+  font-size: 10px;
+}
+
+.plot-axis-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+.plot-point {
+  stroke: #0b111a;
+  stroke-width: 1.5;
+}
+
+.plot-point-pos {
+  fill: var(--teal);
+}
+
+.plot-point-neg {
+  fill: var(--rose);
+}
+
+.plot-point.is-wrong {
+  stroke: var(--amber);
+  stroke-width: 2;
+  stroke-dasharray: 3 2;
+}
+
+.plot-point-label {
+  fill: var(--muted);
+  font-family: var(--mono);
+  font-size: 10px;
+}
+
+.plot-boundary {
+  fill: none;
+  stroke: var(--teal-strong);
+  stroke-width: 1.8;
+  stroke-dasharray: 7 4;
+}
+
+.chart-title {
+  fill: var(--muted);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.chart-line {
+  fill: none;
+  stroke: var(--teal);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.chart-dot {
+  fill: var(--teal);
+}
+
+.chart-value {
+  fill: var(--text);
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+/* ---------- readout ---------- */
+
+.readout {
+  margin: 0 22px 20px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.readout h3 {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.readout-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  margin-bottom: 10px;
+}
+
+.readout-stat {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.readout-stat-label {
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.readout-stat-value {
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+.readout-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+.readout-table th {
+  padding: 5px 8px;
+  color: var(--faint);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-align: right;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--line);
+}
+
+.readout-table th:first-child,
+.readout-table td:first-child {
+  text-align: left;
+}
+
+.readout-table td {
+  padding: 5px 8px;
+  color: var(--muted);
+  text-align: right;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+}
+
+.readout-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.readout-table td:nth-child(3) {
+  color: var(--amber);
+}
+
+.readout-table td:last-child {
+  color: var(--teal);
+}
+
 /* ---------- controls ---------- */
 
 .controls {
@@ -412,6 +624,22 @@ input[type="range"]:focus-visible {
   align-items: center;
   gap: 8px;
   color: var(--muted);
+  font-size: 13px;
+}
+
+.skip-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 6px 4px 10px;
+  background: rgba(94, 234, 212, 0.05);
+  border: 1px solid rgba(94, 234, 212, 0.2);
+  border-radius: 12px;
+}
+
+.skip-controls .button {
+  min-height: 32px;
+  padding: 6px 12px;
   font-size: 13px;
 }
 
@@ -593,6 +821,28 @@ input[type="range"] {
   background: var(--amber);
 }
 
+.swatch-update {
+  display: inline-grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  color: var(--teal);
+  background: rgba(94, 234, 212, 0.1);
+  border: 1px solid rgba(94, 234, 212, 0.4);
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.swatch-pos {
+  background: var(--teal);
+}
+
+.swatch-neg {
+  background: var(--rose);
+}
+
 .swatch-edge {
   height: 2px;
   background: #7c8ba1;
@@ -685,7 +935,8 @@ input[type="range"] {
 
   .grad-text,
   .edge-label,
-  .topo-badge {
+  .topo-badge,
+  .node-update {
     transition: none;
   }
 

@@ -58,6 +58,17 @@ checkAnalyticGradients(
 );
 
 checkAnalyticGradients(
+  'gradient of a*b - c',
+  ([a, b, c]) => {
+    const va = new Value(a);
+    const vb = new Value(b);
+    const vc = new Value(c);
+    return { root: va.mul(vb).sub(vc), vars: [va, vb, vc] };
+  },
+  [2, -3, 10]
+);
+
+checkAnalyticGradients(
   'gradient through tanh',
   ([a, b]) => {
     const va = new Value(a);

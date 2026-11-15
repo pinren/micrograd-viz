@@ -215,6 +215,10 @@
    * @param {string[]|null} [options.topo] - operation ids in backward order;
    *   each gets a numbered badge
    * @param {boolean} [options.backward] - style active edges as backward flow
+   * @param {object|Map|null} [options.data] - id -> number override, used to
+   *   show a fresh forward pass after parameters change
+   * @param {object|Map|null} [options.updates] - id -> annotation text, e.g.
+   *   "−g 0.85 → 0.59"; shown under parameter nodes during an SGD step
    */
   function buildRenderModel(layout, options) {
     const opts = options || {};
@@ -229,6 +233,8 @@
           ? toMap(opts.grads)
           : null;
     const edgeLabels = toMap(opts.edgeLabels);
+    const dataOverrides = toMap(opts.data);
+    const updates = toMap(opts.updates);
     const activeEdges = new Set(opts.activeEdges || []);
     const topoOrder = Array.isArray(opts.topo) ? opts.topo.slice() : [];
     const topoIndex = new Map(
@@ -245,12 +251,18 @@
         gradValues && gradValues.has(node.id)
           ? gradValues.get(node.id)
           : node.value.grad;
+      const data = dataOverrides.has(node.id)
+        ? dataOverrides.get(node.id)
+        : node.value.data;
       nodes.push({
         id: node.id,
         node,
         label: node.label,
-        dataText: 'data ' + formatNumber(node.value.data),
+        data,
+        dataText: 'data ' + formatNumber(data),
         gradText: 'grad ' + formatNumber(gradValue),
+        updateText: updates.get(node.id) || '',
+        hasUpdate: updates.has(node.id),
         gradValue,
         hasGrad,
         active: opts.active === node.id,
@@ -285,7 +297,7 @@
           (item) =>
             item.id +
             '=' +
-            formatNumber(item.node.value.data) +
+            formatNumber(item.data) +
             (item.hasGrad ? ' (grad ' + formatNumber(item.gradValue) + ')' : '')
         )
         .join(', ');
@@ -383,6 +395,10 @@
       class: 'node-grad grad-text',
       'text-anchor': 'middle',
     });
+    const update = el('text', {
+      class: 'node-update update-text',
+      'text-anchor': 'middle',
+    });
     const badge = el('g', { class: 'topo-badge' });
     const badgeCircle = el('circle', { r: '9' });
     const badgeText = el('text', {
@@ -391,7 +407,7 @@
     });
     badge.append(badgeCircle, badgeText);
     const title = el('title');
-    inner.append(box, label, data, grad, badge, title);
+    inner.append(box, label, data, grad, update, badge, title);
     outer.appendChild(inner);
     state.nodesGroup.appendChild(outer);
 
@@ -402,6 +418,7 @@
       label,
       data,
       grad,
+      update,
       badge,
       badgeCircle,
       badgeText,
@@ -422,6 +439,8 @@
     entry.data.setAttribute('y', String(node.height * 0.6));
     entry.grad.setAttribute('x', String(centerX));
     entry.grad.setAttribute('y', String(node.height * 0.84));
+    entry.update.setAttribute('x', String(centerX));
+    entry.update.setAttribute('y', String(node.height + 14));
     const badgeX = node.width - 14;
     entry.badgeCircle.setAttribute('cx', String(badgeX));
     entry.badgeCircle.setAttribute('cy', '13');
@@ -476,6 +495,7 @@
       entry.outer.classList.toggle('is-active', item.active);
       entry.outer.classList.toggle('has-grad', item.hasGrad);
       entry.outer.classList.toggle('has-topo', item.topoIndex !== null);
+      entry.outer.classList.toggle('has-update', item.hasUpdate);
 
       if (entry.label.textContent !== item.label) {
         entry.label.textContent = item.label;
@@ -486,6 +506,9 @@
       if (entry.grad.textContent !== item.gradText) {
         entry.grad.textContent = item.gradText;
       }
+      if (entry.update.textContent !== item.updateText) {
+        entry.update.textContent = item.updateText;
+      }
       const badgeText =
         item.topoIndex === null ? '' : String(item.topoIndex);
       if (entry.badgeText.textContent !== badgeText) {
@@ -494,7 +517,7 @@
       entry.title.textContent =
         item.label +
         ': data=' +
-        formatNumber(item.node.value.data) +
+        formatNumber(item.data) +
         ', grad=' +
         formatNumber(item.gradValue);
       renderedNodeIds.add(item.id);
@@ -543,6 +566,13 @@
       .join(',');
     svg.dataset.topo = model.topoOrder.join(',');
     svg.dataset.backward = String(model.backward);
+    svg.dataset.updates = model.nodes
+      .filter((item) => item.hasUpdate)
+      .map((item) => item.id + '=' + item.updateText)
+      .join(',');
+    svg.dataset.data = model.nodes
+      .map((item) => item.id + '=' + formatNumber(item.data))
+      .join(',');
   }
 
   global.MGViz = Object.assign(global.MGViz || {}, {
