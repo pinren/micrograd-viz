@@ -1,0 +1,14 @@
+{
+  "name": "micrograd-viz",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Zero-dependency visual explainer of how a neural network trains, built on micrograd-style scalar autograd.",
+  "scripts": {
+    "test": "node --test",
+    "evidence": "node tools/capture-evidence.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
