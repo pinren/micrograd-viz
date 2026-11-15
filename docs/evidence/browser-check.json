@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-15T00:21:16.104Z",
+  "generatedAt": "2026-11-15T00:22:15.113Z",
   "url": "file:///Users/pinren/src/micrograd-viz-work/backprop-neuron-scene-ea6924d5a2dd/index.html",
   "command": "node tools/capture-evidence.mjs",
   "viewport": {
@@ -637,6 +637,2408 @@
           "hasLabel": false
         }
       ]
+    },
+    "scene2": {
+      "entry": {
+        "ready": true,
+        "scene": "scene-2",
+        "keyframe": 0,
+        "playing": false,
+        "speed": 1,
+        "time": 13,
+        "timeLabel": "13.0s / 58.5s",
+        "playLabel": "Play",
+        "playPressed": "false",
+        "stepDisabled": false,
+        "speedOptions": [
+          "0.5",
+          "1",
+          "2"
+        ],
+        "speedValue": "1",
+        "caption": "We already have d = a × b + c = 4. Backward starts at the output and walks the graph in reverse topological order, accumulating each node’s grad.",
+        "badge": "KEYFRAME 1 / 6",
+        "sceneTitle": "Scene 2 · Where gradients come from",
+        "chips": [
+          {
+            "index": 0,
+            "label": "setup",
+            "active": true,
+            "done": false
+          },
+          {
+            "index": 1,
+            "label": "reverse topo",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 2,
+            "label": "seed",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 3,
+            "label": "through +",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 4,
+            "label": "through ×",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 5,
+            "label": "chain rule",
+            "active": false,
+            "done": false
+          }
+        ],
+        "showGrads": false,
+        "backward": false,
+        "visibleNodes": "a,b,mul,c,add",
+        "showGradsDataset": "false",
+        "gradsDataset": "",
+        "topoDataset": "",
+        "ariaLabel": "Expression graph. 5 of 5 nodes visible; a=2, b=-3, mul=-6, c=10, add=4",
+        "viewBox": "0 0 648 382",
+        "nodeCount": 5,
+        "edgeCount": 4,
+        "nodes": [
+          {
+            "key": "a",
+            "label": "a",
+            "data": "data 2",
+            "grad": "grad -3",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(44 44)",
+            "active": false
+          },
+          {
+            "key": "b",
+            "label": "b",
+            "data": "data -3",
+            "grad": "grad 2",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(44 152)",
+            "active": false
+          },
+          {
+            "key": "mul",
+            "label": "×",
+            "data": "data -6",
+            "grad": "grad 1",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(258 152)",
+            "active": false
+          },
+          {
+            "key": "c",
+            "label": "c",
+            "data": "data 10",
+            "grad": "grad 1",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(44 260)",
+            "active": false
+          },
+          {
+            "key": "add",
+            "label": "+",
+            "data": "data 4",
+            "grad": "grad 1",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(472 152)",
+            "active": false
+          }
+        ],
+        "edges": [
+          {
+            "key": "a->mul",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "b->mul",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "mul->add",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "c->add",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          }
+        ]
+      },
+      "topo": {
+        "ready": true,
+        "scene": "scene-2",
+        "keyframe": 1,
+        "playing": false,
+        "speed": 1,
+        "time": 15.5,
+        "timeLabel": "15.5s / 58.5s",
+        "playLabel": "Play",
+        "playPressed": "false",
+        "stepDisabled": false,
+        "speedOptions": [
+          "0.5",
+          "1",
+          "2"
+        ],
+        "speedValue": "1",
+        "caption": "Only operations are numbered: ① + must run before ② ×. The × node’s gradient has to be complete before it can pass anything back to a and b — that is the reverse topological order.",
+        "badge": "KEYFRAME 2 / 6",
+        "sceneTitle": "Scene 2 · Where gradients come from",
+        "chips": [
+          {
+            "index": 0,
+            "label": "setup",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 1,
+            "label": "reverse topo",
+            "active": true,
+            "done": false
+          },
+          {
+            "index": 2,
+            "label": "seed",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 3,
+            "label": "through +",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 4,
+            "label": "through ×",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 5,
+            "label": "chain rule",
+            "active": false,
+            "done": false
+          }
+        ],
+        "showGrads": false,
+        "backward": false,
+        "visibleNodes": "a,b,mul,c,add",
+        "showGradsDataset": "false",
+        "gradsDataset": "",
+        "topoDataset": "add,mul",
+        "ariaLabel": "Expression graph. 5 of 5 nodes visible; a=2, b=-3, mul=-6, c=10, add=4",
+        "viewBox": "0 0 648 382",
+        "nodeCount": 5,
+        "edgeCount": 4,
+        "nodes": [
+          {
+            "key": "a",
+            "label": "a",
+            "data": "data 2",
+            "grad": "grad -3",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(44 44)",
+            "active": false
+          },
+          {
+            "key": "b",
+            "label": "b",
+            "data": "data -3",
+            "grad": "grad 2",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(44 152)",
+            "active": false
+          },
+          {
+            "key": "mul",
+            "label": "×",
+            "data": "data -6",
+            "grad": "grad 1",
+            "hasGrad": false,
+            "topo": "2",
+            "transform": "translate(258 152)",
+            "active": false
+          },
+          {
+            "key": "c",
+            "label": "c",
+            "data": "data 10",
+            "grad": "grad 1",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(44 260)",
+            "active": false
+          },
+          {
+            "key": "add",
+            "label": "+",
+            "data": "data 4",
+            "grad": "grad 1",
+            "hasGrad": false,
+            "topo": "1",
+            "transform": "translate(472 152)",
+            "active": true
+          }
+        ],
+        "edges": [
+          {
+            "key": "a->mul",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "b->mul",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "mul->add",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "c->add",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          }
+        ]
+      },
+      "seed": {
+        "ready": true,
+        "scene": "scene-2",
+        "keyframe": 2,
+        "playing": false,
+        "speed": 1,
+        "time": 18,
+        "timeLabel": "18.0s / 58.5s",
+        "playLabel": "Play",
+        "playPressed": "false",
+        "stepDisabled": false,
+        "speedOptions": [
+          "0.5",
+          "1",
+          "2"
+        ],
+        "speedValue": "1",
+        "caption": "Seed the output: d.grad = 1 (∂d/∂d). Every other grad is still zero.",
+        "badge": "KEYFRAME 3 / 6",
+        "sceneTitle": "Scene 2 · Where gradients come from",
+        "chips": [
+          {
+            "index": 0,
+            "label": "setup",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 1,
+            "label": "reverse topo",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 2,
+            "label": "seed",
+            "active": true,
+            "done": false
+          },
+          {
+            "index": 3,
+            "label": "through +",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 4,
+            "label": "through ×",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 5,
+            "label": "chain rule",
+            "active": false,
+            "done": false
+          }
+        ],
+        "showGrads": false,
+        "backward": false,
+        "visibleNodes": "a,b,mul,c,add",
+        "showGradsDataset": "false",
+        "gradsDataset": "add=1",
+        "topoDataset": "add,mul",
+        "ariaLabel": "Expression graph. 5 of 5 nodes visible; a=2, b=-3, mul=-6, c=10, add=4 (grad 1)",
+        "viewBox": "0 0 648 382",
+        "nodeCount": 5,
+        "edgeCount": 4,
+        "nodes": [
+          {
+            "key": "a",
+            "label": "a",
+            "data": "data 2",
+            "grad": "grad -3",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(44 44)",
+            "active": false
+          },
+          {
+            "key": "b",
+            "label": "b",
+            "data": "data -3",
+            "grad": "grad 2",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(44 152)",
+            "active": false
+          },
+          {
+            "key": "mul",
+            "label": "×",
+            "data": "data -6",
+            "grad": "grad 1",
+            "hasGrad": false,
+            "topo": "2",
+            "transform": "translate(258 152)",
+            "active": false
+          },
+          {
+            "key": "c",
+            "label": "c",
+            "data": "data 10",
+            "grad": "grad 1",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(44 260)",
+            "active": false
+          },
+          {
+            "key": "add",
+            "label": "+",
+            "data": "data 4",
+            "grad": "grad 1",
+            "hasGrad": true,
+            "topo": "1",
+            "transform": "translate(472 152)",
+            "active": true
+          }
+        ],
+        "edges": [
+          {
+            "key": "a->mul",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "b->mul",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "mul->add",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "c->add",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          }
+        ]
+      },
+      "throughAdd": {
+        "ready": true,
+        "scene": "scene-2",
+        "keyframe": 3,
+        "playing": false,
+        "speed": 1,
+        "time": 20.5,
+        "timeLabel": "20.5s / 58.5s",
+        "playLabel": "Play",
+        "playPressed": "false",
+        "stepDisabled": false,
+        "speedOptions": [
+          "0.5",
+          "1",
+          "2"
+        ],
+        "speedValue": "1",
+        "caption": "Process ① +: d.grad = 1 flows back along both edges. The local derivatives are ∂d/∂mul = 1 and ∂d/∂c = 1, so mul.grad = 1 and c.grad = 1.",
+        "badge": "KEYFRAME 4 / 6",
+        "sceneTitle": "Scene 2 · Where gradients come from",
+        "chips": [
+          {
+            "index": 0,
+            "label": "setup",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 1,
+            "label": "reverse topo",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 2,
+            "label": "seed",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 3,
+            "label": "through +",
+            "active": true,
+            "done": false
+          },
+          {
+            "index": 4,
+            "label": "through ×",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 5,
+            "label": "chain rule",
+            "active": false,
+            "done": false
+          }
+        ],
+        "showGrads": false,
+        "backward": true,
+        "visibleNodes": "a,b,mul,c,add",
+        "showGradsDataset": "false",
+        "gradsDataset": "mul=1,c=1,add=1",
+        "topoDataset": "add,mul",
+        "ariaLabel": "Expression graph. 5 of 5 nodes visible; a=2, b=-3, mul=-6 (grad 1), c=10 (grad 1), add=4 (grad 1)",
+        "viewBox": "0 0 648 382",
+        "nodeCount": 5,
+        "edgeCount": 4,
+        "nodes": [
+          {
+            "key": "a",
+            "label": "a",
+            "data": "data 2",
+            "grad": "grad -3",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(44 44)",
+            "active": false
+          },
+          {
+            "key": "b",
+            "label": "b",
+            "data": "data -3",
+            "grad": "grad 2",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(44 152)",
+            "active": false
+          },
+          {
+            "key": "mul",
+            "label": "×",
+            "data": "data -6",
+            "grad": "grad 1",
+            "hasGrad": true,
+            "topo": "2",
+            "transform": "translate(258 152)",
+            "active": false
+          },
+          {
+            "key": "c",
+            "label": "c",
+            "data": "data 10",
+            "grad": "grad 1",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(44 260)",
+            "active": false
+          },
+          {
+            "key": "add",
+            "label": "+",
+            "data": "data 4",
+            "grad": "grad 1",
+            "hasGrad": true,
+            "topo": "1",
+            "transform": "translate(472 152)",
+            "active": true
+          }
+        ],
+        "edges": [
+          {
+            "key": "a->mul",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "b->mul",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "mul->add",
+            "active": true,
+            "label": "∂=1",
+            "hasLabel": true
+          },
+          {
+            "key": "c->add",
+            "active": true,
+            "label": "∂=1",
+            "hasLabel": true
+          }
+        ]
+      },
+      "throughMul": {
+        "ready": true,
+        "scene": "scene-2",
+        "keyframe": 4,
+        "playing": false,
+        "speed": 1,
+        "time": 23.5,
+        "timeLabel": "23.5s / 58.5s",
+        "playLabel": "Play",
+        "playPressed": "false",
+        "stepDisabled": false,
+        "speedOptions": [
+          "0.5",
+          "1",
+          "2"
+        ],
+        "speedValue": "1",
+        "caption": "Process ② ×: mul.grad = 1 flows to a and b. The local derivatives are ∂mul/∂a = b = -3 and ∂mul/∂b = a = 2, so a.grad = 1 × -3 = -3 and b.grad = 1 × 2 = 2.",
+        "badge": "KEYFRAME 5 / 6",
+        "sceneTitle": "Scene 2 · Where gradients come from",
+        "chips": [
+          {
+            "index": 0,
+            "label": "setup",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 1,
+            "label": "reverse topo",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 2,
+            "label": "seed",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 3,
+            "label": "through +",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 4,
+            "label": "through ×",
+            "active": true,
+            "done": false
+          },
+          {
+            "index": 5,
+            "label": "chain rule",
+            "active": false,
+            "done": false
+          }
+        ],
+        "showGrads": false,
+        "backward": true,
+        "visibleNodes": "a,b,mul,c,add",
+        "showGradsDataset": "false",
+        "gradsDataset": "a=-3,b=2,mul=1,c=1,add=1",
+        "topoDataset": "add,mul",
+        "ariaLabel": "Expression graph. 5 of 5 nodes visible; a=2 (grad -3), b=-3 (grad 2), mul=-6 (grad 1), c=10 (grad 1), add=4 (grad 1)",
+        "viewBox": "0 0 648 382",
+        "nodeCount": 5,
+        "edgeCount": 4,
+        "nodes": [
+          {
+            "key": "a",
+            "label": "a",
+            "data": "data 2",
+            "grad": "grad -3",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(44 44)",
+            "active": false
+          },
+          {
+            "key": "b",
+            "label": "b",
+            "data": "data -3",
+            "grad": "grad 2",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(44 152)",
+            "active": false
+          },
+          {
+            "key": "mul",
+            "label": "×",
+            "data": "data -6",
+            "grad": "grad 1",
+            "hasGrad": true,
+            "topo": "2",
+            "transform": "translate(258 152)",
+            "active": true
+          },
+          {
+            "key": "c",
+            "label": "c",
+            "data": "data 10",
+            "grad": "grad 1",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(44 260)",
+            "active": false
+          },
+          {
+            "key": "add",
+            "label": "+",
+            "data": "data 4",
+            "grad": "grad 1",
+            "hasGrad": true,
+            "topo": "1",
+            "transform": "translate(472 152)",
+            "active": false
+          }
+        ],
+        "edges": [
+          {
+            "key": "a->mul",
+            "active": true,
+            "label": "∂=-3",
+            "hasLabel": true
+          },
+          {
+            "key": "b->mul",
+            "active": true,
+            "label": "∂=2",
+            "hasLabel": true
+          },
+          {
+            "key": "mul->add",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "c->add",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          }
+        ]
+      },
+      "final": {
+        "ready": true,
+        "scene": "scene-2",
+        "keyframe": 5,
+        "playing": false,
+        "speed": 1,
+        "time": 26.5,
+        "timeLabel": "26.5s / 58.5s",
+        "playLabel": "Play",
+        "playPressed": "false",
+        "stepDisabled": false,
+        "speedOptions": [
+          "0.5",
+          "1",
+          "2"
+        ],
+        "speedValue": "1",
+        "caption": "Done. Chain rule along a → mul → d: ∂d/∂a = ∂d/∂mul · ∂mul/∂a = 1 · b = -3. Reverse topological order made mul.grad complete before it was used.",
+        "badge": "KEYFRAME 6 / 6",
+        "sceneTitle": "Scene 2 · Where gradients come from",
+        "chips": [
+          {
+            "index": 0,
+            "label": "setup",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 1,
+            "label": "reverse topo",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 2,
+            "label": "seed",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 3,
+            "label": "through +",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 4,
+            "label": "through ×",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 5,
+            "label": "chain rule",
+            "active": true,
+            "done": false
+          }
+        ],
+        "showGrads": false,
+        "backward": true,
+        "visibleNodes": "a,b,mul,c,add",
+        "showGradsDataset": "false",
+        "gradsDataset": "a=-3,b=2,mul=1,c=1,add=1",
+        "topoDataset": "add,mul",
+        "ariaLabel": "Expression graph. 5 of 5 nodes visible; a=2 (grad -3), b=-3 (grad 2), mul=-6 (grad 1), c=10 (grad 1), add=4 (grad 1)",
+        "viewBox": "0 0 648 382",
+        "nodeCount": 5,
+        "edgeCount": 4,
+        "nodes": [
+          {
+            "key": "a",
+            "label": "a",
+            "data": "data 2",
+            "grad": "grad -3",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(44 44)",
+            "active": false
+          },
+          {
+            "key": "b",
+            "label": "b",
+            "data": "data -3",
+            "grad": "grad 2",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(44 152)",
+            "active": false
+          },
+          {
+            "key": "mul",
+            "label": "×",
+            "data": "data -6",
+            "grad": "grad 1",
+            "hasGrad": true,
+            "topo": "2",
+            "transform": "translate(258 152)",
+            "active": false
+          },
+          {
+            "key": "c",
+            "label": "c",
+            "data": "data 10",
+            "grad": "grad 1",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(44 260)",
+            "active": false
+          },
+          {
+            "key": "add",
+            "label": "+",
+            "data": "data 4",
+            "grad": "grad 1",
+            "hasGrad": true,
+            "topo": "1",
+            "transform": "translate(472 152)",
+            "active": false
+          }
+        ],
+        "edges": [
+          {
+            "key": "a->mul",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "b->mul",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "mul->add",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "c->add",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          }
+        ]
+      }
+    },
+    "scene3": {
+      "inputs": {
+        "ready": true,
+        "scene": "scene-3",
+        "keyframe": 0,
+        "playing": false,
+        "speed": 1,
+        "time": 28.5,
+        "timeLabel": "28.5s / 58.5s",
+        "playLabel": "Play",
+        "playPressed": "false",
+        "stepDisabled": false,
+        "speedOptions": [
+          "0.5",
+          "1",
+          "2"
+        ],
+        "speedValue": "1",
+        "caption": "A neuron computes y = tanh(w · x + b) with three inputs. Start with the inputs x, the weights w, and the bias b — all plain Values.",
+        "badge": "KEYFRAME 1 / 13",
+        "sceneTitle": "Scene 3 · One neuron: y = tanh(w · x + b)",
+        "chips": [
+          {
+            "index": 0,
+            "label": "inputs",
+            "active": true,
+            "done": false
+          },
+          {
+            "index": 1,
+            "label": "products",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 2,
+            "label": "sum + b",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 3,
+            "label": "tanh",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 4,
+            "label": "seed",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 5,
+            "label": "through tanh",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 6,
+            "label": "through + b",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 7,
+            "label": "through + p3",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 8,
+            "label": "through + p2",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 9,
+            "label": "through × w1",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 10,
+            "label": "through × w2",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 11,
+            "label": "through × w3",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 12,
+            "label": "weight grads",
+            "active": false,
+            "done": false
+          }
+        ],
+        "showGrads": false,
+        "backward": false,
+        "visibleNodes": "w1,x1,w2,x2,w3,x3,b",
+        "showGradsDataset": "false",
+        "gradsDataset": "",
+        "topoDataset": "",
+        "ariaLabel": "Expression graph. 7 of 14 nodes visible; w1=0.5, x1=1, w2=-1, x2=0.5, w3=2, x3=-1, b=2.5",
+        "viewBox": "0 0 1050 630",
+        "nodeCount": 7,
+        "edgeCount": 0,
+        "nodes": [
+          {
+            "key": "b",
+            "label": "b",
+            "data": "data 2.5",
+            "grad": "grad 0.79",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 528)",
+            "active": false
+          },
+          {
+            "key": "w1",
+            "label": "w₁",
+            "data": "data 0.5",
+            "grad": "grad 0.79",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 36)",
+            "active": false
+          },
+          {
+            "key": "x1",
+            "label": "x₁",
+            "data": "data 1",
+            "grad": "grad 0.39",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 118)",
+            "active": false
+          },
+          {
+            "key": "w2",
+            "label": "w₂",
+            "data": "data -1",
+            "grad": "grad 0.39",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 200)",
+            "active": false
+          },
+          {
+            "key": "x2",
+            "label": "x₂",
+            "data": "data 0.5",
+            "grad": "grad -0.79",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 282)",
+            "active": false
+          },
+          {
+            "key": "w3",
+            "label": "w₃",
+            "data": "data 2",
+            "grad": "grad -0.79",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 364)",
+            "active": false
+          },
+          {
+            "key": "x3",
+            "label": "x₃",
+            "data": "data -1",
+            "grad": "grad 1.57",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 446)",
+            "active": false
+          }
+        ],
+        "edges": []
+      },
+      "forward": {
+        "ready": true,
+        "scene": "scene-3",
+        "keyframe": 3,
+        "playing": false,
+        "speed": 1,
+        "time": 37.5,
+        "timeLabel": "37.5s / 58.5s",
+        "playLabel": "Play",
+        "playPressed": "false",
+        "stepDisabled": false,
+        "speedOptions": [
+          "0.5",
+          "1",
+          "2"
+        ],
+        "speedValue": "1",
+        "caption": "Squash with tanh: y = tanh(0.5) = 0.46. Forward pass done — now send the gradient back.",
+        "badge": "KEYFRAME 4 / 13",
+        "sceneTitle": "Scene 3 · One neuron: y = tanh(w · x + b)",
+        "chips": [
+          {
+            "index": 0,
+            "label": "inputs",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 1,
+            "label": "products",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 2,
+            "label": "sum + b",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 3,
+            "label": "tanh",
+            "active": true,
+            "done": false
+          },
+          {
+            "index": 4,
+            "label": "seed",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 5,
+            "label": "through tanh",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 6,
+            "label": "through + b",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 7,
+            "label": "through + p3",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 8,
+            "label": "through + p2",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 9,
+            "label": "through × w1",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 10,
+            "label": "through × w2",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 11,
+            "label": "through × w3",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 12,
+            "label": "weight grads",
+            "active": false,
+            "done": false
+          }
+        ],
+        "showGrads": false,
+        "backward": false,
+        "visibleNodes": "w1,x1,p1,w2,x2,p2,dot1,w3,x3,p3,dot2,b,zb,y",
+        "showGradsDataset": "false",
+        "gradsDataset": "",
+        "topoDataset": "",
+        "ariaLabel": "Expression graph. 14 of 14 nodes visible; w1=0.5, x1=1, p1=0.5, w2=-1, x2=0.5, p2=-0.5, dot1=0, w3=2, x3=-1, p3=-2, dot2=-2, b=2.5, zb=0.5, y=0.46",
+        "viewBox": "0 0 1050 630",
+        "nodeCount": 14,
+        "edgeCount": 13,
+        "nodes": [
+          {
+            "key": "b",
+            "label": "b",
+            "data": "data 2.5",
+            "grad": "grad 0.79",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 528)",
+            "active": false
+          },
+          {
+            "key": "w1",
+            "label": "w₁",
+            "data": "data 0.5",
+            "grad": "grad 0.79",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 36)",
+            "active": false
+          },
+          {
+            "key": "x1",
+            "label": "x₁",
+            "data": "data 1",
+            "grad": "grad 0.39",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 118)",
+            "active": false
+          },
+          {
+            "key": "w2",
+            "label": "w₂",
+            "data": "data -1",
+            "grad": "grad 0.39",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 200)",
+            "active": false
+          },
+          {
+            "key": "x2",
+            "label": "x₂",
+            "data": "data 0.5",
+            "grad": "grad -0.79",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 282)",
+            "active": false
+          },
+          {
+            "key": "w3",
+            "label": "w₃",
+            "data": "data 2",
+            "grad": "grad -0.79",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 364)",
+            "active": false
+          },
+          {
+            "key": "x3",
+            "label": "x₃",
+            "data": "data -1",
+            "grad": "grad 1.57",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 446)",
+            "active": false
+          },
+          {
+            "key": "p1",
+            "label": "×",
+            "data": "data 0.5",
+            "grad": "grad 0.79",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(208 200)",
+            "active": false
+          },
+          {
+            "key": "p2",
+            "label": "×",
+            "data": "data -0.5",
+            "grad": "grad 0.79",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(208 282)",
+            "active": false
+          },
+          {
+            "key": "dot1",
+            "label": "+",
+            "data": "data 0",
+            "grad": "grad 0.79",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(380 282)",
+            "active": false
+          },
+          {
+            "key": "p3",
+            "label": "×",
+            "data": "data -2",
+            "grad": "grad 0.79",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(208 364)",
+            "active": false
+          },
+          {
+            "key": "dot2",
+            "label": "+",
+            "data": "data -2",
+            "grad": "grad 0.79",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(552 282)",
+            "active": false
+          },
+          {
+            "key": "zb",
+            "label": "+",
+            "data": "data 0.5",
+            "grad": "grad 0.79",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(724 282)",
+            "active": false
+          },
+          {
+            "key": "y",
+            "label": "tanh",
+            "data": "data 0.46",
+            "grad": "grad 1",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(896 282)",
+            "active": true
+          }
+        ],
+        "edges": [
+          {
+            "key": "w1->p1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x1->p1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "w2->p2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x2->p2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p1->dot1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p2->dot1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "w3->p3",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x3->p3",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "dot1->dot2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p3->dot2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "dot2->zb",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "b->zb",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "zb->y",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          }
+        ]
+      },
+      "seed": {
+        "ready": true,
+        "scene": "scene-3",
+        "keyframe": 4,
+        "playing": false,
+        "speed": 1,
+        "time": 40,
+        "timeLabel": "40.0s / 58.5s",
+        "playLabel": "Play",
+        "playPressed": "false",
+        "stepDisabled": false,
+        "speedOptions": [
+          "0.5",
+          "1",
+          "2"
+        ],
+        "speedValue": "1",
+        "caption": "Backward starts at the output: y.grad = 1 (∂y/∂y). Operations are numbered in reverse topological order; each one runs only after every node that consumes its result. The weight gradients are still zero.",
+        "badge": "KEYFRAME 5 / 13",
+        "sceneTitle": "Scene 3 · One neuron: y = tanh(w · x + b)",
+        "chips": [
+          {
+            "index": 0,
+            "label": "inputs",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 1,
+            "label": "products",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 2,
+            "label": "sum + b",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 3,
+            "label": "tanh",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 4,
+            "label": "seed",
+            "active": true,
+            "done": false
+          },
+          {
+            "index": 5,
+            "label": "through tanh",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 6,
+            "label": "through + b",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 7,
+            "label": "through + p3",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 8,
+            "label": "through + p2",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 9,
+            "label": "through × w1",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 10,
+            "label": "through × w2",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 11,
+            "label": "through × w3",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 12,
+            "label": "weight grads",
+            "active": false,
+            "done": false
+          }
+        ],
+        "showGrads": false,
+        "backward": false,
+        "visibleNodes": "w1,x1,p1,w2,x2,p2,dot1,w3,x3,p3,dot2,b,zb,y",
+        "showGradsDataset": "false",
+        "gradsDataset": "y=1",
+        "topoDataset": "y,zb,dot2,dot1,p1,p2,p3",
+        "ariaLabel": "Expression graph. 14 of 14 nodes visible; w1=0.5, x1=1, p1=0.5, w2=-1, x2=0.5, p2=-0.5, dot1=0, w3=2, x3=-1, p3=-2, dot2=-2, b=2.5, zb=0.5, y=0.46 (grad 1)",
+        "viewBox": "0 0 1050 630",
+        "nodeCount": 14,
+        "edgeCount": 13,
+        "nodes": [
+          {
+            "key": "b",
+            "label": "b",
+            "data": "data 2.5",
+            "grad": "grad 0.79",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 528)",
+            "active": false
+          },
+          {
+            "key": "w1",
+            "label": "w₁",
+            "data": "data 0.5",
+            "grad": "grad 0.79",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 36)",
+            "active": false
+          },
+          {
+            "key": "x1",
+            "label": "x₁",
+            "data": "data 1",
+            "grad": "grad 0.39",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 118)",
+            "active": false
+          },
+          {
+            "key": "w2",
+            "label": "w₂",
+            "data": "data -1",
+            "grad": "grad 0.39",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 200)",
+            "active": false
+          },
+          {
+            "key": "x2",
+            "label": "x₂",
+            "data": "data 0.5",
+            "grad": "grad -0.79",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 282)",
+            "active": false
+          },
+          {
+            "key": "w3",
+            "label": "w₃",
+            "data": "data 2",
+            "grad": "grad -0.79",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 364)",
+            "active": false
+          },
+          {
+            "key": "x3",
+            "label": "x₃",
+            "data": "data -1",
+            "grad": "grad 1.57",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 446)",
+            "active": false
+          },
+          {
+            "key": "p1",
+            "label": "×",
+            "data": "data 0.5",
+            "grad": "grad 0.79",
+            "hasGrad": false,
+            "topo": "5",
+            "transform": "translate(208 200)",
+            "active": false
+          },
+          {
+            "key": "p2",
+            "label": "×",
+            "data": "data -0.5",
+            "grad": "grad 0.79",
+            "hasGrad": false,
+            "topo": "6",
+            "transform": "translate(208 282)",
+            "active": false
+          },
+          {
+            "key": "dot1",
+            "label": "+",
+            "data": "data 0",
+            "grad": "grad 0.79",
+            "hasGrad": false,
+            "topo": "4",
+            "transform": "translate(380 282)",
+            "active": false
+          },
+          {
+            "key": "p3",
+            "label": "×",
+            "data": "data -2",
+            "grad": "grad 0.79",
+            "hasGrad": false,
+            "topo": "7",
+            "transform": "translate(208 364)",
+            "active": false
+          },
+          {
+            "key": "dot2",
+            "label": "+",
+            "data": "data -2",
+            "grad": "grad 0.79",
+            "hasGrad": false,
+            "topo": "3",
+            "transform": "translate(552 282)",
+            "active": false
+          },
+          {
+            "key": "zb",
+            "label": "+",
+            "data": "data 0.5",
+            "grad": "grad 0.79",
+            "hasGrad": false,
+            "topo": "2",
+            "transform": "translate(724 282)",
+            "active": false
+          },
+          {
+            "key": "y",
+            "label": "tanh",
+            "data": "data 0.46",
+            "grad": "grad 1",
+            "hasGrad": true,
+            "topo": "1",
+            "transform": "translate(896 282)",
+            "active": true
+          }
+        ],
+        "edges": [
+          {
+            "key": "w1->p1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x1->p1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "w2->p2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x2->p2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p1->dot1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p2->dot1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "w3->p3",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x3->p3",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "dot1->dot2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p3->dot2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "dot2->zb",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "b->zb",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "zb->y",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          }
+        ]
+      },
+      "throughW1": {
+        "ready": true,
+        "scene": "scene-3",
+        "keyframe": 9,
+        "playing": false,
+        "speed": 1,
+        "time": 50,
+        "timeLabel": "50.0s / 58.5s",
+        "playLabel": "Play",
+        "playPressed": "false",
+        "stepDisabled": false,
+        "speedOptions": [
+          "0.5",
+          "1",
+          "2"
+        ],
+        "speedValue": "1",
+        "caption": "Process ×: p1.grad flows into w1 and x1. ∂p1/∂w1 = x1 = 1, so w1.grad = 1 × 0.79 = 0.79; ∂p1/∂x1 = w1 = 0.5, so x1.grad = 0.79.",
+        "badge": "KEYFRAME 10 / 13",
+        "sceneTitle": "Scene 3 · One neuron: y = tanh(w · x + b)",
+        "chips": [
+          {
+            "index": 0,
+            "label": "inputs",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 1,
+            "label": "products",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 2,
+            "label": "sum + b",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 3,
+            "label": "tanh",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 4,
+            "label": "seed",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 5,
+            "label": "through tanh",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 6,
+            "label": "through + b",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 7,
+            "label": "through + p3",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 8,
+            "label": "through + p2",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 9,
+            "label": "through × w1",
+            "active": true,
+            "done": false
+          },
+          {
+            "index": 10,
+            "label": "through × w2",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 11,
+            "label": "through × w3",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 12,
+            "label": "weight grads",
+            "active": false,
+            "done": false
+          }
+        ],
+        "showGrads": false,
+        "backward": true,
+        "visibleNodes": "w1,x1,p1,w2,x2,p2,dot1,w3,x3,p3,dot2,b,zb,y",
+        "showGradsDataset": "false",
+        "gradsDataset": "w1=0.79,x1=0.39,p1=0.79,p2=0.79,dot1=0.79,p3=0.79,dot2=0.79,b=0.79,zb=0.79,y=1",
+        "topoDataset": "y,zb,dot2,dot1,p1,p2,p3",
+        "ariaLabel": "Expression graph. 14 of 14 nodes visible; w1=0.5 (grad 0.79), x1=1 (grad 0.39), p1=0.5 (grad 0.79), w2=-1, x2=0.5, p2=-0.5 (grad 0.79), dot1=0 (grad 0.79), w3=2, x3=-1, p3=-2 (grad 0.79), dot2=-2 (grad 0.79), b=2.5 (grad 0.79), zb=0.5 (grad 0.79), y=0.46 (grad 1)",
+        "viewBox": "0 0 1050 630",
+        "nodeCount": 14,
+        "edgeCount": 13,
+        "nodes": [
+          {
+            "key": "b",
+            "label": "b",
+            "data": "data 2.5",
+            "grad": "grad 0.79",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(36 528)",
+            "active": false
+          },
+          {
+            "key": "w1",
+            "label": "w₁",
+            "data": "data 0.5",
+            "grad": "grad 0.79",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(36 36)",
+            "active": false
+          },
+          {
+            "key": "x1",
+            "label": "x₁",
+            "data": "data 1",
+            "grad": "grad 0.39",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(36 118)",
+            "active": false
+          },
+          {
+            "key": "w2",
+            "label": "w₂",
+            "data": "data -1",
+            "grad": "grad 0.39",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 200)",
+            "active": false
+          },
+          {
+            "key": "x2",
+            "label": "x₂",
+            "data": "data 0.5",
+            "grad": "grad -0.79",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 282)",
+            "active": false
+          },
+          {
+            "key": "w3",
+            "label": "w₃",
+            "data": "data 2",
+            "grad": "grad -0.79",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 364)",
+            "active": false
+          },
+          {
+            "key": "x3",
+            "label": "x₃",
+            "data": "data -1",
+            "grad": "grad 1.57",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 446)",
+            "active": false
+          },
+          {
+            "key": "p1",
+            "label": "×",
+            "data": "data 0.5",
+            "grad": "grad 0.79",
+            "hasGrad": true,
+            "topo": "5",
+            "transform": "translate(208 200)",
+            "active": true
+          },
+          {
+            "key": "p2",
+            "label": "×",
+            "data": "data -0.5",
+            "grad": "grad 0.79",
+            "hasGrad": true,
+            "topo": "6",
+            "transform": "translate(208 282)",
+            "active": false
+          },
+          {
+            "key": "dot1",
+            "label": "+",
+            "data": "data 0",
+            "grad": "grad 0.79",
+            "hasGrad": true,
+            "topo": "4",
+            "transform": "translate(380 282)",
+            "active": false
+          },
+          {
+            "key": "p3",
+            "label": "×",
+            "data": "data -2",
+            "grad": "grad 0.79",
+            "hasGrad": true,
+            "topo": "7",
+            "transform": "translate(208 364)",
+            "active": false
+          },
+          {
+            "key": "dot2",
+            "label": "+",
+            "data": "data -2",
+            "grad": "grad 0.79",
+            "hasGrad": true,
+            "topo": "3",
+            "transform": "translate(552 282)",
+            "active": false
+          },
+          {
+            "key": "zb",
+            "label": "+",
+            "data": "data 0.5",
+            "grad": "grad 0.79",
+            "hasGrad": true,
+            "topo": "2",
+            "transform": "translate(724 282)",
+            "active": false
+          },
+          {
+            "key": "y",
+            "label": "tanh",
+            "data": "data 0.46",
+            "grad": "grad 1",
+            "hasGrad": true,
+            "topo": "1",
+            "transform": "translate(896 282)",
+            "active": false
+          }
+        ],
+        "edges": [
+          {
+            "key": "w1->p1",
+            "active": true,
+            "label": "∂=1",
+            "hasLabel": true
+          },
+          {
+            "key": "x1->p1",
+            "active": true,
+            "label": "∂=0.5",
+            "hasLabel": true
+          },
+          {
+            "key": "w2->p2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x2->p2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p1->dot1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p2->dot1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "w3->p3",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x3->p3",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "dot1->dot2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p3->dot2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "dot2->zb",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "b->zb",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "zb->y",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          }
+        ]
+      },
+      "final": {
+        "ready": true,
+        "scene": "scene-3",
+        "keyframe": 12,
+        "playing": false,
+        "speed": 1,
+        "time": 56.5,
+        "timeLabel": "56.5s / 58.5s",
+        "playLabel": "Play",
+        "playPressed": "false",
+        "stepDisabled": true,
+        "speedOptions": [
+          "0.5",
+          "1",
+          "2"
+        ],
+        "speedValue": "1",
+        "caption": "All three weight gradients: w1 = 0.79, w2 = 0.39, w3 = -0.79. Gradient descent would subtract a small multiple of each (ticket 3); no training loop here.",
+        "badge": "KEYFRAME 13 / 13",
+        "sceneTitle": "Scene 3 · One neuron: y = tanh(w · x + b)",
+        "chips": [
+          {
+            "index": 0,
+            "label": "inputs",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 1,
+            "label": "products",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 2,
+            "label": "sum + b",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 3,
+            "label": "tanh",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 4,
+            "label": "seed",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 5,
+            "label": "through tanh",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 6,
+            "label": "through + b",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 7,
+            "label": "through + p3",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 8,
+            "label": "through + p2",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 9,
+            "label": "through × w1",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 10,
+            "label": "through × w2",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 11,
+            "label": "through × w3",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 12,
+            "label": "weight grads",
+            "active": true,
+            "done": false
+          }
+        ],
+        "showGrads": false,
+        "backward": true,
+        "visibleNodes": "w1,x1,p1,w2,x2,p2,dot1,w3,x3,p3,dot2,b,zb,y",
+        "showGradsDataset": "false",
+        "gradsDataset": "w1=0.79,x1=0.39,p1=0.79,w2=0.39,x2=-0.79,p2=0.79,dot1=0.79,w3=-0.79,x3=1.57,p3=0.79,dot2=0.79,b=0.79,zb=0.79,y=1",
+        "topoDataset": "y,zb,dot2,dot1,p1,p2,p3",
+        "ariaLabel": "Expression graph. 14 of 14 nodes visible; w1=0.5 (grad 0.79), x1=1 (grad 0.39), p1=0.5 (grad 0.79), w2=-1 (grad 0.39), x2=0.5 (grad -0.79), p2=-0.5 (grad 0.79), dot1=0 (grad 0.79), w3=2 (grad -0.79), x3=-1 (grad 1.57), p3=-2 (grad 0.79), dot2=-2 (grad 0.79), b=2.5 (grad 0.79), zb=0.5 (grad 0.79), y=0.46 (grad 1)",
+        "viewBox": "0 0 1050 630",
+        "nodeCount": 14,
+        "edgeCount": 13,
+        "nodes": [
+          {
+            "key": "b",
+            "label": "b",
+            "data": "data 2.5",
+            "grad": "grad 0.79",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(36 528)",
+            "active": false
+          },
+          {
+            "key": "w1",
+            "label": "w₁",
+            "data": "data 0.5",
+            "grad": "grad 0.79",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(36 36)",
+            "active": false
+          },
+          {
+            "key": "x1",
+            "label": "x₁",
+            "data": "data 1",
+            "grad": "grad 0.39",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(36 118)",
+            "active": false
+          },
+          {
+            "key": "w2",
+            "label": "w₂",
+            "data": "data -1",
+            "grad": "grad 0.39",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(36 200)",
+            "active": false
+          },
+          {
+            "key": "x2",
+            "label": "x₂",
+            "data": "data 0.5",
+            "grad": "grad -0.79",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(36 282)",
+            "active": false
+          },
+          {
+            "key": "w3",
+            "label": "w₃",
+            "data": "data 2",
+            "grad": "grad -0.79",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(36 364)",
+            "active": false
+          },
+          {
+            "key": "x3",
+            "label": "x₃",
+            "data": "data -1",
+            "grad": "grad 1.57",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(36 446)",
+            "active": false
+          },
+          {
+            "key": "p1",
+            "label": "×",
+            "data": "data 0.5",
+            "grad": "grad 0.79",
+            "hasGrad": true,
+            "topo": "5",
+            "transform": "translate(208 200)",
+            "active": false
+          },
+          {
+            "key": "p2",
+            "label": "×",
+            "data": "data -0.5",
+            "grad": "grad 0.79",
+            "hasGrad": true,
+            "topo": "6",
+            "transform": "translate(208 282)",
+            "active": false
+          },
+          {
+            "key": "dot1",
+            "label": "+",
+            "data": "data 0",
+            "grad": "grad 0.79",
+            "hasGrad": true,
+            "topo": "4",
+            "transform": "translate(380 282)",
+            "active": false
+          },
+          {
+            "key": "p3",
+            "label": "×",
+            "data": "data -2",
+            "grad": "grad 0.79",
+            "hasGrad": true,
+            "topo": "7",
+            "transform": "translate(208 364)",
+            "active": false
+          },
+          {
+            "key": "dot2",
+            "label": "+",
+            "data": "data -2",
+            "grad": "grad 0.79",
+            "hasGrad": true,
+            "topo": "3",
+            "transform": "translate(552 282)",
+            "active": false
+          },
+          {
+            "key": "zb",
+            "label": "+",
+            "data": "data 0.5",
+            "grad": "grad 0.79",
+            "hasGrad": true,
+            "topo": "2",
+            "transform": "translate(724 282)",
+            "active": false
+          },
+          {
+            "key": "y",
+            "label": "tanh",
+            "data": "data 0.46",
+            "grad": "grad 1",
+            "hasGrad": true,
+            "topo": "1",
+            "transform": "translate(896 282)",
+            "active": false
+          }
+        ],
+        "edges": [
+          {
+            "key": "w1->p1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x1->p1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "w2->p2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x2->p2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p1->dot1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p2->dot1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "w3->p3",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x3->p3",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "dot1->dot2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p3->dot2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "dot2->zb",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "b->zb",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "zb->y",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          }
+        ]
+      }
     }
   },
   "checks": {
