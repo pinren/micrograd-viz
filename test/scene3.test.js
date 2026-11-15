@@ -117,6 +117,24 @@ test('scene 3 gradient frames agree with the live autograd values', () => {
   closeTo(final.state.grads.zb, 1 - y.data * y.data);
 });
 
+test('scene 3 captions pair each local derivative with the right grad', () => {
+  const scene = createScene3();
+  const w1 = keyframe(scene, 'through × w1');
+  assert.match(w1.state.caption, /w1\.grad = 1 × 0\.79 = 0\.79/);
+  assert.match(w1.state.caption, /x1\.grad = 0\.5 × 0\.79 = 0\.39/);
+
+  const w2 = keyframe(scene, 'through × w2');
+  assert.match(w2.state.caption, /w2\.grad = x2 × p2\.grad = 0\.5 × 0\.79 = 0\.39/);
+  assert.match(w2.state.caption, /x2\.grad = w2 × p2\.grad = -1 × 0\.79 = -0\.79/);
+
+  const w3 = keyframe(scene, 'through × w3');
+  assert.match(w3.state.caption, /w3\.grad = x3 × p3\.grad = -1 × 0\.79 = -0\.79/);
+  assert.match(w3.state.caption, /x3\.grad = w3 × p3\.grad = 2 × 0\.79 = 1\.57/);
+
+  const final = scene.keyframes[scene.keyframes.length - 1];
+  assert.match(final.state.caption, /w1 = 0\.79, w2 = 0\.39, w3 = -0\.79/);
+});
+
 test('scene 3 uses a compact layout that still fits its boxes', () => {
   const scene = createScene3();
   assert.equal(scene.graph.nodes.length, 14);

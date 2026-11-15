@@ -48,7 +48,7 @@ Three scenes share one 58.5 s timeline.
 npm test
 ```
 
-Node 22+ runs the suites with no dependencies (78 tests):
+Node 22+ runs the suites with no dependencies (79 tests):
 
 - `test/value.test.js` — forward values, chain rule, shared subexpressions,
   repeatable backward passes, activation edge cases.
@@ -130,7 +130,7 @@ protocol, clicks the controls, and writes screenshots plus DOM state to
 - `docs/evidence/browser-check.json` — node/edge counts, gradient text per
   scene, active-edge and edge-label state, topo badges, control states,
   playback timing, and the no-network check
-- `docs/evidence/npm-test.txt` — current `npm test` output (78 tests)
+- `docs/evidence/npm-test.txt` — current `npm test` output (79 tests)
 
 ## Layout
 

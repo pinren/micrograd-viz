@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-15T00:23:17.831Z",
+  "generatedAt": "2026-11-15T00:24:31.265Z",
   "url": "file:///Users/pinren/src/micrograd-viz-work/backprop-neuron-scene-ea6924d5a2dd/index.html",
   "command": "node tools/capture-evidence.mjs",
   "viewport": {
@@ -279,7 +279,7 @@
         "keyframe": 1,
         "playing": false,
         "speed": 2,
-        "time": 2.07,
+        "time": 2.1,
         "timeLabel": "2.1s / 58.5s",
         "playLabel": "Play",
         "playPressed": "false",
@@ -2721,7 +2721,7 @@
           "2"
         ],
         "speedValue": "1",
-        "caption": "Process ×: p1.grad flows into w1 and x1. ∂p1/∂w1 = x1 = 1, so w1.grad = 1 × 0.79 = 0.79; ∂p1/∂x1 = w1 = 0.5, so x1.grad = 0.79.",
+        "caption": "Process ×: p1.grad flows into w1 and x1. ∂p1/∂w1 = x1 = 1, so w1.grad = 1 × 0.79 = 0.79; ∂p1/∂x1 = w1 = 0.5, so x1.grad = 0.5 × 0.79 = 0.39.",
         "badge": "KEYFRAME 10 / 13",
         "sceneTitle": "Scene 3 · One neuron: y = tanh(w · x + b)",
         "chips": [

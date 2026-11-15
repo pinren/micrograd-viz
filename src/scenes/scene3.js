@@ -202,7 +202,11 @@
         '; \u2202p1/\u2202x1 = w1 = ' +
         formatNumber(w1.data) +
         ', so x1.grad = ' +
-        formatNumber(x1.data * p1.grad) +
+        formatNumber(w1.data) +
+        ' \u00d7 ' +
+        up +
+        ' = ' +
+        formatNumber(x1.grad) +
         '.',
       p2:
         'Process \u00d7: w2.grad = x2 \u00d7 p2.grad = ' +
