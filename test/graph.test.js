@@ -213,3 +213,24 @@ test('buildRenderModel can reveal every gradient or none', () => {
   assert.ok(none.nodes.every((node) => node.hasGrad === false));
   assert.ok(none.edges.every((edge) => edge.hasLabel === false));
 });
+
+test('buildRenderModel can override data and attach update annotations', () => {
+  const { add } = makeDiamond();
+  const layout = layoutGraph(add);
+  const model = buildRenderModel(layout, {
+    data: { add: 7, a: 2.5 },
+    updates: { a: '-g 1.2 → 2.5' },
+  });
+
+  const byId = new Map(model.nodes.map((node) => [node.id, node]));
+  assert.equal(byId.get('add').data, 7);
+  assert.equal(byId.get('add').dataText, 'data 7');
+  assert.equal(byId.get('a').dataText, 'data 2.5');
+  assert.equal(byId.get('a').hasUpdate, true);
+  assert.equal(byId.get('a').updateText, '-g 1.2 → 2.5');
+  assert.equal(byId.get('add').hasUpdate, false);
+  assert.equal(byId.get('add').updateText, '');
+  // Nodes without an override keep their live value.
+  assert.equal(byId.get('mul').data, -6);
+  assert.match(model.summary, /add=7/);
+});

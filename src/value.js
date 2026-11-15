@@ -62,6 +62,24 @@
       return out;
     }
 
+    sub(other) {
+      const rhs = toValue(other);
+      const out = new Value(this.data - rhs.data, {
+        children: [this, rhs],
+        op: '-',
+      });
+      out._localDerivs = [
+        { child: this, local: 1 },
+        { child: rhs, local: -1 },
+      ];
+      out._backward = () => {
+        for (const { child, local } of out._localDerivs) {
+          child.grad += local * out.grad;
+        }
+      };
+      return out;
+    }
+
     mul(other) {
       const rhs = toValue(other);
       const out = new Value(this.data * rhs.data, {
@@ -162,6 +180,33 @@
         }
       };
       return out;
+    }
+
+    /**
+     * Resets this value's gradient to zero.
+     *
+     * The training loop calls this on every parameter before the forward pass
+     * so that gradients from the previous step cannot leak into this one.
+     */
+    zeroGrad() {
+      this.grad = 0;
+      return this;
+    }
+
+    /**
+     * One gradient-descent update: data -= lr * grad, in place.
+     *
+     * Only parameter leaves (weights and biases) should be stepped; calling it
+     * on an intermediate node would change a value that is derived elsewhere.
+     *
+     * @param {number} lr - positive learning rate
+     */
+    step(lr) {
+      if (typeof lr !== 'number' || !Number.isFinite(lr) || lr < 0) {
+        throw new TypeError('Value.step expects a non-negative finite learning rate');
+      }
+      this.data -= lr * this.grad;
+      return this;
     }
 
     /**

@@ -157,6 +157,8 @@ function readStateExpression() {
       hasLabel: group.classList.contains('has-label')
     }));
     const play = document.getElementById('play');
+    const plot = document.getElementById('plot');
+    const readout = document.getElementById('readout');
     return {
       ready: document.documentElement.dataset.ready === 'true',
       scene: document.body.dataset.scene,
@@ -185,12 +187,41 @@ function readStateExpression() {
       showGradsDataset: svg.dataset.showGrads,
       gradsDataset: svg.dataset.grads || '',
       topoDataset: svg.dataset.topo || '',
+      updatesDataset: svg.dataset.updates || '',
+      dataDataset: svg.dataset.data || '',
       ariaLabel: svg.getAttribute('aria-label'),
       viewBox: svg.getAttribute('viewBox'),
       nodeCount: nodes.length,
       edgeCount: edges.length,
       nodes,
-      edges
+      edges,
+      graphHidden: svg.hasAttribute('hidden'),
+      plot: {
+        hidden: plot.hasAttribute('hidden'),
+        epoch: plot.dataset.epoch == null ? null : Number(plot.dataset.epoch),
+        loss: plot.dataset.loss == null ? null : Number(plot.dataset.loss),
+        accuracy: plot.dataset.accuracy == null ? null : Number(plot.dataset.accuracy),
+        predictions: (plot.dataset.predictions || '').split(',').filter(Boolean).map(Number),
+        boundarySegments: (plot.dataset.boundary || '').split('|').filter(Boolean).length
+      },
+      readout: {
+        hidden: readout.hasAttribute('hidden'),
+        title: readout.querySelector('h3')?.textContent || '',
+        stats: [...readout.querySelectorAll('.readout-stat')].map((stat) => ({
+          label: stat.querySelector('.readout-stat-label')?.textContent || '',
+          value: stat.querySelector('.readout-stat-value')?.textContent || ''
+        })),
+        headers: [...readout.querySelectorAll('th')].map((th) => th.textContent),
+        rows: [...readout.querySelectorAll('tbody tr')].map((tr) =>
+          [...tr.querySelectorAll('td')].map((td) => td.textContent)
+        )
+      },
+      skip: {
+        hidden: document.getElementById('skip-controls').hasAttribute('hidden'),
+        value: document.getElementById('skip').value,
+        label: document.getElementById('fast-forward').textContent.trim(),
+        disabled: document.getElementById('fast-forward').disabled
+      }
     };
   })()`;
 }
@@ -475,11 +506,11 @@ async function main() {
     await shot('scene1-gradients');
 
     check(
-      'three scenes with three keyframe rails are loaded',
-      sceneInfo.length === 3 &&
+      'five scenes with five keyframe rails are loaded',
+      sceneInfo.length === 5 &&
         sceneInfo.map((scene) => scene.id).join(',') ===
-          'scene-1,scene-2,scene-3' &&
-        evidence.scenes.total === 58.5,
+          'scene-1,scene-2,scene-3,scene-4,scene-5' &&
+        evidence.scenes.total === 110.5,
       JSON.stringify({
         ids: sceneInfo.map((scene) => scene.id),
         total: evidence.scenes.total,
@@ -725,8 +756,8 @@ async function main() {
       s3final.caption
     );
     check(
-      'Step is disabled only after the very last keyframe',
-      s3final.stepDisabled === true,
+      'Step stays enabled after scene 3 because scenes 4 and 5 follow',
+      s3final.stepDisabled === false,
       'scene=' + s3final.scene
     );
     evidence.states.scene3 = {
@@ -738,6 +769,199 @@ async function main() {
       final: s3final,
     };
     await shot('scene3-gradients');
+
+    const s4inputs = await seekScene(3, 'inputs');
+    check(
+      'scene 4 starts on the same neuron inputs, without a readout',
+      s4inputs.scene === 'scene-4' &&
+        s4inputs.nodeCount === 7 &&
+        s4inputs.edgeCount === 0 &&
+        s4inputs.readout.hidden === true &&
+        s4inputs.plot.hidden === true,
+      'scene=' +
+        s4inputs.scene +
+        ' nodes=' +
+        s4inputs.nodeCount +
+        ' readoutHidden=' +
+        s4inputs.readout.hidden
+    );
+
+    const s4loss = await seekScene(3, 'loss');
+    check(
+      'scene 4 adds the target and the loss node',
+      s4loss.nodeCount === 17 &&
+        s4loss.edgeCount === 16 &&
+        s4loss.nodes.some((node) => node.key === 'loss') &&
+        /0\.29/.test(s4loss.caption),
+      'nodes=' + s4loss.nodeCount + ' edges=' + s4loss.edgeCount
+    );
+
+    const s4step = await seekScene(3, 'SGD step');
+    const s4stepNodes = nodesByKey(s4step);
+    check(
+      'scene 4 shows each parameter update annotation',
+      ['w1', 'w2', 'w3', 'b'].every((id) =>
+        s4step.updatesDataset.includes(id + '=-g ')
+      ),
+      s4step.updatesDataset
+    );
+    check(
+      'scene 4 parameter table has one row per weight and bias',
+      s4step.readout.headers.join(',') === 'param,data,grad,−lr·g,new data' &&
+        s4step.readout.rows.length === 4 &&
+        s4step.readout.rows[0][0] === 'w₁' &&
+        s4step.readout.rows[0][3] === '+0.08',
+      JSON.stringify(s4step.readout.rows)
+    );
+    check(
+      'scene 4 keeps the before-values on the update frame',
+      s4stepNodes.w1.data === 'data 0.5' &&
+        s4stepNodes.w3.data === 'data 2' &&
+        /grad -0\.85/.test(s4stepNodes.w1.grad) &&
+        /grad 0\.85/.test(s4stepNodes.w3.grad),
+      JSON.stringify({
+        w1: s4stepNodes.w1,
+        w3: s4stepNodes.w3,
+      })
+    );
+    await shot('scene4-step');
+
+    const s4after = await seekScene(3, 'after step');
+    const s4afterNodes = nodesByKey(s4after);
+    check(
+      'scene 4 applies the step and clears the gradients',
+      s4afterNodes.w1.data === 'data 0.58' &&
+        s4afterNodes.w2.data === 'data -0.96' &&
+        s4afterNodes.w3.data === 'data 1.92' &&
+        s4afterNodes.b.data === 'data 2.58' &&
+        s4afterNodes.loss.data === 'data 0.12' &&
+        s4after.gradsDataset === '',
+      JSON.stringify({
+        w1: s4afterNodes.w1.data,
+        w2: s4afterNodes.w2.data,
+        w3: s4afterNodes.w3.data,
+        b: s4afterNodes.b.data,
+        loss: s4afterNodes.loss.data,
+        grads: s4after.gradsDataset,
+      })
+    );
+    check(
+      'scene 4 readout reports the loss before and after the step',
+      s4after.readout.stats.some(
+        (stat) => stat.label === 'loss before' && stat.value === '0.29'
+      ) &&
+        s4after.readout.stats.some(
+          (stat) => stat.label === 'loss after' && stat.value === '0.12'
+        ),
+      JSON.stringify(s4after.readout.stats)
+    );
+    evidence.states.scene4 = {
+      inputs: s4inputs,
+      loss: s4loss,
+      step: s4step,
+      after: s4after,
+    };
+    await shot('scene4-after');
+
+    const s5start = await seekScene(4, 'epoch 0');
+    check(
+      'scene 5 opens on the plot with the untrained loss',
+      s5start.scene === 'scene-5' &&
+        s5start.plot.hidden === false &&
+        s5start.plot.epoch === 0 &&
+        s5start.plot.loss > 1.3 &&
+        s5start.plot.loss < 1.35 &&
+        s5start.plot.boundarySegments > 10 &&
+        s5start.skip.hidden === false,
+      JSON.stringify({
+        scene: s5start.scene,
+        plot: s5start.plot,
+        skip: s5start.skip,
+      })
+    );
+    check(
+      'scene 5 exposes the fast-forward control',
+      /Fast-forward 10 epochs/.test(s5start.skip.label) &&
+        s5start.skip.value === '10' &&
+        s5start.skip.disabled === false,
+      JSON.stringify(s5start.skip)
+    );
+    await shot('scene5-start');
+
+    await click('#fast-forward');
+    await sleep(350);
+    const s5ff10 = await readState();
+    check(
+      'fast-forward advances exactly N epochs',
+      s5ff10.plot.epoch === 10,
+      'epoch=' + s5ff10.plot.epoch
+    );
+
+    await cdp.evaluate(
+      `(() => { const select = document.getElementById('skip'); select.value = '50'; select.dispatchEvent(new Event('change', { bubbles: true })); })()`
+    );
+    await click('#fast-forward');
+    await sleep(350);
+    const s5finalState = await readState();
+    check(
+      'fast-forward clamps at the final epoch',
+      s5finalState.plot.epoch === 60,
+      'epoch=' + s5finalState.plot.epoch
+    );
+    check(
+      'scene 5 ends with the loss down and every point correct',
+      s5finalState.plot.loss < 0.4 &&
+        s5finalState.plot.accuracy === 4 &&
+        s5finalState.plot.predictions.length === 4 &&
+        s5finalState.plot.boundarySegments > 20,
+      JSON.stringify(s5finalState.plot)
+    );
+    check(
+      'scene 5 readout shows the trained epoch and loss',
+      s5finalState.readout.stats.some(
+        (stat) => stat.label === 'epoch' && stat.value === '60 / 60'
+      ) &&
+        s5finalState.readout.stats.some(
+          (stat) => stat.label === 'accuracy' && stat.value === '4 / 4'
+        ),
+      JSON.stringify(s5finalState.readout.stats)
+    );
+    check(
+      'scene 5 final frame is the end of the timeline',
+      s5finalState.stepDisabled === true &&
+        s5finalState.skip.disabled === true &&
+        s5finalState.plot.loss > 0.29 &&
+        s5finalState.plot.loss < 0.31,
+      'stepDisabled=' +
+        s5finalState.stepDisabled +
+        ' skipDisabled=' +
+        s5finalState.skip.disabled +
+        ' loss=' +
+        s5finalState.plot.loss
+    );
+    await shot('scene5-learned');
+
+    const lossHistory = await cdp.evaluate(
+      'globalThis.MGViz.app.scenes[4].losses'
+    );
+    evidence.scene5Losses = lossHistory.map((loss) => Number(loss.toFixed(6)));
+    check(
+      'scene 5 loss history is monotonic and ends below 40% of its start',
+      lossHistory.length === 61 &&
+        lossHistory.every(
+          (loss, index) => index === 0 || loss <= lossHistory[index - 1] + 1e-12
+        ) &&
+        lossHistory[60] < lossHistory[0] * 0.4,
+      'first=' +
+        lossHistory[0].toFixed(4) +
+        ' last=' +
+        lossHistory[60].toFixed(4)
+    );
+    evidence.states.scene5 = {
+      start: s5start,
+      fastForward10: s5ff10,
+      final: s5finalState,
+    };
 
     check(
       'no page exceptions or console errors',

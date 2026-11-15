@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-15T00:24:31.265Z",
-  "url": "file:///Users/pinren/src/micrograd-viz-work/backprop-neuron-scene-ea6924d5a2dd/index.html",
+  "generatedAt": "2026-11-15T00:56:01.564Z",
+  "url": "file:///Users/pinren/src/micrograd-viz-work/training-sgd-scenes-71cec43341db/index.html",
   "command": "node tools/capture-evidence.mjs",
   "viewport": {
     "width": 1280,
@@ -13,7 +13,11 @@
     "docs/evidence/scene2-backprop.png",
     "docs/evidence/scene2-gradients.png",
     "docs/evidence/scene3-forward.png",
-    "docs/evidence/scene3-gradients.png"
+    "docs/evidence/scene3-gradients.png",
+    "docs/evidence/scene4-step.png",
+    "docs/evidence/scene4-after.png",
+    "docs/evidence/scene5-start.png",
+    "docs/evidence/scene5-learned.png"
   ],
   "states": {
     "initial": {
@@ -23,7 +27,7 @@
       "playing": false,
       "speed": 1,
       "time": 0,
-      "timeLabel": "0.0s / 58.5s",
+      "timeLabel": "0.0s / 110.5s",
       "playLabel": "Play",
       "playPressed": "false",
       "stepDisabled": false,
@@ -80,6 +84,8 @@
       "showGradsDataset": "false",
       "gradsDataset": "",
       "topoDataset": "",
+      "updatesDataset": "",
+      "dataDataset": "a=2",
       "ariaLabel": "Expression graph. 1 of 5 nodes visible; a=2",
       "viewBox": "0 0 648 382",
       "nodeCount": 1,
@@ -96,7 +102,29 @@
           "active": true
         }
       ],
-      "edges": []
+      "edges": [],
+      "graphHidden": false,
+      "plot": {
+        "hidden": true,
+        "epoch": null,
+        "loss": null,
+        "accuracy": null,
+        "predictions": [],
+        "boundarySegments": 0
+      },
+      "readout": {
+        "hidden": true,
+        "title": "",
+        "stats": [],
+        "headers": [],
+        "rows": []
+      },
+      "skip": {
+        "hidden": true,
+        "value": "10",
+        "label": "Fast-forward 10 epochs",
+        "disabled": false
+      }
     },
     "after2xPlay": {
       "whilePlaying": {
@@ -106,7 +134,7 @@
         "playing": true,
         "speed": 2,
         "time": 0,
-        "timeLabel": "0.0s / 58.5s",
+        "timeLabel": "0.0s / 110.5s",
         "playLabel": "Pause",
         "playPressed": "true",
         "stepDisabled": false,
@@ -163,6 +191,8 @@
         "showGradsDataset": "false",
         "gradsDataset": "",
         "topoDataset": "",
+        "updatesDataset": "",
+        "dataDataset": "a=2",
         "ariaLabel": "Expression graph. 1 of 5 nodes visible; a=2",
         "viewBox": "0 0 648 382",
         "nodeCount": 1,
@@ -179,7 +209,29 @@
             "active": true
           }
         ],
-        "edges": []
+        "edges": [],
+        "graphHidden": false,
+        "plot": {
+          "hidden": true,
+          "epoch": null,
+          "loss": null,
+          "accuracy": null,
+          "predictions": [],
+          "boundarySegments": 0
+        },
+        "readout": {
+          "hidden": true,
+          "title": "",
+          "stats": [],
+          "headers": [],
+          "rows": []
+        },
+        "skip": {
+          "hidden": true,
+          "value": "10",
+          "label": "Fast-forward 10 epochs",
+          "disabled": false
+        }
       },
       "afterPlay": {
         "ready": true,
@@ -188,7 +240,7 @@
         "playing": true,
         "speed": 2,
         "time": 2.07,
-        "timeLabel": "2.1s / 58.5s",
+        "timeLabel": "2.1s / 110.5s",
         "playLabel": "Pause",
         "playPressed": "true",
         "stepDisabled": false,
@@ -245,6 +297,8 @@
         "showGradsDataset": "false",
         "gradsDataset": "",
         "topoDataset": "",
+        "updatesDataset": "",
+        "dataDataset": "a=2,b=-3",
         "ariaLabel": "Expression graph. 2 of 5 nodes visible; a=2, b=-3",
         "viewBox": "0 0 648 382",
         "nodeCount": 2,
@@ -271,7 +325,29 @@
             "active": true
           }
         ],
-        "edges": []
+        "edges": [],
+        "graphHidden": false,
+        "plot": {
+          "hidden": true,
+          "epoch": null,
+          "loss": null,
+          "accuracy": null,
+          "predictions": [],
+          "boundarySegments": 0
+        },
+        "readout": {
+          "hidden": true,
+          "title": "",
+          "stats": [],
+          "headers": [],
+          "rows": []
+        },
+        "skip": {
+          "hidden": true,
+          "value": "10",
+          "label": "Fast-forward 10 epochs",
+          "disabled": false
+        }
       },
       "afterPause": {
         "ready": true,
@@ -279,8 +355,8 @@
         "keyframe": 1,
         "playing": false,
         "speed": 2,
-        "time": 2.1,
-        "timeLabel": "2.1s / 58.5s",
+        "time": 2.07,
+        "timeLabel": "2.1s / 110.5s",
         "playLabel": "Play",
         "playPressed": "false",
         "stepDisabled": false,
@@ -337,6 +413,8 @@
         "showGradsDataset": "false",
         "gradsDataset": "",
         "topoDataset": "",
+        "updatesDataset": "",
+        "dataDataset": "a=2,b=-3",
         "ariaLabel": "Expression graph. 2 of 5 nodes visible; a=2, b=-3",
         "viewBox": "0 0 648 382",
         "nodeCount": 2,
@@ -363,7 +441,29 @@
             "active": true
           }
         ],
-        "edges": []
+        "edges": [],
+        "graphHidden": false,
+        "plot": {
+          "hidden": true,
+          "epoch": null,
+          "loss": null,
+          "accuracy": null,
+          "predictions": [],
+          "boundarySegments": 0
+        },
+        "readout": {
+          "hidden": true,
+          "title": "",
+          "stats": [],
+          "headers": [],
+          "rows": []
+        },
+        "skip": {
+          "hidden": true,
+          "value": "10",
+          "label": "Fast-forward 10 epochs",
+          "disabled": false
+        }
       }
     },
     "mid": {
@@ -373,7 +473,7 @@
       "playing": false,
       "speed": 1,
       "time": 6,
-      "timeLabel": "6.0s / 58.5s",
+      "timeLabel": "6.0s / 110.5s",
       "playLabel": "Play",
       "playPressed": "false",
       "stepDisabled": false,
@@ -430,6 +530,8 @@
       "showGradsDataset": "false",
       "gradsDataset": "",
       "topoDataset": "",
+      "updatesDataset": "",
+      "dataDataset": "a=2,b=-3,mul=-6,c=10",
       "ariaLabel": "Expression graph. 4 of 5 nodes visible; a=2, b=-3, mul=-6, c=10",
       "viewBox": "0 0 648 382",
       "nodeCount": 4,
@@ -489,7 +591,29 @@
           "label": "",
           "hasLabel": false
         }
-      ]
+      ],
+      "graphHidden": false,
+      "plot": {
+        "hidden": true,
+        "epoch": null,
+        "loss": null,
+        "accuracy": null,
+        "predictions": [],
+        "boundarySegments": 0
+      },
+      "readout": {
+        "hidden": true,
+        "title": "",
+        "stats": [],
+        "headers": [],
+        "rows": []
+      },
+      "skip": {
+        "hidden": true,
+        "value": "10",
+        "label": "Fast-forward 10 epochs",
+        "disabled": false
+      }
     },
     "final": {
       "ready": true,
@@ -498,7 +622,7 @@
       "playing": false,
       "speed": 1,
       "time": 10.5,
-      "timeLabel": "10.5s / 58.5s",
+      "timeLabel": "10.5s / 110.5s",
       "playLabel": "Play",
       "playPressed": "false",
       "stepDisabled": false,
@@ -555,6 +679,8 @@
       "showGradsDataset": "true",
       "gradsDataset": "a=-3,b=2,mul=1,c=1,add=1",
       "topoDataset": "",
+      "updatesDataset": "",
+      "dataDataset": "a=2,b=-3,mul=-6,c=10,add=4",
       "ariaLabel": "Expression graph. 5 of 5 nodes visible; a=2 (grad -3), b=-3 (grad 2), mul=-6 (grad 1), c=10 (grad 1), add=4 (grad 1)",
       "viewBox": "0 0 648 382",
       "nodeCount": 5,
@@ -636,7 +762,29 @@
           "label": "",
           "hasLabel": false
         }
-      ]
+      ],
+      "graphHidden": false,
+      "plot": {
+        "hidden": true,
+        "epoch": null,
+        "loss": null,
+        "accuracy": null,
+        "predictions": [],
+        "boundarySegments": 0
+      },
+      "readout": {
+        "hidden": true,
+        "title": "",
+        "stats": [],
+        "headers": [],
+        "rows": []
+      },
+      "skip": {
+        "hidden": true,
+        "value": "10",
+        "label": "Fast-forward 10 epochs",
+        "disabled": false
+      }
     },
     "scene2": {
       "entry": {
@@ -646,7 +794,7 @@
         "playing": false,
         "speed": 1,
         "time": 13,
-        "timeLabel": "13.0s / 58.5s",
+        "timeLabel": "13.0s / 110.5s",
         "playLabel": "Play",
         "playPressed": "false",
         "stepDisabled": false,
@@ -703,6 +851,8 @@
         "showGradsDataset": "false",
         "gradsDataset": "",
         "topoDataset": "",
+        "updatesDataset": "",
+        "dataDataset": "a=2,b=-3,mul=-6,c=10,add=4",
         "ariaLabel": "Expression graph. 5 of 5 nodes visible; a=2, b=-3, mul=-6, c=10, add=4",
         "viewBox": "0 0 648 382",
         "nodeCount": 5,
@@ -784,7 +934,29 @@
             "label": "",
             "hasLabel": false
           }
-        ]
+        ],
+        "graphHidden": false,
+        "plot": {
+          "hidden": true,
+          "epoch": null,
+          "loss": null,
+          "accuracy": null,
+          "predictions": [],
+          "boundarySegments": 0
+        },
+        "readout": {
+          "hidden": true,
+          "title": "",
+          "stats": [],
+          "headers": [],
+          "rows": []
+        },
+        "skip": {
+          "hidden": true,
+          "value": "10",
+          "label": "Fast-forward 10 epochs",
+          "disabled": false
+        }
       },
       "playing": {
         "ready": true,
@@ -793,7 +965,7 @@
         "playing": true,
         "speed": 2,
         "time": 14.37,
-        "timeLabel": "14.4s / 58.5s",
+        "timeLabel": "14.4s / 110.5s",
         "playLabel": "Pause",
         "playPressed": "true",
         "stepDisabled": false,
@@ -850,6 +1022,8 @@
         "showGradsDataset": "false",
         "gradsDataset": "",
         "topoDataset": "",
+        "updatesDataset": "",
+        "dataDataset": "a=2,b=-3,mul=-6,c=10,add=4",
         "ariaLabel": "Expression graph. 5 of 5 nodes visible; a=2, b=-3, mul=-6, c=10, add=4",
         "viewBox": "0 0 648 382",
         "nodeCount": 5,
@@ -931,7 +1105,29 @@
             "label": "",
             "hasLabel": false
           }
-        ]
+        ],
+        "graphHidden": false,
+        "plot": {
+          "hidden": true,
+          "epoch": null,
+          "loss": null,
+          "accuracy": null,
+          "predictions": [],
+          "boundarySegments": 0
+        },
+        "readout": {
+          "hidden": true,
+          "title": "",
+          "stats": [],
+          "headers": [],
+          "rows": []
+        },
+        "skip": {
+          "hidden": true,
+          "value": "10",
+          "label": "Fast-forward 10 epochs",
+          "disabled": false
+        }
       },
       "topo": {
         "ready": true,
@@ -940,7 +1136,7 @@
         "playing": false,
         "speed": 1,
         "time": 15.5,
-        "timeLabel": "15.5s / 58.5s",
+        "timeLabel": "15.5s / 110.5s",
         "playLabel": "Play",
         "playPressed": "false",
         "stepDisabled": false,
@@ -997,6 +1193,8 @@
         "showGradsDataset": "false",
         "gradsDataset": "",
         "topoDataset": "add,mul",
+        "updatesDataset": "",
+        "dataDataset": "a=2,b=-3,mul=-6,c=10,add=4",
         "ariaLabel": "Expression graph. 5 of 5 nodes visible; a=2, b=-3, mul=-6, c=10, add=4",
         "viewBox": "0 0 648 382",
         "nodeCount": 5,
@@ -1078,7 +1276,29 @@
             "label": "",
             "hasLabel": false
           }
-        ]
+        ],
+        "graphHidden": false,
+        "plot": {
+          "hidden": true,
+          "epoch": null,
+          "loss": null,
+          "accuracy": null,
+          "predictions": [],
+          "boundarySegments": 0
+        },
+        "readout": {
+          "hidden": true,
+          "title": "",
+          "stats": [],
+          "headers": [],
+          "rows": []
+        },
+        "skip": {
+          "hidden": true,
+          "value": "10",
+          "label": "Fast-forward 10 epochs",
+          "disabled": false
+        }
       },
       "seed": {
         "ready": true,
@@ -1087,7 +1307,7 @@
         "playing": false,
         "speed": 1,
         "time": 18,
-        "timeLabel": "18.0s / 58.5s",
+        "timeLabel": "18.0s / 110.5s",
         "playLabel": "Play",
         "playPressed": "false",
         "stepDisabled": false,
@@ -1144,6 +1364,8 @@
         "showGradsDataset": "false",
         "gradsDataset": "add=1",
         "topoDataset": "add,mul",
+        "updatesDataset": "",
+        "dataDataset": "a=2,b=-3,mul=-6,c=10,add=4",
         "ariaLabel": "Expression graph. 5 of 5 nodes visible; a=2, b=-3, mul=-6, c=10, add=4 (grad 1)",
         "viewBox": "0 0 648 382",
         "nodeCount": 5,
@@ -1225,7 +1447,29 @@
             "label": "",
             "hasLabel": false
           }
-        ]
+        ],
+        "graphHidden": false,
+        "plot": {
+          "hidden": true,
+          "epoch": null,
+          "loss": null,
+          "accuracy": null,
+          "predictions": [],
+          "boundarySegments": 0
+        },
+        "readout": {
+          "hidden": true,
+          "title": "",
+          "stats": [],
+          "headers": [],
+          "rows": []
+        },
+        "skip": {
+          "hidden": true,
+          "value": "10",
+          "label": "Fast-forward 10 epochs",
+          "disabled": false
+        }
       },
       "throughAdd": {
         "ready": true,
@@ -1234,7 +1478,7 @@
         "playing": false,
         "speed": 1,
         "time": 20.5,
-        "timeLabel": "20.5s / 58.5s",
+        "timeLabel": "20.5s / 110.5s",
         "playLabel": "Play",
         "playPressed": "false",
         "stepDisabled": false,
@@ -1291,6 +1535,8 @@
         "showGradsDataset": "false",
         "gradsDataset": "mul=1,c=1,add=1",
         "topoDataset": "add,mul",
+        "updatesDataset": "",
+        "dataDataset": "a=2,b=-3,mul=-6,c=10,add=4",
         "ariaLabel": "Expression graph. 5 of 5 nodes visible; a=2, b=-3, mul=-6 (grad 1), c=10 (grad 1), add=4 (grad 1)",
         "viewBox": "0 0 648 382",
         "nodeCount": 5,
@@ -1372,7 +1618,29 @@
             "label": "∂=1",
             "hasLabel": true
           }
-        ]
+        ],
+        "graphHidden": false,
+        "plot": {
+          "hidden": true,
+          "epoch": null,
+          "loss": null,
+          "accuracy": null,
+          "predictions": [],
+          "boundarySegments": 0
+        },
+        "readout": {
+          "hidden": true,
+          "title": "",
+          "stats": [],
+          "headers": [],
+          "rows": []
+        },
+        "skip": {
+          "hidden": true,
+          "value": "10",
+          "label": "Fast-forward 10 epochs",
+          "disabled": false
+        }
       },
       "throughMul": {
         "ready": true,
@@ -1381,7 +1649,7 @@
         "playing": false,
         "speed": 1,
         "time": 23.5,
-        "timeLabel": "23.5s / 58.5s",
+        "timeLabel": "23.5s / 110.5s",
         "playLabel": "Play",
         "playPressed": "false",
         "stepDisabled": false,
@@ -1438,6 +1706,8 @@
         "showGradsDataset": "false",
         "gradsDataset": "a=-3,b=2,mul=1,c=1,add=1",
         "topoDataset": "add,mul",
+        "updatesDataset": "",
+        "dataDataset": "a=2,b=-3,mul=-6,c=10,add=4",
         "ariaLabel": "Expression graph. 5 of 5 nodes visible; a=2 (grad -3), b=-3 (grad 2), mul=-6 (grad 1), c=10 (grad 1), add=4 (grad 1)",
         "viewBox": "0 0 648 382",
         "nodeCount": 5,
@@ -1519,7 +1789,29 @@
             "label": "",
             "hasLabel": false
           }
-        ]
+        ],
+        "graphHidden": false,
+        "plot": {
+          "hidden": true,
+          "epoch": null,
+          "loss": null,
+          "accuracy": null,
+          "predictions": [],
+          "boundarySegments": 0
+        },
+        "readout": {
+          "hidden": true,
+          "title": "",
+          "stats": [],
+          "headers": [],
+          "rows": []
+        },
+        "skip": {
+          "hidden": true,
+          "value": "10",
+          "label": "Fast-forward 10 epochs",
+          "disabled": false
+        }
       },
       "final": {
         "ready": true,
@@ -1528,7 +1820,7 @@
         "playing": false,
         "speed": 1,
         "time": 26.5,
-        "timeLabel": "26.5s / 58.5s",
+        "timeLabel": "26.5s / 110.5s",
         "playLabel": "Play",
         "playPressed": "false",
         "stepDisabled": false,
@@ -1585,6 +1877,8 @@
         "showGradsDataset": "false",
         "gradsDataset": "a=-3,b=2,mul=1,c=1,add=1",
         "topoDataset": "add,mul",
+        "updatesDataset": "",
+        "dataDataset": "a=2,b=-3,mul=-6,c=10,add=4",
         "ariaLabel": "Expression graph. 5 of 5 nodes visible; a=2 (grad -3), b=-3 (grad 2), mul=-6 (grad 1), c=10 (grad 1), add=4 (grad 1)",
         "viewBox": "0 0 648 382",
         "nodeCount": 5,
@@ -1666,7 +1960,29 @@
             "label": "",
             "hasLabel": false
           }
-        ]
+        ],
+        "graphHidden": false,
+        "plot": {
+          "hidden": true,
+          "epoch": null,
+          "loss": null,
+          "accuracy": null,
+          "predictions": [],
+          "boundarySegments": 0
+        },
+        "readout": {
+          "hidden": true,
+          "title": "",
+          "stats": [],
+          "headers": [],
+          "rows": []
+        },
+        "skip": {
+          "hidden": true,
+          "value": "10",
+          "label": "Fast-forward 10 epochs",
+          "disabled": false
+        }
       }
     },
     "scene3": {
@@ -1677,7 +1993,7 @@
         "playing": false,
         "speed": 1,
         "time": 28.5,
-        "timeLabel": "28.5s / 58.5s",
+        "timeLabel": "28.5s / 110.5s",
         "playLabel": "Play",
         "playPressed": "false",
         "stepDisabled": false,
@@ -1776,6 +2092,8 @@
         "showGradsDataset": "false",
         "gradsDataset": "",
         "topoDataset": "",
+        "updatesDataset": "",
+        "dataDataset": "w1=0.5,x1=1,w2=-1,x2=0.5,w3=2,x3=-1,b=2.5",
         "ariaLabel": "Expression graph. 7 of 14 nodes visible; w1=0.5, x1=1, w2=-1, x2=0.5, w3=2, x3=-1, b=2.5",
         "viewBox": "0 0 1050 630",
         "nodeCount": 7,
@@ -1852,7 +2170,29 @@
             "active": false
           }
         ],
-        "edges": []
+        "edges": [],
+        "graphHidden": false,
+        "plot": {
+          "hidden": true,
+          "epoch": null,
+          "loss": null,
+          "accuracy": null,
+          "predictions": [],
+          "boundarySegments": 0
+        },
+        "readout": {
+          "hidden": true,
+          "title": "",
+          "stats": [],
+          "headers": [],
+          "rows": []
+        },
+        "skip": {
+          "hidden": true,
+          "value": "10",
+          "label": "Fast-forward 10 epochs",
+          "disabled": false
+        }
       },
       "playing": {
         "ready": true,
@@ -1861,7 +2201,7 @@
         "playing": true,
         "speed": 2,
         "time": 29.87,
-        "timeLabel": "29.9s / 58.5s",
+        "timeLabel": "29.9s / 110.5s",
         "playLabel": "Pause",
         "playPressed": "true",
         "stepDisabled": false,
@@ -1960,6 +2300,8 @@
         "showGradsDataset": "false",
         "gradsDataset": "",
         "topoDataset": "",
+        "updatesDataset": "",
+        "dataDataset": "w1=0.5,x1=1,w2=-1,x2=0.5,w3=2,x3=-1,b=2.5",
         "ariaLabel": "Expression graph. 7 of 14 nodes visible; w1=0.5, x1=1, w2=-1, x2=0.5, w3=2, x3=-1, b=2.5",
         "viewBox": "0 0 1050 630",
         "nodeCount": 7,
@@ -2036,7 +2378,29 @@
             "active": false
           }
         ],
-        "edges": []
+        "edges": [],
+        "graphHidden": false,
+        "plot": {
+          "hidden": true,
+          "epoch": null,
+          "loss": null,
+          "accuracy": null,
+          "predictions": [],
+          "boundarySegments": 0
+        },
+        "readout": {
+          "hidden": true,
+          "title": "",
+          "stats": [],
+          "headers": [],
+          "rows": []
+        },
+        "skip": {
+          "hidden": true,
+          "value": "10",
+          "label": "Fast-forward 10 epochs",
+          "disabled": false
+        }
       },
       "forward": {
         "ready": true,
@@ -2045,7 +2409,7 @@
         "playing": false,
         "speed": 1,
         "time": 37.5,
-        "timeLabel": "37.5s / 58.5s",
+        "timeLabel": "37.5s / 110.5s",
         "playLabel": "Play",
         "playPressed": "false",
         "stepDisabled": false,
@@ -2144,6 +2508,8 @@
         "showGradsDataset": "false",
         "gradsDataset": "",
         "topoDataset": "",
+        "updatesDataset": "",
+        "dataDataset": "w1=0.5,x1=1,p1=0.5,w2=-1,x2=0.5,p2=-0.5,dot1=0,w3=2,x3=-1,p3=-2,dot2=-2,b=2.5,zb=0.5,y=0.46",
         "ariaLabel": "Expression graph. 14 of 14 nodes visible; w1=0.5, x1=1, p1=0.5, w2=-1, x2=0.5, p2=-0.5, dot1=0, w3=2, x3=-1, p3=-2, dot2=-2, b=2.5, zb=0.5, y=0.46",
         "viewBox": "0 0 1050 630",
         "nodeCount": 14,
@@ -2369,7 +2735,29 @@
             "label": "",
             "hasLabel": false
           }
-        ]
+        ],
+        "graphHidden": false,
+        "plot": {
+          "hidden": true,
+          "epoch": null,
+          "loss": null,
+          "accuracy": null,
+          "predictions": [],
+          "boundarySegments": 0
+        },
+        "readout": {
+          "hidden": true,
+          "title": "",
+          "stats": [],
+          "headers": [],
+          "rows": []
+        },
+        "skip": {
+          "hidden": true,
+          "value": "10",
+          "label": "Fast-forward 10 epochs",
+          "disabled": false
+        }
       },
       "seed": {
         "ready": true,
@@ -2378,7 +2766,7 @@
         "playing": false,
         "speed": 1,
         "time": 40,
-        "timeLabel": "40.0s / 58.5s",
+        "timeLabel": "40.0s / 110.5s",
         "playLabel": "Play",
         "playPressed": "false",
         "stepDisabled": false,
@@ -2477,6 +2865,8 @@
         "showGradsDataset": "false",
         "gradsDataset": "y=1",
         "topoDataset": "y,zb,dot2,dot1,p1,p2,p3",
+        "updatesDataset": "",
+        "dataDataset": "w1=0.5,x1=1,p1=0.5,w2=-1,x2=0.5,p2=-0.5,dot1=0,w3=2,x3=-1,p3=-2,dot2=-2,b=2.5,zb=0.5,y=0.46",
         "ariaLabel": "Expression graph. 14 of 14 nodes visible; w1=0.5, x1=1, p1=0.5, w2=-1, x2=0.5, p2=-0.5, dot1=0, w3=2, x3=-1, p3=-2, dot2=-2, b=2.5, zb=0.5, y=0.46 (grad 1)",
         "viewBox": "0 0 1050 630",
         "nodeCount": 14,
@@ -2702,7 +3092,29 @@
             "label": "",
             "hasLabel": false
           }
-        ]
+        ],
+        "graphHidden": false,
+        "plot": {
+          "hidden": true,
+          "epoch": null,
+          "loss": null,
+          "accuracy": null,
+          "predictions": [],
+          "boundarySegments": 0
+        },
+        "readout": {
+          "hidden": true,
+          "title": "",
+          "stats": [],
+          "headers": [],
+          "rows": []
+        },
+        "skip": {
+          "hidden": true,
+          "value": "10",
+          "label": "Fast-forward 10 epochs",
+          "disabled": false
+        }
       },
       "throughW1": {
         "ready": true,
@@ -2711,7 +3123,7 @@
         "playing": false,
         "speed": 1,
         "time": 50,
-        "timeLabel": "50.0s / 58.5s",
+        "timeLabel": "50.0s / 110.5s",
         "playLabel": "Play",
         "playPressed": "false",
         "stepDisabled": false,
@@ -2810,6 +3222,8 @@
         "showGradsDataset": "false",
         "gradsDataset": "w1=0.79,x1=0.39,p1=0.79,p2=0.79,dot1=0.79,p3=0.79,dot2=0.79,b=0.79,zb=0.79,y=1",
         "topoDataset": "y,zb,dot2,dot1,p1,p2,p3",
+        "updatesDataset": "",
+        "dataDataset": "w1=0.5,x1=1,p1=0.5,w2=-1,x2=0.5,p2=-0.5,dot1=0,w3=2,x3=-1,p3=-2,dot2=-2,b=2.5,zb=0.5,y=0.46",
         "ariaLabel": "Expression graph. 14 of 14 nodes visible; w1=0.5 (grad 0.79), x1=1 (grad 0.39), p1=0.5 (grad 0.79), w2=-1, x2=0.5, p2=-0.5 (grad 0.79), dot1=0 (grad 0.79), w3=2, x3=-1, p3=-2 (grad 0.79), dot2=-2 (grad 0.79), b=2.5 (grad 0.79), zb=0.5 (grad 0.79), y=0.46 (grad 1)",
         "viewBox": "0 0 1050 630",
         "nodeCount": 14,
@@ -3035,7 +3449,29 @@
             "label": "",
             "hasLabel": false
           }
-        ]
+        ],
+        "graphHidden": false,
+        "plot": {
+          "hidden": true,
+          "epoch": null,
+          "loss": null,
+          "accuracy": null,
+          "predictions": [],
+          "boundarySegments": 0
+        },
+        "readout": {
+          "hidden": true,
+          "title": "",
+          "stats": [],
+          "headers": [],
+          "rows": []
+        },
+        "skip": {
+          "hidden": true,
+          "value": "10",
+          "label": "Fast-forward 10 epochs",
+          "disabled": false
+        }
       },
       "final": {
         "ready": true,
@@ -3044,10 +3480,10 @@
         "playing": false,
         "speed": 1,
         "time": 56.5,
-        "timeLabel": "56.5s / 58.5s",
+        "timeLabel": "56.5s / 110.5s",
         "playLabel": "Play",
         "playPressed": "false",
-        "stepDisabled": true,
+        "stepDisabled": false,
         "speedOptions": [
           "0.5",
           "1",
@@ -3143,6 +3579,8 @@
         "showGradsDataset": "false",
         "gradsDataset": "w1=0.79,x1=0.39,p1=0.79,w2=0.39,x2=-0.79,p2=0.79,dot1=0.79,w3=-0.79,x3=1.57,p3=0.79,dot2=0.79,b=0.79,zb=0.79,y=1",
         "topoDataset": "y,zb,dot2,dot1,p1,p2,p3",
+        "updatesDataset": "",
+        "dataDataset": "w1=0.5,x1=1,p1=0.5,w2=-1,x2=0.5,p2=-0.5,dot1=0,w3=2,x3=-1,p3=-2,dot2=-2,b=2.5,zb=0.5,y=0.46",
         "ariaLabel": "Expression graph. 14 of 14 nodes visible; w1=0.5 (grad 0.79), x1=1 (grad 0.39), p1=0.5 (grad 0.79), w2=-1 (grad 0.39), x2=0.5 (grad -0.79), p2=-0.5 (grad 0.79), dot1=0 (grad 0.79), w3=2 (grad -0.79), x3=-1 (grad 1.57), p3=-2 (grad 0.79), dot2=-2 (grad 0.79), b=2.5 (grad 0.79), zb=0.5 (grad 0.79), y=0.46 (grad 1)",
         "viewBox": "0 0 1050 630",
         "nodeCount": 14,
@@ -3368,7 +3806,3745 @@
             "label": "",
             "hasLabel": false
           }
-        ]
+        ],
+        "graphHidden": false,
+        "plot": {
+          "hidden": true,
+          "epoch": null,
+          "loss": null,
+          "accuracy": null,
+          "predictions": [],
+          "boundarySegments": 0
+        },
+        "readout": {
+          "hidden": true,
+          "title": "",
+          "stats": [],
+          "headers": [],
+          "rows": []
+        },
+        "skip": {
+          "hidden": true,
+          "value": "10",
+          "label": "Fast-forward 10 epochs",
+          "disabled": false
+        }
+      }
+    },
+    "scene4": {
+      "inputs": {
+        "ready": true,
+        "scene": "scene-4",
+        "keyframe": 0,
+        "playing": false,
+        "speed": 1,
+        "time": 58.5,
+        "timeLabel": "58.5s / 110.5s",
+        "playLabel": "Play",
+        "playPressed": "false",
+        "stepDisabled": false,
+        "speedOptions": [
+          "0.5",
+          "1",
+          "2"
+        ],
+        "speedValue": "1",
+        "caption": "The same neuron as scene 3: y = tanh(w · x + b). This time we know the answer we want: a target t = 1. The parameters w and b are the Values that training will change.",
+        "badge": "KEYFRAME 1 / 15",
+        "sceneTitle": "Scene 4 · One SGD step: follow the negative gradient",
+        "chips": [
+          {
+            "index": 0,
+            "label": "inputs",
+            "active": true,
+            "done": false
+          },
+          {
+            "index": 1,
+            "label": "forward",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 2,
+            "label": "loss",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 3,
+            "label": "seed",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 4,
+            "label": "∂loss/∂y",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 5,
+            "label": "through −",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 6,
+            "label": "through tanh",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 7,
+            "label": "through + b",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 8,
+            "label": "through + p3",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 9,
+            "label": "through + p2",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 10,
+            "label": "through × w1",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 11,
+            "label": "through × w2",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 12,
+            "label": "through × w3",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 13,
+            "label": "SGD step",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 14,
+            "label": "after step",
+            "active": false,
+            "done": false
+          }
+        ],
+        "showGrads": false,
+        "backward": false,
+        "visibleNodes": "w1,x1,w2,x2,w3,x3,b",
+        "showGradsDataset": "false",
+        "gradsDataset": "",
+        "topoDataset": "",
+        "updatesDataset": "",
+        "dataDataset": "w1=0.58,x1=1,w2=-0.96,x2=0.5,w3=1.92,x3=-1,b=2.58",
+        "ariaLabel": "Expression graph. 7 of 17 nodes visible; w1=0.58, x1=1, w2=-0.96, x2=0.5, w3=1.92, x3=-1, b=2.58",
+        "viewBox": "0 0 1090 754",
+        "nodeCount": 7,
+        "edgeCount": 0,
+        "nodes": [
+          {
+            "key": "b",
+            "label": "b",
+            "data": "data 2.58",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 576)",
+            "active": false
+          },
+          {
+            "key": "w1",
+            "label": "w₁",
+            "data": "data 0.58",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 24)",
+            "active": false
+          },
+          {
+            "key": "x1",
+            "label": "x₁",
+            "data": "data 1",
+            "grad": "grad -0.42",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 116)",
+            "active": false
+          },
+          {
+            "key": "w2",
+            "label": "w₂",
+            "data": "data -0.96",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 208)",
+            "active": false
+          },
+          {
+            "key": "x2",
+            "label": "x₂",
+            "data": "data 0.5",
+            "grad": "grad 0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 300)",
+            "active": false
+          },
+          {
+            "key": "w3",
+            "label": "w₃",
+            "data": "data 1.92",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 392)",
+            "active": false
+          },
+          {
+            "key": "x3",
+            "label": "x₃",
+            "data": "data -1",
+            "grad": "grad -1.69",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 484)",
+            "active": false
+          }
+        ],
+        "edges": [],
+        "graphHidden": false,
+        "plot": {
+          "hidden": true,
+          "epoch": null,
+          "loss": null,
+          "accuracy": null,
+          "predictions": [],
+          "boundarySegments": 0
+        },
+        "readout": {
+          "hidden": true,
+          "title": "",
+          "stats": [],
+          "headers": [],
+          "rows": []
+        },
+        "skip": {
+          "hidden": true,
+          "value": "10",
+          "label": "Fast-forward 10 epochs",
+          "disabled": false
+        }
+      },
+      "loss": {
+        "ready": true,
+        "scene": "scene-4",
+        "keyframe": 2,
+        "playing": false,
+        "speed": 1,
+        "time": 63.5,
+        "timeLabel": "63.5s / 110.5s",
+        "playLabel": "Play",
+        "playPressed": "false",
+        "stepDisabled": false,
+        "speedOptions": [
+          "0.5",
+          "1",
+          "2"
+        ],
+        "speedValue": "1",
+        "caption": "Measure the error: loss = (y − t)² = (0.46 − 1)² = 0.29. A bigger miss gives a bigger loss.",
+        "badge": "KEYFRAME 3 / 15",
+        "sceneTitle": "Scene 4 · One SGD step: follow the negative gradient",
+        "chips": [
+          {
+            "index": 0,
+            "label": "inputs",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 1,
+            "label": "forward",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 2,
+            "label": "loss",
+            "active": true,
+            "done": false
+          },
+          {
+            "index": 3,
+            "label": "seed",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 4,
+            "label": "∂loss/∂y",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 5,
+            "label": "through −",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 6,
+            "label": "through tanh",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 7,
+            "label": "through + b",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 8,
+            "label": "through + p3",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 9,
+            "label": "through + p2",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 10,
+            "label": "through × w1",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 11,
+            "label": "through × w2",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 12,
+            "label": "through × w3",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 13,
+            "label": "SGD step",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 14,
+            "label": "after step",
+            "active": false,
+            "done": false
+          }
+        ],
+        "showGrads": false,
+        "backward": false,
+        "visibleNodes": "w1,x1,p1,w2,x2,p2,dot1,w3,x3,p3,dot2,b,zb,y,t,diff,loss",
+        "showGradsDataset": "false",
+        "gradsDataset": "",
+        "topoDataset": "",
+        "updatesDataset": "",
+        "dataDataset": "w1=0.58,x1=1,p1=0.5,w2=-0.96,x2=0.5,p2=-0.5,dot1=0,w3=1.92,x3=-1,p3=-2,dot2=-2,b=2.58,zb=0.5,y=0.46,t=1,diff=-0.54,loss=0.29",
+        "ariaLabel": "Expression graph. 17 of 17 nodes visible; w1=0.58, x1=1, p1=0.5, w2=-0.96, x2=0.5, p2=-0.5, dot1=0, w3=1.92, x3=-1, p3=-2, dot2=-2, b=2.58, zb=0.5, y=0.46, t=1, diff=-0.54, loss=0.29",
+        "viewBox": "0 0 1090 754",
+        "nodeCount": 17,
+        "edgeCount": 16,
+        "nodes": [
+          {
+            "key": "b",
+            "label": "b",
+            "data": "data 2.58",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 576)",
+            "active": false
+          },
+          {
+            "key": "w1",
+            "label": "w₁",
+            "data": "data 0.58",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 24)",
+            "active": false
+          },
+          {
+            "key": "x1",
+            "label": "x₁",
+            "data": "data 1",
+            "grad": "grad -0.42",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 116)",
+            "active": false
+          },
+          {
+            "key": "w2",
+            "label": "w₂",
+            "data": "data -0.96",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 208)",
+            "active": false
+          },
+          {
+            "key": "x2",
+            "label": "x₂",
+            "data": "data 0.5",
+            "grad": "grad 0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 300)",
+            "active": false
+          },
+          {
+            "key": "w3",
+            "label": "w₃",
+            "data": "data 1.92",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 392)",
+            "active": false
+          },
+          {
+            "key": "x3",
+            "label": "x₃",
+            "data": "data -1",
+            "grad": "grad -1.69",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 484)",
+            "active": false
+          },
+          {
+            "key": "p1",
+            "label": "×",
+            "data": "data 0.5",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(158 254)",
+            "active": false
+          },
+          {
+            "key": "p2",
+            "label": "×",
+            "data": "data -0.5",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(158 346)",
+            "active": false
+          },
+          {
+            "key": "dot1",
+            "label": "+",
+            "data": "data 0",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(292 346)",
+            "active": false
+          },
+          {
+            "key": "p3",
+            "label": "×",
+            "data": "data -2",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(158 438)",
+            "active": false
+          },
+          {
+            "key": "dot2",
+            "label": "+",
+            "data": "data -2",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(426 346)",
+            "active": false
+          },
+          {
+            "key": "zb",
+            "label": "+",
+            "data": "data 0.5",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(560 346)",
+            "active": false
+          },
+          {
+            "key": "y",
+            "label": "tanh",
+            "data": "data 0.46",
+            "grad": "grad -1.08",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(694 346)",
+            "active": false
+          },
+          {
+            "key": "t",
+            "label": "t",
+            "data": "data 1",
+            "grad": "grad 1.08",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 668)",
+            "active": false
+          },
+          {
+            "key": "diff",
+            "label": "−",
+            "data": "data -0.54",
+            "grad": "grad -1.08",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(828 346)",
+            "active": false
+          },
+          {
+            "key": "loss",
+            "label": "loss",
+            "data": "data 0.29",
+            "grad": "grad 1",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(962 346)",
+            "active": true
+          }
+        ],
+        "edges": [
+          {
+            "key": "w1->p1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x1->p1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "w2->p2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x2->p2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p1->dot1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p2->dot1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "w3->p3",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x3->p3",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "dot1->dot2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p3->dot2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "dot2->zb",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "b->zb",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "zb->y",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "y->diff",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "t->diff",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "diff->loss",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          }
+        ],
+        "graphHidden": false,
+        "plot": {
+          "hidden": true,
+          "epoch": null,
+          "loss": null,
+          "accuracy": null,
+          "predictions": [],
+          "boundarySegments": 0
+        },
+        "readout": {
+          "hidden": true,
+          "title": "",
+          "stats": [],
+          "headers": [],
+          "rows": []
+        },
+        "skip": {
+          "hidden": true,
+          "value": "10",
+          "label": "Fast-forward 10 epochs",
+          "disabled": false
+        }
+      },
+      "step": {
+        "ready": true,
+        "scene": "scene-4",
+        "keyframe": 13,
+        "playing": false,
+        "speed": 1,
+        "time": 81,
+        "timeLabel": "81.0s / 110.5s",
+        "playLabel": "Play",
+        "playPressed": "false",
+        "stepDisabled": false,
+        "speedOptions": [
+          "0.5",
+          "1",
+          "2"
+        ],
+        "speedValue": "1",
+        "caption": "Gradient descent takes one step along the negative gradient: p ← p − lr · g with lr = 0.1. Each parameter annotation shows −g and the new data; the table lists every weight before and after.",
+        "badge": "KEYFRAME 14 / 15",
+        "sceneTitle": "Scene 4 · One SGD step: follow the negative gradient",
+        "chips": [
+          {
+            "index": 0,
+            "label": "inputs",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 1,
+            "label": "forward",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 2,
+            "label": "loss",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 3,
+            "label": "seed",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 4,
+            "label": "∂loss/∂y",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 5,
+            "label": "through −",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 6,
+            "label": "through tanh",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 7,
+            "label": "through + b",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 8,
+            "label": "through + p3",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 9,
+            "label": "through + p2",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 10,
+            "label": "through × w1",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 11,
+            "label": "through × w2",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 12,
+            "label": "through × w3",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 13,
+            "label": "SGD step",
+            "active": true,
+            "done": false
+          },
+          {
+            "index": 14,
+            "label": "after step",
+            "active": false,
+            "done": false
+          }
+        ],
+        "showGrads": false,
+        "backward": false,
+        "visibleNodes": "w1,x1,p1,w2,x2,p2,dot1,w3,x3,p3,dot2,b,zb,y,t,diff,loss",
+        "showGradsDataset": "false",
+        "gradsDataset": "w1=-0.85,x1=-0.42,p1=-0.85,w2=-0.42,x2=0.85,p2=-0.85,dot1=-0.85,w3=0.85,x3=-1.69,p3=-0.85,dot2=-0.85,b=-0.85,zb=-0.85,y=-1.08,t=1.08,diff=-1.08,loss=1",
+        "topoDataset": "",
+        "updatesDataset": "w1=-g 0.85 → 0.58,w2=-g 0.42 → -0.96,w3=-g -0.85 → 1.92,b=-g 0.85 → 2.58",
+        "dataDataset": "w1=0.5,x1=1,p1=0.5,w2=-1,x2=0.5,p2=-0.5,dot1=0,w3=2,x3=-1,p3=-2,dot2=-2,b=2.5,zb=0.5,y=0.46,t=1,diff=-0.54,loss=0.29",
+        "ariaLabel": "Expression graph. 17 of 17 nodes visible; w1=0.5 (grad -0.85), x1=1 (grad -0.42), p1=0.5 (grad -0.85), w2=-1 (grad -0.42), x2=0.5 (grad 0.85), p2=-0.5 (grad -0.85), dot1=0 (grad -0.85), w3=2 (grad 0.85), x3=-1 (grad -1.69), p3=-2 (grad -0.85), dot2=-2 (grad -0.85), b=2.5 (grad -0.85), zb=0.5 (grad -0.85), y=0.46 (grad -1.08), t=1 (grad 1.08), diff=-0.54 (grad -1.08), loss=0.29 (grad 1)",
+        "viewBox": "0 0 1090 754",
+        "nodeCount": 17,
+        "edgeCount": 16,
+        "nodes": [
+          {
+            "key": "b",
+            "label": "b",
+            "data": "data 2.5",
+            "grad": "grad -0.85",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(24 576)",
+            "active": false
+          },
+          {
+            "key": "w1",
+            "label": "w₁",
+            "data": "data 0.5",
+            "grad": "grad -0.85",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(24 24)",
+            "active": false
+          },
+          {
+            "key": "x1",
+            "label": "x₁",
+            "data": "data 1",
+            "grad": "grad -0.42",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(24 116)",
+            "active": false
+          },
+          {
+            "key": "w2",
+            "label": "w₂",
+            "data": "data -1",
+            "grad": "grad -0.42",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(24 208)",
+            "active": false
+          },
+          {
+            "key": "x2",
+            "label": "x₂",
+            "data": "data 0.5",
+            "grad": "grad 0.85",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(24 300)",
+            "active": false
+          },
+          {
+            "key": "w3",
+            "label": "w₃",
+            "data": "data 2",
+            "grad": "grad 0.85",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(24 392)",
+            "active": false
+          },
+          {
+            "key": "x3",
+            "label": "x₃",
+            "data": "data -1",
+            "grad": "grad -1.69",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(24 484)",
+            "active": false
+          },
+          {
+            "key": "p1",
+            "label": "×",
+            "data": "data 0.5",
+            "grad": "grad -0.85",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(158 254)",
+            "active": false
+          },
+          {
+            "key": "p2",
+            "label": "×",
+            "data": "data -0.5",
+            "grad": "grad -0.85",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(158 346)",
+            "active": false
+          },
+          {
+            "key": "dot1",
+            "label": "+",
+            "data": "data 0",
+            "grad": "grad -0.85",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(292 346)",
+            "active": false
+          },
+          {
+            "key": "p3",
+            "label": "×",
+            "data": "data -2",
+            "grad": "grad -0.85",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(158 438)",
+            "active": false
+          },
+          {
+            "key": "dot2",
+            "label": "+",
+            "data": "data -2",
+            "grad": "grad -0.85",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(426 346)",
+            "active": false
+          },
+          {
+            "key": "zb",
+            "label": "+",
+            "data": "data 0.5",
+            "grad": "grad -0.85",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(560 346)",
+            "active": false
+          },
+          {
+            "key": "y",
+            "label": "tanh",
+            "data": "data 0.46",
+            "grad": "grad -1.08",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(694 346)",
+            "active": false
+          },
+          {
+            "key": "t",
+            "label": "t",
+            "data": "data 1",
+            "grad": "grad 1.08",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(24 668)",
+            "active": false
+          },
+          {
+            "key": "diff",
+            "label": "−",
+            "data": "data -0.54",
+            "grad": "grad -1.08",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(828 346)",
+            "active": false
+          },
+          {
+            "key": "loss",
+            "label": "loss",
+            "data": "data 0.29",
+            "grad": "grad 1",
+            "hasGrad": true,
+            "topo": "",
+            "transform": "translate(962 346)",
+            "active": false
+          }
+        ],
+        "edges": [
+          {
+            "key": "w1->p1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x1->p1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "w2->p2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x2->p2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p1->dot1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p2->dot1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "w3->p3",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x3->p3",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "dot1->dot2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p3->dot2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "dot2->zb",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "b->zb",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "zb->y",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "y->diff",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "t->diff",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "diff->loss",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          }
+        ],
+        "graphHidden": false,
+        "plot": {
+          "hidden": true,
+          "epoch": null,
+          "loss": null,
+          "accuracy": null,
+          "predictions": [],
+          "boundarySegments": 0
+        },
+        "readout": {
+          "hidden": false,
+          "title": "SGD step · lr = 0.1",
+          "stats": [
+            {
+              "label": "loss before",
+              "value": "0.29"
+            },
+            {
+              "label": "loss after",
+              "value": "0.12"
+            },
+            {
+              "label": "learning rate",
+              "value": "0.1"
+            }
+          ],
+          "headers": [
+            "param",
+            "data",
+            "grad",
+            "−lr·g",
+            "new data"
+          ],
+          "rows": [
+            [
+              "w₁",
+              "0.5",
+              "-0.85",
+              "+0.08",
+              "0.58"
+            ],
+            [
+              "w₂",
+              "-1",
+              "-0.42",
+              "+0.04",
+              "-0.96"
+            ],
+            [
+              "w₃",
+              "2",
+              "0.85",
+              "-0.08",
+              "1.92"
+            ],
+            [
+              "b",
+              "2.5",
+              "-0.85",
+              "+0.08",
+              "2.58"
+            ]
+          ]
+        },
+        "skip": {
+          "hidden": true,
+          "value": "10",
+          "label": "Fast-forward 10 epochs",
+          "disabled": false
+        }
+      },
+      "after": {
+        "ready": true,
+        "scene": "scene-4",
+        "keyframe": 14,
+        "playing": false,
+        "speed": 1,
+        "time": 83.5,
+        "timeLabel": "83.5s / 110.5s",
+        "playLabel": "Play",
+        "playPressed": "false",
+        "stepDisabled": false,
+        "speedOptions": [
+          "0.5",
+          "1",
+          "2"
+        ],
+        "speedValue": "1",
+        "caption": "After one update the loss fell from 0.29 to 0.12. w₁ moved +0.08 because its gradient was -0.85. Gradients are cleared with zeroGrad() before the next forward pass. Scene 5 repeats this loop until the network learns.",
+        "badge": "KEYFRAME 15 / 15",
+        "sceneTitle": "Scene 4 · One SGD step: follow the negative gradient",
+        "chips": [
+          {
+            "index": 0,
+            "label": "inputs",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 1,
+            "label": "forward",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 2,
+            "label": "loss",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 3,
+            "label": "seed",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 4,
+            "label": "∂loss/∂y",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 5,
+            "label": "through −",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 6,
+            "label": "through tanh",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 7,
+            "label": "through + b",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 8,
+            "label": "through + p3",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 9,
+            "label": "through + p2",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 10,
+            "label": "through × w1",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 11,
+            "label": "through × w2",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 12,
+            "label": "through × w3",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 13,
+            "label": "SGD step",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 14,
+            "label": "after step",
+            "active": true,
+            "done": false
+          }
+        ],
+        "showGrads": false,
+        "backward": false,
+        "visibleNodes": "w1,x1,p1,w2,x2,p2,dot1,w3,x3,p3,dot2,b,zb,y,t,diff,loss",
+        "showGradsDataset": "false",
+        "gradsDataset": "",
+        "topoDataset": "",
+        "updatesDataset": "w1=-g 0.85 → 0.58,w2=-g 0.42 → -0.96,w3=-g -0.85 → 1.92,b=-g 0.85 → 2.58",
+        "dataDataset": "w1=0.58,x1=1,p1=0.58,w2=-0.96,x2=0.5,p2=-0.48,dot1=0.11,w3=1.92,x3=-1,p3=-1.92,dot2=-1.81,b=2.58,zb=0.77,y=0.65,t=1,diff=-0.35,loss=0.12",
+        "ariaLabel": "Expression graph. 17 of 17 nodes visible; w1=0.58, x1=1, p1=0.58, w2=-0.96, x2=0.5, p2=-0.48, dot1=0.11, w3=1.92, x3=-1, p3=-1.92, dot2=-1.81, b=2.58, zb=0.77, y=0.65, t=1, diff=-0.35, loss=0.12",
+        "viewBox": "0 0 1090 754",
+        "nodeCount": 17,
+        "edgeCount": 16,
+        "nodes": [
+          {
+            "key": "b",
+            "label": "b",
+            "data": "data 2.58",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 576)",
+            "active": false
+          },
+          {
+            "key": "w1",
+            "label": "w₁",
+            "data": "data 0.58",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 24)",
+            "active": false
+          },
+          {
+            "key": "x1",
+            "label": "x₁",
+            "data": "data 1",
+            "grad": "grad -0.42",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 116)",
+            "active": false
+          },
+          {
+            "key": "w2",
+            "label": "w₂",
+            "data": "data -0.96",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 208)",
+            "active": false
+          },
+          {
+            "key": "x2",
+            "label": "x₂",
+            "data": "data 0.5",
+            "grad": "grad 0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 300)",
+            "active": false
+          },
+          {
+            "key": "w3",
+            "label": "w₃",
+            "data": "data 1.92",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 392)",
+            "active": false
+          },
+          {
+            "key": "x3",
+            "label": "x₃",
+            "data": "data -1",
+            "grad": "grad -1.69",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 484)",
+            "active": false
+          },
+          {
+            "key": "p1",
+            "label": "×",
+            "data": "data 0.58",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(158 254)",
+            "active": false
+          },
+          {
+            "key": "p2",
+            "label": "×",
+            "data": "data -0.48",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(158 346)",
+            "active": false
+          },
+          {
+            "key": "dot1",
+            "label": "+",
+            "data": "data 0.11",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(292 346)",
+            "active": false
+          },
+          {
+            "key": "p3",
+            "label": "×",
+            "data": "data -1.92",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(158 438)",
+            "active": false
+          },
+          {
+            "key": "dot2",
+            "label": "+",
+            "data": "data -1.81",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(426 346)",
+            "active": false
+          },
+          {
+            "key": "zb",
+            "label": "+",
+            "data": "data 0.77",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(560 346)",
+            "active": false
+          },
+          {
+            "key": "y",
+            "label": "tanh",
+            "data": "data 0.65",
+            "grad": "grad -1.08",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(694 346)",
+            "active": false
+          },
+          {
+            "key": "t",
+            "label": "t",
+            "data": "data 1",
+            "grad": "grad 1.08",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 668)",
+            "active": false
+          },
+          {
+            "key": "diff",
+            "label": "−",
+            "data": "data -0.35",
+            "grad": "grad -1.08",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(828 346)",
+            "active": false
+          },
+          {
+            "key": "loss",
+            "label": "loss",
+            "data": "data 0.12",
+            "grad": "grad 1",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(962 346)",
+            "active": true
+          }
+        ],
+        "edges": [
+          {
+            "key": "w1->p1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x1->p1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "w2->p2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x2->p2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p1->dot1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p2->dot1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "w3->p3",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x3->p3",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "dot1->dot2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p3->dot2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "dot2->zb",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "b->zb",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "zb->y",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "y->diff",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "t->diff",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "diff->loss",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          }
+        ],
+        "graphHidden": false,
+        "plot": {
+          "hidden": true,
+          "epoch": null,
+          "loss": null,
+          "accuracy": null,
+          "predictions": [],
+          "boundarySegments": 0
+        },
+        "readout": {
+          "hidden": false,
+          "title": "SGD step · lr = 0.1 · loss 0.29 → 0.12",
+          "stats": [
+            {
+              "label": "loss before",
+              "value": "0.29"
+            },
+            {
+              "label": "loss after",
+              "value": "0.12"
+            },
+            {
+              "label": "learning rate",
+              "value": "0.1"
+            }
+          ],
+          "headers": [
+            "param",
+            "data",
+            "grad",
+            "−lr·g",
+            "new data"
+          ],
+          "rows": [
+            [
+              "w₁",
+              "0.5",
+              "-0.85",
+              "+0.08",
+              "0.58"
+            ],
+            [
+              "w₂",
+              "-1",
+              "-0.42",
+              "+0.04",
+              "-0.96"
+            ],
+            [
+              "w₃",
+              "2",
+              "0.85",
+              "-0.08",
+              "1.92"
+            ],
+            [
+              "b",
+              "2.5",
+              "-0.85",
+              "+0.08",
+              "2.58"
+            ]
+          ]
+        },
+        "skip": {
+          "hidden": true,
+          "value": "10",
+          "label": "Fast-forward 10 epochs",
+          "disabled": false
+        }
+      }
+    },
+    "scene5": {
+      "start": {
+        "ready": true,
+        "scene": "scene-5",
+        "keyframe": 0,
+        "playing": false,
+        "speed": 1,
+        "time": 85.5,
+        "timeLabel": "85.5s / 110.5s",
+        "playLabel": "Play",
+        "playPressed": "false",
+        "stepDisabled": false,
+        "speedOptions": [
+          "0.5",
+          "1",
+          "2"
+        ],
+        "speedValue": "1",
+        "caption": "Before training: the weights are random, so the loss is 1.32 and the dashed boundary misclassifies points. The loop will now run forward → loss → backward → step.",
+        "badge": "KEYFRAME 1 / 61",
+        "sceneTitle": "Scene 5 · Loop until it learns: MLP + SGD",
+        "chips": [
+          {
+            "index": 0,
+            "label": "epoch 0",
+            "active": true,
+            "done": false
+          },
+          {
+            "index": 1,
+            "label": "epoch 1",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 2,
+            "label": "epoch 2",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 3,
+            "label": "epoch 3",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 4,
+            "label": "epoch 4",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 5,
+            "label": "epoch 5",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 6,
+            "label": "epoch 6",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 7,
+            "label": "epoch 7",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 8,
+            "label": "epoch 8",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 9,
+            "label": "epoch 9",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 10,
+            "label": "epoch 10",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 11,
+            "label": "epoch 11",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 12,
+            "label": "epoch 12",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 13,
+            "label": "epoch 13",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 14,
+            "label": "epoch 14",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 15,
+            "label": "epoch 15",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 16,
+            "label": "epoch 16",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 17,
+            "label": "epoch 17",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 18,
+            "label": "epoch 18",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 19,
+            "label": "epoch 19",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 20,
+            "label": "epoch 20",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 21,
+            "label": "epoch 21",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 22,
+            "label": "epoch 22",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 23,
+            "label": "epoch 23",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 24,
+            "label": "epoch 24",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 25,
+            "label": "epoch 25",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 26,
+            "label": "epoch 26",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 27,
+            "label": "epoch 27",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 28,
+            "label": "epoch 28",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 29,
+            "label": "epoch 29",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 30,
+            "label": "epoch 30",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 31,
+            "label": "epoch 31",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 32,
+            "label": "epoch 32",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 33,
+            "label": "epoch 33",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 34,
+            "label": "epoch 34",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 35,
+            "label": "epoch 35",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 36,
+            "label": "epoch 36",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 37,
+            "label": "epoch 37",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 38,
+            "label": "epoch 38",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 39,
+            "label": "epoch 39",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 40,
+            "label": "epoch 40",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 41,
+            "label": "epoch 41",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 42,
+            "label": "epoch 42",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 43,
+            "label": "epoch 43",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 44,
+            "label": "epoch 44",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 45,
+            "label": "epoch 45",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 46,
+            "label": "epoch 46",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 47,
+            "label": "epoch 47",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 48,
+            "label": "epoch 48",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 49,
+            "label": "epoch 49",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 50,
+            "label": "epoch 50",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 51,
+            "label": "epoch 51",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 52,
+            "label": "epoch 52",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 53,
+            "label": "epoch 53",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 54,
+            "label": "epoch 54",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 55,
+            "label": "epoch 55",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 56,
+            "label": "epoch 56",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 57,
+            "label": "epoch 57",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 58,
+            "label": "epoch 58",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 59,
+            "label": "epoch 59",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 60,
+            "label": "epoch 60",
+            "active": false,
+            "done": false
+          }
+        ],
+        "showGrads": false,
+        "backward": false,
+        "visibleNodes": "w1,x1,p1,w2,x2,p2,dot1,w3,x3,p3,dot2,b,zb,y,t,diff,loss",
+        "showGradsDataset": "false",
+        "gradsDataset": "",
+        "topoDataset": "",
+        "updatesDataset": "w1=-g 0.85 → 0.58,w2=-g 0.42 → -0.96,w3=-g -0.85 → 1.92,b=-g 0.85 → 2.58",
+        "dataDataset": "w1=0.58,x1=1,p1=0.58,w2=-0.96,x2=0.5,p2=-0.48,dot1=0.11,w3=1.92,x3=-1,p3=-1.92,dot2=-1.81,b=2.58,zb=0.77,y=0.65,t=1,diff=-0.35,loss=0.12",
+        "ariaLabel": "Expression graph. 17 of 17 nodes visible; w1=0.58, x1=1, p1=0.58, w2=-0.96, x2=0.5, p2=-0.48, dot1=0.11, w3=1.92, x3=-1, p3=-1.92, dot2=-1.81, b=2.58, zb=0.77, y=0.65, t=1, diff=-0.35, loss=0.12",
+        "viewBox": "0 0 1090 754",
+        "nodeCount": 17,
+        "edgeCount": 16,
+        "nodes": [
+          {
+            "key": "b",
+            "label": "b",
+            "data": "data 2.58",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 576)",
+            "active": false
+          },
+          {
+            "key": "w1",
+            "label": "w₁",
+            "data": "data 0.58",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 24)",
+            "active": false
+          },
+          {
+            "key": "x1",
+            "label": "x₁",
+            "data": "data 1",
+            "grad": "grad -0.42",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 116)",
+            "active": false
+          },
+          {
+            "key": "w2",
+            "label": "w₂",
+            "data": "data -0.96",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 208)",
+            "active": false
+          },
+          {
+            "key": "x2",
+            "label": "x₂",
+            "data": "data 0.5",
+            "grad": "grad 0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 300)",
+            "active": false
+          },
+          {
+            "key": "w3",
+            "label": "w₃",
+            "data": "data 1.92",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 392)",
+            "active": false
+          },
+          {
+            "key": "x3",
+            "label": "x₃",
+            "data": "data -1",
+            "grad": "grad -1.69",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 484)",
+            "active": false
+          },
+          {
+            "key": "p1",
+            "label": "×",
+            "data": "data 0.58",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(158 254)",
+            "active": false
+          },
+          {
+            "key": "p2",
+            "label": "×",
+            "data": "data -0.48",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(158 346)",
+            "active": false
+          },
+          {
+            "key": "dot1",
+            "label": "+",
+            "data": "data 0.11",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(292 346)",
+            "active": false
+          },
+          {
+            "key": "p3",
+            "label": "×",
+            "data": "data -1.92",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(158 438)",
+            "active": false
+          },
+          {
+            "key": "dot2",
+            "label": "+",
+            "data": "data -1.81",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(426 346)",
+            "active": false
+          },
+          {
+            "key": "zb",
+            "label": "+",
+            "data": "data 0.77",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(560 346)",
+            "active": false
+          },
+          {
+            "key": "y",
+            "label": "tanh",
+            "data": "data 0.65",
+            "grad": "grad -1.08",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(694 346)",
+            "active": false
+          },
+          {
+            "key": "t",
+            "label": "t",
+            "data": "data 1",
+            "grad": "grad 1.08",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 668)",
+            "active": false
+          },
+          {
+            "key": "diff",
+            "label": "−",
+            "data": "data -0.35",
+            "grad": "grad -1.08",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(828 346)",
+            "active": false
+          },
+          {
+            "key": "loss",
+            "label": "loss",
+            "data": "data 0.12",
+            "grad": "grad 1",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(962 346)",
+            "active": true
+          }
+        ],
+        "edges": [
+          {
+            "key": "w1->p1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x1->p1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "w2->p2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x2->p2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p1->dot1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p2->dot1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "w3->p3",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x3->p3",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "dot1->dot2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p3->dot2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "dot2->zb",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "b->zb",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "zb->y",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "y->diff",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "t->diff",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "diff->loss",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          }
+        ],
+        "graphHidden": true,
+        "plot": {
+          "hidden": false,
+          "epoch": 0,
+          "loss": 1.3220888454228548,
+          "accuracy": 2,
+          "predictions": [
+            -0.25,
+            0.514,
+            -0.339,
+            0.001
+          ],
+          "boundarySegments": 124
+        },
+        "readout": {
+          "hidden": false,
+          "title": "Training loop · 3 hidden units · full-batch SGD · lr = 0.1",
+          "stats": [
+            {
+              "label": "epoch",
+              "value": "0 / 60"
+            },
+            {
+              "label": "loss",
+              "value": "1.32"
+            },
+            {
+              "label": "accuracy",
+              "value": "2 / 4"
+            },
+            {
+              "label": "parameters",
+              "value": "13"
+            }
+          ],
+          "headers": [],
+          "rows": []
+        },
+        "skip": {
+          "hidden": false,
+          "value": "10",
+          "label": "Fast-forward 10 epochs",
+          "disabled": false
+        }
+      },
+      "fastForward10": {
+        "ready": true,
+        "scene": "scene-5",
+        "keyframe": 10,
+        "playing": false,
+        "speed": 1,
+        "time": 89.5,
+        "timeLabel": "89.5s / 110.5s",
+        "playLabel": "Play",
+        "playPressed": "false",
+        "stepDisabled": false,
+        "speedOptions": [
+          "0.5",
+          "1",
+          "2"
+        ],
+        "speedValue": "1",
+        "caption": "Epoch 10: loss 0.62, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients.",
+        "badge": "KEYFRAME 11 / 61",
+        "sceneTitle": "Scene 5 · Loop until it learns: MLP + SGD",
+        "chips": [
+          {
+            "index": 0,
+            "label": "epoch 0",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 1,
+            "label": "epoch 1",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 2,
+            "label": "epoch 2",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 3,
+            "label": "epoch 3",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 4,
+            "label": "epoch 4",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 5,
+            "label": "epoch 5",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 6,
+            "label": "epoch 6",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 7,
+            "label": "epoch 7",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 8,
+            "label": "epoch 8",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 9,
+            "label": "epoch 9",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 10,
+            "label": "epoch 10",
+            "active": true,
+            "done": false
+          },
+          {
+            "index": 11,
+            "label": "epoch 11",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 12,
+            "label": "epoch 12",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 13,
+            "label": "epoch 13",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 14,
+            "label": "epoch 14",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 15,
+            "label": "epoch 15",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 16,
+            "label": "epoch 16",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 17,
+            "label": "epoch 17",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 18,
+            "label": "epoch 18",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 19,
+            "label": "epoch 19",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 20,
+            "label": "epoch 20",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 21,
+            "label": "epoch 21",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 22,
+            "label": "epoch 22",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 23,
+            "label": "epoch 23",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 24,
+            "label": "epoch 24",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 25,
+            "label": "epoch 25",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 26,
+            "label": "epoch 26",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 27,
+            "label": "epoch 27",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 28,
+            "label": "epoch 28",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 29,
+            "label": "epoch 29",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 30,
+            "label": "epoch 30",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 31,
+            "label": "epoch 31",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 32,
+            "label": "epoch 32",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 33,
+            "label": "epoch 33",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 34,
+            "label": "epoch 34",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 35,
+            "label": "epoch 35",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 36,
+            "label": "epoch 36",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 37,
+            "label": "epoch 37",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 38,
+            "label": "epoch 38",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 39,
+            "label": "epoch 39",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 40,
+            "label": "epoch 40",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 41,
+            "label": "epoch 41",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 42,
+            "label": "epoch 42",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 43,
+            "label": "epoch 43",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 44,
+            "label": "epoch 44",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 45,
+            "label": "epoch 45",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 46,
+            "label": "epoch 46",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 47,
+            "label": "epoch 47",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 48,
+            "label": "epoch 48",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 49,
+            "label": "epoch 49",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 50,
+            "label": "epoch 50",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 51,
+            "label": "epoch 51",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 52,
+            "label": "epoch 52",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 53,
+            "label": "epoch 53",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 54,
+            "label": "epoch 54",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 55,
+            "label": "epoch 55",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 56,
+            "label": "epoch 56",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 57,
+            "label": "epoch 57",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 58,
+            "label": "epoch 58",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 59,
+            "label": "epoch 59",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 60,
+            "label": "epoch 60",
+            "active": false,
+            "done": false
+          }
+        ],
+        "showGrads": false,
+        "backward": false,
+        "visibleNodes": "w1,x1,p1,w2,x2,p2,dot1,w3,x3,p3,dot2,b,zb,y,t,diff,loss",
+        "showGradsDataset": "false",
+        "gradsDataset": "",
+        "topoDataset": "",
+        "updatesDataset": "w1=-g 0.85 → 0.58,w2=-g 0.42 → -0.96,w3=-g -0.85 → 1.92,b=-g 0.85 → 2.58",
+        "dataDataset": "w1=0.58,x1=1,p1=0.58,w2=-0.96,x2=0.5,p2=-0.48,dot1=0.11,w3=1.92,x3=-1,p3=-1.92,dot2=-1.81,b=2.58,zb=0.77,y=0.65,t=1,diff=-0.35,loss=0.12",
+        "ariaLabel": "Expression graph. 17 of 17 nodes visible; w1=0.58, x1=1, p1=0.58, w2=-0.96, x2=0.5, p2=-0.48, dot1=0.11, w3=1.92, x3=-1, p3=-1.92, dot2=-1.81, b=2.58, zb=0.77, y=0.65, t=1, diff=-0.35, loss=0.12",
+        "viewBox": "0 0 1090 754",
+        "nodeCount": 17,
+        "edgeCount": 16,
+        "nodes": [
+          {
+            "key": "b",
+            "label": "b",
+            "data": "data 2.58",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 576)",
+            "active": false
+          },
+          {
+            "key": "w1",
+            "label": "w₁",
+            "data": "data 0.58",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 24)",
+            "active": false
+          },
+          {
+            "key": "x1",
+            "label": "x₁",
+            "data": "data 1",
+            "grad": "grad -0.42",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 116)",
+            "active": false
+          },
+          {
+            "key": "w2",
+            "label": "w₂",
+            "data": "data -0.96",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 208)",
+            "active": false
+          },
+          {
+            "key": "x2",
+            "label": "x₂",
+            "data": "data 0.5",
+            "grad": "grad 0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 300)",
+            "active": false
+          },
+          {
+            "key": "w3",
+            "label": "w₃",
+            "data": "data 1.92",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 392)",
+            "active": false
+          },
+          {
+            "key": "x3",
+            "label": "x₃",
+            "data": "data -1",
+            "grad": "grad -1.69",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 484)",
+            "active": false
+          },
+          {
+            "key": "p1",
+            "label": "×",
+            "data": "data 0.58",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(158 254)",
+            "active": false
+          },
+          {
+            "key": "p2",
+            "label": "×",
+            "data": "data -0.48",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(158 346)",
+            "active": false
+          },
+          {
+            "key": "dot1",
+            "label": "+",
+            "data": "data 0.11",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(292 346)",
+            "active": false
+          },
+          {
+            "key": "p3",
+            "label": "×",
+            "data": "data -1.92",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(158 438)",
+            "active": false
+          },
+          {
+            "key": "dot2",
+            "label": "+",
+            "data": "data -1.81",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(426 346)",
+            "active": false
+          },
+          {
+            "key": "zb",
+            "label": "+",
+            "data": "data 0.77",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(560 346)",
+            "active": false
+          },
+          {
+            "key": "y",
+            "label": "tanh",
+            "data": "data 0.65",
+            "grad": "grad -1.08",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(694 346)",
+            "active": false
+          },
+          {
+            "key": "t",
+            "label": "t",
+            "data": "data 1",
+            "grad": "grad 1.08",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 668)",
+            "active": false
+          },
+          {
+            "key": "diff",
+            "label": "−",
+            "data": "data -0.35",
+            "grad": "grad -1.08",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(828 346)",
+            "active": false
+          },
+          {
+            "key": "loss",
+            "label": "loss",
+            "data": "data 0.12",
+            "grad": "grad 1",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(962 346)",
+            "active": true
+          }
+        ],
+        "edges": [
+          {
+            "key": "w1->p1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x1->p1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "w2->p2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x2->p2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p1->dot1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p2->dot1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "w3->p3",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x3->p3",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "dot1->dot2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p3->dot2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "dot2->zb",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "b->zb",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "zb->y",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "y->diff",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "t->diff",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "diff->loss",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          }
+        ],
+        "graphHidden": true,
+        "plot": {
+          "hidden": false,
+          "epoch": 10,
+          "loss": 0.6150767912417546,
+          "accuracy": 3,
+          "predictions": [
+            0.197,
+            -0.459,
+            0.088,
+            0.418
+          ],
+          "boundarySegments": 148
+        },
+        "readout": {
+          "hidden": false,
+          "title": "Training loop · 3 hidden units · full-batch SGD · lr = 0.1",
+          "stats": [
+            {
+              "label": "epoch",
+              "value": "10 / 60"
+            },
+            {
+              "label": "loss",
+              "value": "0.62"
+            },
+            {
+              "label": "accuracy",
+              "value": "3 / 4"
+            },
+            {
+              "label": "parameters",
+              "value": "13"
+            }
+          ],
+          "headers": [],
+          "rows": []
+        },
+        "skip": {
+          "hidden": false,
+          "value": "10",
+          "label": "Fast-forward 10 epochs",
+          "disabled": false
+        }
+      },
+      "final": {
+        "ready": true,
+        "scene": "scene-5",
+        "keyframe": 60,
+        "playing": false,
+        "speed": 1,
+        "time": 109.5,
+        "timeLabel": "109.5s / 110.5s",
+        "playLabel": "Play",
+        "playPressed": "false",
+        "stepDisabled": true,
+        "speedOptions": [
+          "0.5",
+          "1",
+          "2"
+        ],
+        "speedValue": "1",
+        "caption": "Epoch 60: the loss fell from 1.32 to 0.3 and all four points are on the correct side of the boundary. The loop has learned the pattern: forward → loss → backward → step.",
+        "badge": "KEYFRAME 61 / 61",
+        "sceneTitle": "Scene 5 · Loop until it learns: MLP + SGD",
+        "chips": [
+          {
+            "index": 0,
+            "label": "epoch 0",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 1,
+            "label": "epoch 1",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 2,
+            "label": "epoch 2",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 3,
+            "label": "epoch 3",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 4,
+            "label": "epoch 4",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 5,
+            "label": "epoch 5",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 6,
+            "label": "epoch 6",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 7,
+            "label": "epoch 7",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 8,
+            "label": "epoch 8",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 9,
+            "label": "epoch 9",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 10,
+            "label": "epoch 10",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 11,
+            "label": "epoch 11",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 12,
+            "label": "epoch 12",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 13,
+            "label": "epoch 13",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 14,
+            "label": "epoch 14",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 15,
+            "label": "epoch 15",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 16,
+            "label": "epoch 16",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 17,
+            "label": "epoch 17",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 18,
+            "label": "epoch 18",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 19,
+            "label": "epoch 19",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 20,
+            "label": "epoch 20",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 21,
+            "label": "epoch 21",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 22,
+            "label": "epoch 22",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 23,
+            "label": "epoch 23",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 24,
+            "label": "epoch 24",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 25,
+            "label": "epoch 25",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 26,
+            "label": "epoch 26",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 27,
+            "label": "epoch 27",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 28,
+            "label": "epoch 28",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 29,
+            "label": "epoch 29",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 30,
+            "label": "epoch 30",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 31,
+            "label": "epoch 31",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 32,
+            "label": "epoch 32",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 33,
+            "label": "epoch 33",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 34,
+            "label": "epoch 34",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 35,
+            "label": "epoch 35",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 36,
+            "label": "epoch 36",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 37,
+            "label": "epoch 37",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 38,
+            "label": "epoch 38",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 39,
+            "label": "epoch 39",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 40,
+            "label": "epoch 40",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 41,
+            "label": "epoch 41",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 42,
+            "label": "epoch 42",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 43,
+            "label": "epoch 43",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 44,
+            "label": "epoch 44",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 45,
+            "label": "epoch 45",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 46,
+            "label": "epoch 46",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 47,
+            "label": "epoch 47",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 48,
+            "label": "epoch 48",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 49,
+            "label": "epoch 49",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 50,
+            "label": "epoch 50",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 51,
+            "label": "epoch 51",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 52,
+            "label": "epoch 52",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 53,
+            "label": "epoch 53",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 54,
+            "label": "epoch 54",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 55,
+            "label": "epoch 55",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 56,
+            "label": "epoch 56",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 57,
+            "label": "epoch 57",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 58,
+            "label": "epoch 58",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 59,
+            "label": "epoch 59",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 60,
+            "label": "epoch 60",
+            "active": true,
+            "done": false
+          }
+        ],
+        "showGrads": false,
+        "backward": false,
+        "visibleNodes": "w1,x1,p1,w2,x2,p2,dot1,w3,x3,p3,dot2,b,zb,y,t,diff,loss",
+        "showGradsDataset": "false",
+        "gradsDataset": "",
+        "topoDataset": "",
+        "updatesDataset": "w1=-g 0.85 → 0.58,w2=-g 0.42 → -0.96,w3=-g -0.85 → 1.92,b=-g 0.85 → 2.58",
+        "dataDataset": "w1=0.58,x1=1,p1=0.58,w2=-0.96,x2=0.5,p2=-0.48,dot1=0.11,w3=1.92,x3=-1,p3=-1.92,dot2=-1.81,b=2.58,zb=0.77,y=0.65,t=1,diff=-0.35,loss=0.12",
+        "ariaLabel": "Expression graph. 17 of 17 nodes visible; w1=0.58, x1=1, p1=0.58, w2=-0.96, x2=0.5, p2=-0.48, dot1=0.11, w3=1.92, x3=-1, p3=-1.92, dot2=-1.81, b=2.58, zb=0.77, y=0.65, t=1, diff=-0.35, loss=0.12",
+        "viewBox": "0 0 1090 754",
+        "nodeCount": 17,
+        "edgeCount": 16,
+        "nodes": [
+          {
+            "key": "b",
+            "label": "b",
+            "data": "data 2.58",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 576)",
+            "active": false
+          },
+          {
+            "key": "w1",
+            "label": "w₁",
+            "data": "data 0.58",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 24)",
+            "active": false
+          },
+          {
+            "key": "x1",
+            "label": "x₁",
+            "data": "data 1",
+            "grad": "grad -0.42",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 116)",
+            "active": false
+          },
+          {
+            "key": "w2",
+            "label": "w₂",
+            "data": "data -0.96",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 208)",
+            "active": false
+          },
+          {
+            "key": "x2",
+            "label": "x₂",
+            "data": "data 0.5",
+            "grad": "grad 0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 300)",
+            "active": false
+          },
+          {
+            "key": "w3",
+            "label": "w₃",
+            "data": "data 1.92",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 392)",
+            "active": false
+          },
+          {
+            "key": "x3",
+            "label": "x₃",
+            "data": "data -1",
+            "grad": "grad -1.69",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 484)",
+            "active": false
+          },
+          {
+            "key": "p1",
+            "label": "×",
+            "data": "data 0.58",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(158 254)",
+            "active": false
+          },
+          {
+            "key": "p2",
+            "label": "×",
+            "data": "data -0.48",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(158 346)",
+            "active": false
+          },
+          {
+            "key": "dot1",
+            "label": "+",
+            "data": "data 0.11",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(292 346)",
+            "active": false
+          },
+          {
+            "key": "p3",
+            "label": "×",
+            "data": "data -1.92",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(158 438)",
+            "active": false
+          },
+          {
+            "key": "dot2",
+            "label": "+",
+            "data": "data -1.81",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(426 346)",
+            "active": false
+          },
+          {
+            "key": "zb",
+            "label": "+",
+            "data": "data 0.77",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(560 346)",
+            "active": false
+          },
+          {
+            "key": "y",
+            "label": "tanh",
+            "data": "data 0.65",
+            "grad": "grad -1.08",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(694 346)",
+            "active": false
+          },
+          {
+            "key": "t",
+            "label": "t",
+            "data": "data 1",
+            "grad": "grad 1.08",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 668)",
+            "active": false
+          },
+          {
+            "key": "diff",
+            "label": "−",
+            "data": "data -0.35",
+            "grad": "grad -1.08",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(828 346)",
+            "active": false
+          },
+          {
+            "key": "loss",
+            "label": "loss",
+            "data": "data 0.12",
+            "grad": "grad 1",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(962 346)",
+            "active": true
+          }
+        ],
+        "edges": [
+          {
+            "key": "w1->p1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x1->p1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "w2->p2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x2->p2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p1->dot1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p2->dot1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "w3->p3",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x3->p3",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "dot1->dot2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p3->dot2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "dot2->zb",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "b->zb",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "zb->y",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "y->diff",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "t->diff",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "diff->loss",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          }
+        ],
+        "graphHidden": true,
+        "plot": {
+          "hidden": false,
+          "epoch": 60,
+          "loss": 0.3001617388714038,
+          "accuracy": 4,
+          "predictions": [
+            0.248,
+            -0.924,
+            -0.207,
+            0.99
+          ],
+          "boundarySegments": 124
+        },
+        "readout": {
+          "hidden": false,
+          "title": "Training loop · 3 hidden units · full-batch SGD · lr = 0.1",
+          "stats": [
+            {
+              "label": "epoch",
+              "value": "60 / 60"
+            },
+            {
+              "label": "loss",
+              "value": "0.3"
+            },
+            {
+              "label": "accuracy",
+              "value": "4 / 4"
+            },
+            {
+              "label": "parameters",
+              "value": "13"
+            }
+          ],
+          "headers": [],
+          "rows": []
+        },
+        "skip": {
+          "hidden": false,
+          "value": "50",
+          "label": "Fast-forward 50 epochs",
+          "disabled": true
+        }
       }
     }
   },
@@ -3423,9 +7599,9 @@
       "pass": true,
       "detail": "Backward pass: d.grad = 1. Then mul.grad = 1 and c.grad = 1; the chain rule gives a.grad = b = -3 and b.grad = a = 2."
     },
-    "three scenes with three keyframe rails are loaded": {
+    "five scenes with five keyframe rails are loaded": {
       "pass": true,
-      "detail": "{\"ids\":[\"scene-1\",\"scene-2\",\"scene-3\"],\"total\":58.5}"
+      "detail": "{\"ids\":[\"scene-1\",\"scene-2\",\"scene-3\",\"scene-4\",\"scene-5\"],\"total\":110.5}"
     },
     "Step crosses from scene 1 into scene 2": {
       "pass": true,
@@ -3511,9 +7687,69 @@
       "pass": true,
       "detail": "All three weight gradients: w1 = 0.79, w2 = 0.39, w3 = -0.79. Gradient descent would subtract a small multiple of each (ticket 3); no training loop here."
     },
-    "Step is disabled only after the very last keyframe": {
+    "Step stays enabled after scene 3 because scenes 4 and 5 follow": {
       "pass": true,
       "detail": "scene=scene-3"
+    },
+    "scene 4 starts on the same neuron inputs, without a readout": {
+      "pass": true,
+      "detail": "scene=scene-4 nodes=7 readoutHidden=true"
+    },
+    "scene 4 adds the target and the loss node": {
+      "pass": true,
+      "detail": "nodes=17 edges=16"
+    },
+    "scene 4 shows each parameter update annotation": {
+      "pass": true,
+      "detail": "w1=-g 0.85 → 0.58,w2=-g 0.42 → -0.96,w3=-g -0.85 → 1.92,b=-g 0.85 → 2.58"
+    },
+    "scene 4 parameter table has one row per weight and bias": {
+      "pass": true,
+      "detail": "[[\"w₁\",\"0.5\",\"-0.85\",\"+0.08\",\"0.58\"],[\"w₂\",\"-1\",\"-0.42\",\"+0.04\",\"-0.96\"],[\"w₃\",\"2\",\"0.85\",\"-0.08\",\"1.92\"],[\"b\",\"2.5\",\"-0.85\",\"+0.08\",\"2.58\"]]"
+    },
+    "scene 4 keeps the before-values on the update frame": {
+      "pass": true,
+      "detail": "{\"w1\":{\"key\":\"w1\",\"label\":\"w₁\",\"data\":\"data 0.5\",\"grad\":\"grad -0.85\",\"hasGrad\":true,\"topo\":\"\",\"transform\":\"translate(24 24)\",\"active\":false},\"w3\":{\"key\":\"w3\",\"label\":\"w₃\",\"data\":\"data 2\",\"grad\":\"grad 0.85\",\"hasGrad\":true,\"topo\":\"\",\"transform\":\"translate(24 392)\",\"active\":false}}"
+    },
+    "scene 4 applies the step and clears the gradients": {
+      "pass": true,
+      "detail": "{\"w1\":\"data 0.58\",\"w2\":\"data -0.96\",\"w3\":\"data 1.92\",\"b\":\"data 2.58\",\"loss\":\"data 0.12\",\"grads\":\"\"}"
+    },
+    "scene 4 readout reports the loss before and after the step": {
+      "pass": true,
+      "detail": "[{\"label\":\"loss before\",\"value\":\"0.29\"},{\"label\":\"loss after\",\"value\":\"0.12\"},{\"label\":\"learning rate\",\"value\":\"0.1\"}]"
+    },
+    "scene 5 opens on the plot with the untrained loss": {
+      "pass": true,
+      "detail": "{\"scene\":\"scene-5\",\"plot\":{\"hidden\":false,\"epoch\":0,\"loss\":1.3220888454228548,\"accuracy\":2,\"predictions\":[-0.25,0.514,-0.339,0.001],\"boundarySegments\":124},\"skip\":{\"hidden\":false,\"value\":\"10\",\"label\":\"Fast-forward 10 epochs\",\"disabled\":false}}"
+    },
+    "scene 5 exposes the fast-forward control": {
+      "pass": true,
+      "detail": "{\"hidden\":false,\"value\":\"10\",\"label\":\"Fast-forward 10 epochs\",\"disabled\":false}"
+    },
+    "fast-forward advances exactly N epochs": {
+      "pass": true,
+      "detail": "epoch=10"
+    },
+    "fast-forward clamps at the final epoch": {
+      "pass": true,
+      "detail": "epoch=60"
+    },
+    "scene 5 ends with the loss down and every point correct": {
+      "pass": true,
+      "detail": "{\"hidden\":false,\"epoch\":60,\"loss\":0.3001617388714038,\"accuracy\":4,\"predictions\":[0.248,-0.924,-0.207,0.99],\"boundarySegments\":124}"
+    },
+    "scene 5 readout shows the trained epoch and loss": {
+      "pass": true,
+      "detail": "[{\"label\":\"epoch\",\"value\":\"60 / 60\"},{\"label\":\"loss\",\"value\":\"0.3\"},{\"label\":\"accuracy\",\"value\":\"4 / 4\"},{\"label\":\"parameters\",\"value\":\"13\"}]"
+    },
+    "scene 5 final frame is the end of the timeline": {
+      "pass": true,
+      "detail": "stepDisabled=true skipDisabled=true loss=0.3001617388714038"
+    },
+    "scene 5 loss history is monotonic and ends below 40% of its start": {
+      "pass": true,
+      "detail": "first=1.3221 last=0.3002"
     },
     "no page exceptions or console errors": {
       "pass": true,
@@ -3649,14 +7885,334 @@
             "label": "weight grads"
           }
         ]
+      },
+      {
+        "id": "scene-4",
+        "title": "Scene 4 · One SGD step: follow the negative gradient",
+        "duration": 27,
+        "keyframes": [
+          {
+            "at": 0,
+            "label": "inputs"
+          },
+          {
+            "at": 2.5,
+            "label": "forward"
+          },
+          {
+            "at": 5,
+            "label": "loss"
+          },
+          {
+            "at": 7,
+            "label": "seed"
+          },
+          {
+            "at": 8.5,
+            "label": "∂loss/∂y"
+          },
+          {
+            "at": 10,
+            "label": "through −"
+          },
+          {
+            "at": 11.5,
+            "label": "through tanh"
+          },
+          {
+            "at": 13,
+            "label": "through + b"
+          },
+          {
+            "at": 14.5,
+            "label": "through + p3"
+          },
+          {
+            "at": 16,
+            "label": "through + p2"
+          },
+          {
+            "at": 17.5,
+            "label": "through × w1"
+          },
+          {
+            "at": 19,
+            "label": "through × w2"
+          },
+          {
+            "at": 20.5,
+            "label": "through × w3"
+          },
+          {
+            "at": 22.5,
+            "label": "SGD step"
+          },
+          {
+            "at": 25,
+            "label": "after step"
+          }
+        ]
+      },
+      {
+        "id": "scene-5",
+        "title": "Scene 5 · Loop until it learns: MLP + SGD",
+        "duration": 25,
+        "keyframes": [
+          {
+            "at": 0,
+            "label": "epoch 0"
+          },
+          {
+            "at": 0.4,
+            "label": "epoch 1"
+          },
+          {
+            "at": 0.8,
+            "label": "epoch 2"
+          },
+          {
+            "at": 1.2000000000000002,
+            "label": "epoch 3"
+          },
+          {
+            "at": 1.6,
+            "label": "epoch 4"
+          },
+          {
+            "at": 2,
+            "label": "epoch 5"
+          },
+          {
+            "at": 2.4000000000000004,
+            "label": "epoch 6"
+          },
+          {
+            "at": 2.8000000000000003,
+            "label": "epoch 7"
+          },
+          {
+            "at": 3.2,
+            "label": "epoch 8"
+          },
+          {
+            "at": 3.6,
+            "label": "epoch 9"
+          },
+          {
+            "at": 4,
+            "label": "epoch 10"
+          },
+          {
+            "at": 4.4,
+            "label": "epoch 11"
+          },
+          {
+            "at": 4.800000000000001,
+            "label": "epoch 12"
+          },
+          {
+            "at": 5.2,
+            "label": "epoch 13"
+          },
+          {
+            "at": 5.6000000000000005,
+            "label": "epoch 14"
+          },
+          {
+            "at": 6,
+            "label": "epoch 15"
+          },
+          {
+            "at": 6.4,
+            "label": "epoch 16"
+          },
+          {
+            "at": 6.800000000000001,
+            "label": "epoch 17"
+          },
+          {
+            "at": 7.2,
+            "label": "epoch 18"
+          },
+          {
+            "at": 7.6000000000000005,
+            "label": "epoch 19"
+          },
+          {
+            "at": 8,
+            "label": "epoch 20"
+          },
+          {
+            "at": 8.4,
+            "label": "epoch 21"
+          },
+          {
+            "at": 8.8,
+            "label": "epoch 22"
+          },
+          {
+            "at": 9.200000000000001,
+            "label": "epoch 23"
+          },
+          {
+            "at": 9.600000000000001,
+            "label": "epoch 24"
+          },
+          {
+            "at": 10,
+            "label": "epoch 25"
+          },
+          {
+            "at": 10.4,
+            "label": "epoch 26"
+          },
+          {
+            "at": 10.8,
+            "label": "epoch 27"
+          },
+          {
+            "at": 11.200000000000001,
+            "label": "epoch 28"
+          },
+          {
+            "at": 11.600000000000001,
+            "label": "epoch 29"
+          },
+          {
+            "at": 12,
+            "label": "epoch 30"
+          },
+          {
+            "at": 12.4,
+            "label": "epoch 31"
+          },
+          {
+            "at": 12.8,
+            "label": "epoch 32"
+          },
+          {
+            "at": 13.200000000000001,
+            "label": "epoch 33"
+          },
+          {
+            "at": 13.600000000000001,
+            "label": "epoch 34"
+          },
+          {
+            "at": 14,
+            "label": "epoch 35"
+          },
+          {
+            "at": 14.4,
+            "label": "epoch 36"
+          },
+          {
+            "at": 14.8,
+            "label": "epoch 37"
+          },
+          {
+            "at": 15.200000000000001,
+            "label": "epoch 38"
+          },
+          {
+            "at": 15.600000000000001,
+            "label": "epoch 39"
+          },
+          {
+            "at": 16,
+            "label": "epoch 40"
+          },
+          {
+            "at": 16.400000000000002,
+            "label": "epoch 41"
+          },
+          {
+            "at": 16.8,
+            "label": "epoch 42"
+          },
+          {
+            "at": 17.2,
+            "label": "epoch 43"
+          },
+          {
+            "at": 17.6,
+            "label": "epoch 44"
+          },
+          {
+            "at": 18,
+            "label": "epoch 45"
+          },
+          {
+            "at": 18.400000000000002,
+            "label": "epoch 46"
+          },
+          {
+            "at": 18.8,
+            "label": "epoch 47"
+          },
+          {
+            "at": 19.200000000000003,
+            "label": "epoch 48"
+          },
+          {
+            "at": 19.6,
+            "label": "epoch 49"
+          },
+          {
+            "at": 20,
+            "label": "epoch 50"
+          },
+          {
+            "at": 20.400000000000002,
+            "label": "epoch 51"
+          },
+          {
+            "at": 20.8,
+            "label": "epoch 52"
+          },
+          {
+            "at": 21.200000000000003,
+            "label": "epoch 53"
+          },
+          {
+            "at": 21.6,
+            "label": "epoch 54"
+          },
+          {
+            "at": 22,
+            "label": "epoch 55"
+          },
+          {
+            "at": 22.400000000000002,
+            "label": "epoch 56"
+          },
+          {
+            "at": 22.8,
+            "label": "epoch 57"
+          },
+          {
+            "at": 23.200000000000003,
+            "label": "epoch 58"
+          },
+          {
+            "at": 23.6,
+            "label": "epoch 59"
+          },
+          {
+            "at": 24,
+            "label": "epoch 60"
+          }
+        ]
       }
     ],
     "offsets": [
       0,
       13,
-      28.5
+      28.5,
+      58.5,
+      85.5
     ],
-    "total": 58.5
+    "total": 110.5
   },
   "gradients": {
     "a": "grad -3",
@@ -3665,5 +8221,68 @@
     "c": "grad 1",
     "add": "grad 1"
   },
+  "scene5Losses": [
+    1.322089,
+    1.115157,
+    0.998632,
+    0.909055,
+    0.838028,
+    0.780916,
+    0.734469,
+    0.696281,
+    0.664529,
+    0.637819,
+    0.615077,
+    0.595473,
+    0.578364,
+    0.563251,
+    0.549743,
+    0.537535,
+    0.526386,
+    0.516108,
+    0.506551,
+    0.497598,
+    0.489155,
+    0.48115,
+    0.473523,
+    0.466228,
+    0.459229,
+    0.452496,
+    0.446003,
+    0.439732,
+    0.433665,
+    0.427788,
+    0.422088,
+    0.416556,
+    0.41118,
+    0.405953,
+    0.400867,
+    0.395913,
+    0.391085,
+    0.386376,
+    0.381781,
+    0.377292,
+    0.372905,
+    0.368614,
+    0.364414,
+    0.3603,
+    0.356268,
+    0.352314,
+    0.348434,
+    0.344623,
+    0.340879,
+    0.337198,
+    0.333578,
+    0.330014,
+    0.326506,
+    0.32305,
+    0.319645,
+    0.316288,
+    0.312976,
+    0.30971,
+    0.306486,
+    0.303304,
+    0.300162
+  ],
   "failures": []
 }
