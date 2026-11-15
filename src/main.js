@@ -1,6 +1,7 @@
 /*
- * Wires the timeline engine to the DOM: builds the scene, renders the graph
- * when a keyframe changes, and drives play / pause / step / speed / seek.
+ * Wires the timeline engine to the DOM: builds the three scenes, renders the
+ * active scene's graph when a keyframe changes, and drives play / pause / step
+ * / speed / seek.
  *
  * Browser classic script + importable ESM (see src/value.js for the reason).
  */
@@ -12,9 +13,10 @@
   }
 
   function init() {
-    const { Timeline, createScene1, renderGraph } = global.MGViz;
-    const scene = createScene1();
-    const timeline = new Timeline({ scenes: [scene] });
+    const { Timeline, createScene1, createScene2, createScene3, renderGraph } =
+      global.MGViz;
+    const scenes = [createScene1(), createScene2(), createScene3()];
+    const timeline = new Timeline({ scenes });
 
     const svg = document.getElementById('graph');
     const playButton = document.getElementById('play');
@@ -25,6 +27,7 @@
     const progress = document.getElementById('progress');
     const timeLabel = document.getElementById('time');
     const sceneTitle = document.getElementById('scene-title');
+    const sceneEyebrow = document.getElementById('scene-eyebrow');
     const stepBadge = document.getElementById('step-badge');
     const caption = document.getElementById('caption');
     const stepsRail = document.getElementById('steps');
@@ -35,7 +38,7 @@
     let lastKeyframeIndex = -1;
     let stepChips = [];
 
-    function buildSteps(sceneData) {
+    function buildSteps(sceneData, offset) {
       stepsRail.textContent = '';
       stepChips = sceneData.keyframes.map((keyframe, index) => {
         const chip = document.createElement('button');
@@ -53,7 +56,7 @@
         );
         chip.addEventListener('click', () => {
           timeline.pause();
-          timeline.seek(keyframe.at);
+          timeline.seek(offset + keyframe.at);
         });
         stepsRail.appendChild(chip);
         return chip;
@@ -61,18 +64,24 @@
     }
 
     function render(snapshot) {
+      const sceneData = timeline.scenes[snapshot.sceneIndex];
       if (snapshot.sceneIndex !== lastSceneIndex) {
-        buildSteps(timeline.scenes[snapshot.sceneIndex]);
+        buildSteps(sceneData, snapshot.offset);
         lastSceneIndex = snapshot.sceneIndex;
         lastKeyframeIndex = -1;
       }
 
       if (snapshot.keyframeIndex !== lastKeyframeIndex) {
         const state = snapshot.state;
-        renderGraph(svg, scene.graph, {
+        renderGraph(svg, sceneData.graph, {
           visible: state.visible,
           showGrad: Boolean(state.showGrad),
+          grads: state.grads,
           active: state.focus || null,
+          activeEdges: state.activeEdges,
+          edgeLabels: state.edgeLabels,
+          topo: state.topo,
+          backward: Boolean(state.backward),
         });
         caption.textContent = state.caption || '';
         stepChips.forEach((chip, index) => {
@@ -83,6 +92,9 @@
       }
 
       sceneTitle.textContent = snapshot.sceneTitle;
+      if (sceneEyebrow) {
+        sceneEyebrow.textContent = 'scene ' + (snapshot.sceneIndex + 1);
+      }
       stepBadge.textContent =
         'KEYFRAME ' +
         (snapshot.keyframeIndex + 1) +
@@ -135,6 +147,9 @@
 
     timeline.subscribe(render);
     render(timeline.snapshot());
+    // Debug/evidence handle: the browser harness reads scene durations and
+    // keyframe times from the live timeline instead of hard-coding them.
+    global.MGViz.app = { timeline, scenes };
     document.documentElement.dataset.ready = 'true';
   }
 
