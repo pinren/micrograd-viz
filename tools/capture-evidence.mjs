@@ -145,10 +145,17 @@ function readStateExpression() {
       label: group.querySelector('.node-label')?.textContent || '',
       data: group.querySelector('.node-data')?.textContent || '',
       grad: group.querySelector('.node-grad')?.textContent || '',
+      hasGrad: group.classList.contains('has-grad'),
+      topo: group.querySelector('.topo-badge text')?.textContent || '',
       transform: group.getAttribute('transform'),
       active: group.classList.contains('is-active')
     }));
-    const edges = [...svg.querySelectorAll('.edge')].map((group) => group.dataset.key);
+    const edges = [...svg.querySelectorAll('.edge')].map((group) => ({
+      key: group.dataset.key,
+      active: group.classList.contains('is-active'),
+      label: group.querySelector('.edge-label')?.textContent || '',
+      hasLabel: group.classList.contains('has-label')
+    }));
     const play = document.getElementById('play');
     return {
       ready: document.documentElement.dataset.ready === 'true',
@@ -173,8 +180,11 @@ function readStateExpression() {
         done: chip.classList.contains('is-done')
       })),
       showGrads: svg.classList.contains('show-grads'),
+      backward: svg.classList.contains('backward'),
       visibleNodes: svg.dataset.visibleNodes || '',
       showGradsDataset: svg.dataset.showGrads,
+      gradsDataset: svg.dataset.grads || '',
+      topoDataset: svg.dataset.topo || '',
       ariaLabel: svg.getAttribute('aria-label'),
       viewBox: svg.getAttribute('viewBox'),
       nodeCount: nodes.length,
@@ -303,6 +313,55 @@ async function main() {
 
     await waitForReady();
     await sleep(400);
+    const sceneInfo = await cdp.evaluate(
+      `globalThis.MGViz.app.timeline.scenes.map((scene) => ({
+        id: scene.id,
+        title: scene.title,
+        duration: scene.duration,
+        keyframes: scene.keyframes.map((keyframe) => ({
+          at: keyframe.at,
+          label: keyframe.label
+        }))
+      }))`
+    );
+    const sceneOffsets = [];
+    let elapsed = 0;
+    for (const scene of sceneInfo) {
+      sceneOffsets.push(elapsed);
+      elapsed += scene.duration;
+    }
+    evidence.scenes = { scenes: sceneInfo, offsets: sceneOffsets, total: elapsed };
+    const seekSceneKeyframe = async (sceneIndex, keyframeIndex) => {
+      const info = sceneInfo[sceneIndex];
+      const keyframe = info.keyframes[keyframeIndex];
+      await seek(sceneOffsets[sceneIndex] + keyframe.at);
+      await sleep(450);
+      return readState();
+    };
+    const seekScene = async (sceneIndex, label) => {
+      const index = sceneInfo[sceneIndex].keyframes.findIndex(
+        (keyframe) => keyframe.label === label
+      );
+      if (index < 0) throw new Error('missing scene keyframe ' + label);
+      return seekSceneKeyframe(sceneIndex, index);
+    };
+    const nodesByKey = (state) =>
+      Object.fromEntries(state.nodes.map((node) => [node.key, node]));
+    const gradsOf = (state) =>
+      Object.fromEntries(
+        state.nodes
+          .filter((node) => node.hasGrad)
+          .map((node) => [node.key, node.grad])
+      );
+    const activeEdgeKeys = (state) =>
+      state.edges.filter((edge) => edge.active).map((edge) => edge.key);
+    const edgeLabelsOf = (state) =>
+      Object.fromEntries(
+        state.edges
+          .filter((edge) => edge.hasLabel)
+          .map((edge) => [edge.key, edge.label])
+      );
+
     evidence.states.initial = await readState();
     check('page loads from file://', evidence.states.initial.ready);
     check(
@@ -327,7 +386,7 @@ async function main() {
       ),
       evidence.states.initial.speedOptions.join(',')
     );
-    await shot('seed-panel');
+    await shot('scene1-start');
 
     // Play at 2x for ~1s, then pause: the timeline must advance by ~2s.
     await setSpeed(2);
@@ -408,16 +467,277 @@ async function main() {
       JSON.stringify(grads)
     );
     check(
-      'Step is disabled after the last keyframe',
-      finalState.stepDisabled === true
-    );
-    check(
       'final scene caption explains the chain rule',
       /a\.grad = b = -3/.test(finalState.caption) &&
         /b\.grad = a = 2/.test(finalState.caption),
       finalState.caption
     );
     await shot('scene1-gradients');
+
+    check(
+      'three scenes with three keyframe rails are loaded',
+      sceneInfo.length === 3 &&
+        sceneInfo.map((scene) => scene.id).join(',') ===
+          'scene-1,scene-2,scene-3' &&
+        evidence.scenes.total === 58.5,
+      JSON.stringify({
+        ids: sceneInfo.map((scene) => scene.id),
+        total: evidence.scenes.total,
+      })
+    );
+
+    // Stepping off scene 1's last keyframe must land on scene 2's first one.
+    await click('#step');
+    const scene2Entry = await readState();
+    check(
+      'Step crosses from scene 1 into scene 2',
+      scene2Entry.scene === 'scene-2' &&
+        scene2Entry.keyframe === 0 &&
+        scene2Entry.time === 13 &&
+        scene2Entry.chips.length === 6,
+      'scene=' +
+        scene2Entry.scene +
+        ' keyframe=' +
+        scene2Entry.keyframe +
+        ' time=' +
+        scene2Entry.time
+    );
+    check(
+      'scene 2 opens on the full graph with no gradients',
+      scene2Entry.nodeCount === 5 &&
+        scene2Entry.edgeCount === 4 &&
+        Object.keys(gradsOf(scene2Entry)).length === 0,
+      'nodes=' +
+        scene2Entry.nodeCount +
+        ' grads=' +
+        JSON.stringify(gradsOf(scene2Entry))
+    );
+
+    await setSpeed(2);
+    await click('#play');
+    await sleep(700);
+    const scene2Playing = await readState();
+    await click('#play');
+    await setSpeed(1);
+    check(
+      'scene 2 plays inside its own timeline segment',
+      scene2Playing.scene === 'scene-2' &&
+        scene2Playing.playing === true &&
+        scene2Playing.time > 13.4 &&
+        scene2Playing.time < 16,
+      'scene=' +
+        scene2Playing.scene +
+        ' time=' +
+        scene2Playing.time +
+        ' playing=' +
+        scene2Playing.playing
+    );
+
+    const s2topo = await seekScene(1, 'reverse topo');
+    const topoBadges = s2topo.nodes
+      .filter((node) => node.topo)
+      .map((node) => node.key + ':' + node.topo)
+      .sort()
+      .join(',');
+    check(
+      'scene 2 badges operations in reverse topological order',
+      s2topo.topoDataset === 'add,mul' && topoBadges === 'add:1,mul:2',
+      'topo=' + s2topo.topoDataset + ' badges=' + topoBadges
+    );
+
+    const s2seed = await seekScene(1, 'seed');
+    check(
+      'scene 2 seeds d.grad = 1 and nothing else',
+      JSON.stringify(gradsOf(s2seed)) === '{"add":"grad 1"}',
+      JSON.stringify(gradsOf(s2seed))
+    );
+
+    const s2add = await seekScene(1, 'through +');
+    const addGrads = gradsOf(s2add);
+    check(
+      'scene 2 + step moves gradients into mul and c',
+      addGrads.add === 'grad 1' &&
+        addGrads.mul === 'grad 1' &&
+        addGrads.c === 'grad 1' &&
+        addGrads.a === undefined &&
+        addGrads.b === undefined,
+      JSON.stringify(addGrads)
+    );
+    check(
+      'scene 2 + step highlights and labels both edges',
+      activeEdgeKeys(s2add).sort().join(',') === 'c->add,mul->add' &&
+        JSON.stringify(edgeLabelsOf(s2add)) ===
+          '{"mul->add":"∂=1","c->add":"∂=1"}' &&
+        s2add.backward === true,
+      JSON.stringify({
+        edges: activeEdgeKeys(s2add),
+        labels: edgeLabelsOf(s2add),
+        backward: s2add.backward,
+      })
+    );
+
+    const s2mul = await seekScene(1, 'through ×');
+    const mulGrads = gradsOf(s2mul);
+    check(
+      'scene 2 × step reaches a = -3 and b = 2',
+      mulGrads.a === 'grad -3' &&
+        mulGrads.b === 'grad 2' &&
+        mulGrads.mul === 'grad 1',
+      JSON.stringify(mulGrads)
+    );
+    check(
+      'scene 2 × step labels local derivatives ∂mul/∂a and ∂mul/∂b',
+      JSON.stringify(edgeLabelsOf(s2mul)) ===
+        '{"a->mul":"∂=-3","b->mul":"∂=2"}',
+      JSON.stringify(edgeLabelsOf(s2mul))
+    );
+    await shot('scene2-backprop');
+
+    const s2final = await seekScene(1, 'chain rule');
+    check(
+      'scene 2 ends with all five gradients',
+      Object.keys(gradsOf(s2final)).length === 5 &&
+        gradsOf(s2final).a === 'grad -3' &&
+        gradsOf(s2final).b === 'grad 2' &&
+        gradsOf(s2final).c === 'grad 1',
+      JSON.stringify(gradsOf(s2final))
+    );
+    check(
+      'scene 2 final caption states the chain rule',
+      /chain rule/i.test(s2final.caption) && /∂d\/∂a/.test(s2final.caption),
+      s2final.caption
+    );
+    evidence.states.scene2 = {
+      entry: scene2Entry,
+      playing: scene2Playing,
+      topo: s2topo,
+      seed: s2seed,
+      throughAdd: s2add,
+      throughMul: s2mul,
+      final: s2final,
+    };
+    await shot('scene2-gradients');
+
+    const s3inputs = await seekScene(2, 'inputs');
+    check(
+      'scene 3 starts with the seven input nodes',
+      s3inputs.scene === 'scene-3' &&
+        s3inputs.nodeCount === 7 &&
+        s3inputs.edgeCount === 0 &&
+        Object.keys(gradsOf(s3inputs)).length === 0,
+      'nodes=' +
+        s3inputs.nodeCount +
+        ' edges=' +
+        s3inputs.edgeCount
+    );
+
+    await setSpeed(2);
+    await click('#play');
+    await sleep(700);
+    const scene3Playing = await readState();
+    await click('#play');
+    await setSpeed(1);
+    check(
+      'scene 3 plays inside its own timeline segment',
+      scene3Playing.scene === 'scene-3' &&
+        scene3Playing.playing === true &&
+        scene3Playing.time > 28.9 &&
+        scene3Playing.time < 31,
+      'scene=' +
+        scene3Playing.scene +
+        ' time=' +
+        scene3Playing.time +
+        ' playing=' +
+        scene3Playing.playing
+    );
+
+    const s3forward = await seekScene(2, 'tanh');
+    const forwardNodes = nodesByKey(s3forward);
+    check(
+      'scene 3 forward pass renders the whole neuron',
+      s3forward.nodeCount === 14 &&
+        s3forward.edgeCount === 13 &&
+        forwardNodes.y.data === 'data 0.46' &&
+        forwardNodes.zb.data === 'data 0.5' &&
+        forwardNodes.p3.data === 'data -2',
+      'nodes=' +
+        s3forward.nodeCount +
+        ' edges=' +
+        s3forward.edgeCount +
+        ' y=' +
+        (forwardNodes.y && forwardNodes.y.data)
+    );
+    check(
+      'scene 3 forward pass has no gradients yet',
+      Object.keys(gradsOf(s3forward)).length === 0,
+      JSON.stringify(gradsOf(s3forward))
+    );
+    await shot('scene3-forward');
+
+    const s3seed = await seekScene(2, 'seed');
+    check(
+      'scene 3 seeds y.grad = 1',
+      JSON.stringify(gradsOf(s3seed)) === '{"y":"grad 1"}',
+      JSON.stringify(gradsOf(s3seed))
+    );
+
+    const s3w1 = await seekScene(2, 'through × w1');
+    const w1Grads = gradsOf(s3w1);
+    check(
+      'scene 3 reveals weight gradients one product at a time',
+      w1Grads.w1 === 'grad 0.79' &&
+        w1Grads.x1 === 'grad 0.39' &&
+        w1Grads.w2 === undefined &&
+        w1Grads.w3 === undefined,
+      JSON.stringify(w1Grads)
+    );
+    check(
+      'scene 3 w1 step labels ∂p1/∂w1 = x1 and ∂p1/∂x1 = w1',
+      JSON.stringify(edgeLabelsOf(s3w1)) ===
+        '{"w1->p1":"∂=1","x1->p1":"∂=0.5"}',
+      JSON.stringify(edgeLabelsOf(s3w1))
+    );
+
+    const s3final = await seekScene(2, 'weight grads');
+    const weightGrads = gradsOf(s3final);
+    check(
+      'scene 3 ends with all 14 gradients',
+      Object.keys(weightGrads).length === 14,
+      'grads=' + Object.keys(weightGrads).length
+    );
+    check(
+      'scene 3 weight grads are x_i × upstream',
+      weightGrads.w1 === 'grad 0.79' &&
+        weightGrads.w2 === 'grad 0.39' &&
+        weightGrads.w3 === 'grad -0.79' &&
+        weightGrads.x3 === 'grad 1.57',
+      JSON.stringify({
+        w1: weightGrads.w1,
+        w2: weightGrads.w2,
+        w3: weightGrads.w3,
+        x3: weightGrads.x3,
+      })
+    );
+    check(
+      'scene 3 final caption lists the weight gradients',
+      /w1 = 0\.79/.test(s3final.caption) &&
+        /no training loop here/.test(s3final.caption),
+      s3final.caption
+    );
+    check(
+      'Step is disabled only after the very last keyframe',
+      s3final.stepDisabled === true,
+      'scene=' + s3final.scene
+    );
+    evidence.states.scene3 = {
+      inputs: s3inputs,
+      playing: scene3Playing,
+      forward: s3forward,
+      seed: s3seed,
+      throughW1: s3w1,
+      final: s3final,
+    };
+    await shot('scene3-gradients');
 
     check(
       'no page exceptions or console errors',

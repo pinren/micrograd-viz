@@ -35,6 +35,11 @@
       this.name = opts.name || '';
       this._op = opts.op || '';
       this._prev = new Set(opts.children || []);
+      // Local partial derivatives (d out / d child), recorded at forward time
+      // by every operation. `_backward` and the animation both read them, so
+      // the edge labels can never drift from the numbers the engine uses.
+      // Leaves keep an empty list.
+      this._localDerivs = [];
       // Replaced by every operation; leaves keep the no-op.
       this._backward = function noop() {};
     }
@@ -45,9 +50,14 @@
         children: [this, rhs],
         op: '+',
       });
+      out._localDerivs = [
+        { child: this, local: 1 },
+        { child: rhs, local: 1 },
+      ];
       out._backward = () => {
-        this.grad += out.grad;
-        rhs.grad += out.grad;
+        for (const { child, local } of out._localDerivs) {
+          child.grad += local * out.grad;
+        }
       };
       return out;
     }
@@ -58,9 +68,14 @@
         children: [this, rhs],
         op: '*',
       });
+      out._localDerivs = [
+        { child: this, local: rhs.data },
+        { child: rhs, local: this.data },
+      ];
       out._backward = () => {
-        this.grad += rhs.data * out.grad;
-        rhs.grad += this.data * out.grad;
+        for (const { child, local } of out._localDerivs) {
+          child.grad += local * out.grad;
+        }
       };
       return out;
     }
@@ -77,10 +92,17 @@
           children: [this, other],
           op: '**',
         });
+        out._localDerivs = [
+          {
+            child: this,
+            local: other.data * Math.pow(this.data, other.data - 1),
+          },
+          { child: other, local: out.data * Math.log(this.data) },
+        ];
         out._backward = () => {
-          this.grad +=
-            other.data * Math.pow(this.data, other.data - 1) * out.grad;
-          other.grad += out.data * Math.log(this.data) * out.grad;
+          for (const { child, local } of out._localDerivs) {
+            child.grad += local * out.grad;
+          }
         };
         return out;
       }
@@ -91,8 +113,13 @@
         children: [this],
         op: '**' + other,
       });
+      out._localDerivs = [
+        { child: this, local: other * Math.pow(this.data, other - 1) },
+      ];
       out._backward = () => {
-        this.grad += other * Math.pow(this.data, other - 1) * out.grad;
+        for (const { child, local } of out._localDerivs) {
+          child.grad += local * out.grad;
+        }
       };
       return out;
     }
@@ -100,8 +127,11 @@
     tanh() {
       const t = Math.tanh(this.data);
       const out = new Value(t, { children: [this], op: 'tanh' });
+      out._localDerivs = [{ child: this, local: 1 - t * t }];
       out._backward = () => {
-        this.grad += (1 - t * t) * out.grad;
+        for (const { child, local } of out._localDerivs) {
+          child.grad += local * out.grad;
+        }
       };
       return out;
     }
@@ -111,8 +141,11 @@
         children: [this],
         op: 'relu',
       });
+      out._localDerivs = [{ child: this, local: out.data > 0 ? 1 : 0 }];
       out._backward = () => {
-        this.grad += (out.data > 0 ? 1 : 0) * out.grad;
+        for (const { child, local } of out._localDerivs) {
+          child.grad += local * out.grad;
+        }
       };
       return out;
     }
@@ -122,8 +155,11 @@
         children: [this],
         op: 'exp',
       });
+      out._localDerivs = [{ child: this, local: out.data }];
       out._backward = () => {
-        this.grad += out.data * out.grad;
+        for (const { child, local } of out._localDerivs) {
+          child.grad += local * out.grad;
+        }
       };
       return out;
     }
@@ -162,5 +198,25 @@
     return value instanceof Value ? value : new Value(value);
   }
 
-  global.MGViz = Object.assign(global.MGViz || {}, { Value, toValue });
+  /**
+   * The local partial derivative of `parent` with respect to `child`, summed
+   * over every operand slot that references the child.
+   *
+   * Usually there is exactly one slot. `x.add(x)` and `x.mul(x)` reuse the same
+   * Value twice, which contributes both local derivatives to that single edge.
+   */
+  function localDerivative(parent, child) {
+    if (!parent || !Array.isArray(parent._localDerivs)) return 0;
+    let total = 0;
+    for (const { child: operand, local } of parent._localDerivs) {
+      if (operand === child) total += local;
+    }
+    return total;
+  }
+
+  global.MGViz = Object.assign(global.MGViz || {}, {
+    Value,
+    toValue,
+    localDerivative,
+  });
 })(globalThis);

@@ -5,7 +5,26 @@ import '../src/value.js';
 import '../src/graph.js';
 
 const { Value } = globalThis.MGViz;
-const { layoutGraph, formatNumber, GRAPH_METRICS } = globalThis.MGViz;
+const {
+  layoutGraph,
+  formatNumber,
+  GRAPH_METRICS,
+  buildRenderModel,
+  edgeMidpoint,
+} = globalThis.MGViz;
+
+function makeDiamond() {
+  const a = new Value(2, { label: 'a', name: 'a' });
+  const b = new Value(-3, { label: 'b', name: 'b' });
+  const c = new Value(10, { label: 'c', name: 'c' });
+  const mul = a.mul(b);
+  mul.label = '×';
+  mul.name = 'mul';
+  const add = mul.add(c);
+  add.label = '+';
+  add.name = 'add';
+  return { a, b, c, mul, add };
+}
 
 test('layoutGraph lays a diamond out left to right', () => {
   const a = new Value(2, { label: 'a', name: 'a' });
@@ -101,4 +120,96 @@ test('graph metrics are positive', () => {
   for (const value of Object.values(GRAPH_METRICS)) {
     assert.ok(value > 0);
   }
+});
+
+test('layoutGraph honours compact metrics for larger graphs', () => {
+  const { add } = makeDiamond();
+  const layout = layoutGraph(add, {
+    nodeWidth: 118,
+    nodeHeight: 66,
+    gapX: 54,
+    gapY: 16,
+    margin: 36,
+  });
+
+  assert.equal(layout.metrics.nodeWidth, 118);
+  assert.equal(layout.metrics.nodeHeight, 66);
+  for (const node of layout.nodes) {
+    assert.equal(node.width, 118);
+    assert.equal(node.height, 66);
+    assert.ok(node.x >= 0 && node.x + node.width <= layout.width);
+    assert.ok(node.y >= 0 && node.y + node.height <= layout.height);
+  }
+  // Edges leave the right side of a child and enter the left side of a parent.
+  for (const edge of layout.edges) {
+    const from = layout.nodeById.get(edge.from);
+    const to = layout.nodeById.get(edge.to);
+    assert.equal(edge.fromX, from.x + from.width);
+    assert.equal(edge.toX, to.x);
+  }
+});
+
+test('layoutGraph rejects non-positive metrics', () => {
+  const { add } = makeDiamond();
+  assert.throws(() => layoutGraph(add, { nodeWidth: 0 }), TypeError);
+  assert.throws(() => layoutGraph(add, { gapY: -1 }), TypeError);
+  assert.throws(() => layoutGraph(add, { margin: Number.NaN }), TypeError);
+});
+
+test('edgeMidpoint is the middle of the edge', () => {
+  assert.deepEqual(
+    edgeMidpoint({ fromX: 10, fromY: 20, toX: 40, toY: 80 }),
+    { x: 25, y: 50 }
+  );
+});
+
+test('buildRenderModel resolves partial gradients and edge decoration', () => {
+  const { add } = makeDiamond();
+  const layout = layoutGraph(add);
+  const model = buildRenderModel(layout, {
+    visible: ['a', 'b', 'mul', 'add'],
+    grads: { add: 1, mul: 1 },
+    active: 'add',
+    activeEdges: ['mul->add'],
+    edgeLabels: { 'mul->add': '∂=1' },
+    topo: ['add', 'mul'],
+    backward: true,
+  });
+
+  assert.deepEqual(
+    model.nodes.map((node) => node.id),
+    ['a', 'b', 'mul', 'add']
+  );
+  const byId = new Map(model.nodes.map((node) => [node.id, node]));
+  assert.equal(byId.get('add').hasGrad, true);
+  assert.equal(byId.get('add').gradText, 'grad 1');
+  assert.equal(byId.get('add').active, true);
+  assert.equal(byId.get('add').topoIndex, 1);
+  assert.equal(byId.get('mul').topoIndex, 2);
+  assert.equal(byId.get('a').hasGrad, false);
+  assert.equal(byId.get('a').gradText, 'grad 0');
+  assert.equal(byId.get('c'), undefined, 'c is not visible');
+
+  assert.equal(model.edges.length, 3);
+  const active = model.edges.find((edge) => edge.id === 'mul->add');
+  assert.equal(active.active, true);
+  assert.equal(active.hasLabel, true);
+  assert.equal(active.label, '∂=1');
+  assert.equal(active.labelX, edgeMidpoint(active.edge).x);
+  assert.equal(active.labelY, edgeMidpoint(active.edge).y - 9);
+  assert.equal(model.backward, true);
+  assert.match(model.summary, /4 of 5 nodes visible/);
+  assert.match(model.summary, /mul=-6 \(grad 1\)/);
+});
+
+test('buildRenderModel can reveal every gradient or none', () => {
+  const { add } = makeDiamond();
+  const layout = layoutGraph(add);
+
+  const all = buildRenderModel(layout, { showGrad: true });
+  assert.ok(all.nodes.every((node) => node.hasGrad));
+
+  const none = buildRenderModel(layout, {});
+  assert.ok(none.nodes.every((node) => node.hasGrad === false));
+  assert.ok(none.edges.every((edge) => edge.hasLabel === false));
 });

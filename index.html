@@ -7,7 +7,7 @@
       name="description"
       content="A zero-dependency, scene-by-scene visual explainer of how a neural network trains, built on micrograd-style scalar autograd."
     />
-    <title>micrograd-viz · Scene 1 — the expression graph</title>
+    <title>micrograd-viz · expression graph → backprop → neuron</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -17,13 +17,14 @@
           <span class="pulse" aria-hidden="true"></span>
           micrograd-viz
           <span class="slash">/</span>
-          scene 1
+          <span id="scene-eyebrow">scene 1</span>
         </p>
         <h1>Build an expression graph.<br /><span>Then read the gradients.</span></h1>
         <p class="lede">
           Scalar automatic differentiation from scratch — no libraries, no build step.
-          This first scene grows <code>d = a × b + c</code> one step at a time, then
-          runs the backward pass that computes every gradient.
+          Scene 1 grows <code>d = a × b + c</code>, scene 2 runs the backward pass in
+          reverse topological order, and scene 3 sends gradients through a three-input
+          <code>tanh</code> neuron.
         </p>
       </header>
 
@@ -70,13 +71,13 @@
               id="progress"
               type="range"
               min="0"
-              max="13"
+              max="58.5"
               step="0.05"
               value="0"
               aria-label="Timeline position"
             />
           </div>
-          <span id="time" class="time">0.0s / 13.0s</span>
+          <span id="time" class="time">0.0s / 58.5s</span>
         </section>
 
         <nav id="steps" class="steps" aria-label="Scene keyframes"></nav>
@@ -86,9 +87,11 @@
             <h3>What you are seeing</h3>
             <p>
               Every rounded box is a <code>Value</code>: one number plus one
-              gradient. Edges point from an operand to the result, so the graph
-              reads left to right. At the last keyframe the backward pass reveals
-              each node's gradient in amber.
+              gradient. Scene 1 grows the graph and reveals the final gradients.
+              Scene 2 rewinds and replays the backward pass one operation at a
+              time: highlighted edges carry a local derivative (<code>∂</code>),
+              and the gradient lands in the child node. Scene 3 does the same
+              inside a single <code>y = tanh(w · x + b)</code> neuron.
             </p>
           </div>
           <div class="note">
@@ -99,6 +102,8 @@
               <span class="legend-item"><span class="swatch swatch-data"></span>data</span>
               <span class="legend-item"><span class="swatch swatch-grad"></span>grad</span>
               <span class="legend-item"><span class="swatch swatch-edge"></span>dependency</span>
+              <span class="legend-item"><span class="swatch swatch-partial">∂</span>local derivative</span>
+              <span class="legend-item"><span class="swatch swatch-topo">1</span>reverse order</span>
             </div>
           </div>
         </section>
@@ -106,7 +111,7 @@
 
       <footer class="foot">
         <span>Zero dependencies · zero build · opens straight from <code>file://</code></span>
-        <span>Ticket 1 of the micrograd-viz series</span>
+        <span>Ticket 2 of the micrograd-viz series</span>
       </footer>
     </div>
 
@@ -117,9 +122,12 @@
       same files. See README "Zero build, and file://".
     -->
     <script defer src="./src/value.js"></script>
+    <script defer src="./src/backward.js"></script>
     <script defer src="./src/graph.js"></script>
     <script defer src="./src/timeline.js"></script>
     <script defer src="./src/scenes/scene1.js"></script>
+    <script defer src="./src/scenes/scene2.js"></script>
+    <script defer src="./src/scenes/scene3.js"></script>
     <script defer src="./src/main.js"></script>
   </body>
 </html>
