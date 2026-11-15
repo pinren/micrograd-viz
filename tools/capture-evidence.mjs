@@ -11,7 +11,13 @@
  * Set CHROME_BIN to override the Chrome executable.
  */
 import { spawn } from 'node:child_process';
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import {
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -221,6 +227,27 @@ function readStateExpression() {
         value: document.getElementById('skip').value,
         label: document.getElementById('fast-forward').textContent.trim(),
         disabled: document.getElementById('fast-forward').disabled
+      },
+      narration: {
+        enabled:
+          document.getElementById('narration').getAttribute('aria-pressed') ===
+          'true',
+        label: document.getElementById('narration-label').textContent,
+        channel: document.body.dataset.narrationChannel || '',
+        captionLang: document.body.dataset.captionLang || '',
+        stored: (() => {
+          try {
+            return globalThis.localStorage.getItem('mgviz.narration');
+          } catch {
+            return null;
+          }
+        })(),
+        last: (() => {
+          const narration = globalThis.MGViz.app.narration;
+          return narration && narration.last
+            ? { text: narration.last.text, channel: narration.last.channel }
+            : null;
+        })()
       }
     };
   })()`;
@@ -419,6 +446,90 @@ async function main() {
     );
     await shot('scene1-start');
 
+    // Narration: Chinese caption by default, toggle, Step, localStorage.
+    const zhFrame = async (scene, keyframe) =>
+      cdp.evaluate(
+        `globalThis.MGViz.narrationZh.find((entry) => entry.scene === ${scene} && entry.keyframe === ${keyframe}).text`
+      );
+    const initialNarration = evidence.states.initial.narration;
+    check(
+      'narration defaults off while the caption is the Chinese script',
+      initialNarration.enabled === false &&
+        initialNarration.label === '配音 关' &&
+        initialNarration.channel === '' &&
+        initialNarration.captionLang === 'zh' &&
+        /先看一个数/.test(evidence.states.initial.caption),
+      JSON.stringify({
+        narration: initialNarration,
+        caption: evidence.states.initial.caption,
+      })
+    );
+
+    const frame0Text = await zhFrame(1, 0);
+    await click('#narration');
+    await sleep(250);
+    const narrationOn = await readState();
+    evidence.states.narrationOn = narrationOn;
+    check(
+      'the 🔊 switch turns narration on, speaks the current frame and persists',
+      narrationOn.narration.enabled === true &&
+        narrationOn.narration.label === '配音 开' &&
+        narrationOn.narration.stored === 'on' &&
+        narrationOn.caption === frame0Text &&
+        ['speech', 'none'].includes(narrationOn.narration.channel) &&
+        narrationOn.narration.last &&
+        narrationOn.narration.last.text === frame0Text,
+      JSON.stringify(narrationOn.narration)
+    );
+    await shot('narration-on');
+
+    await click('#step');
+    const narrationStep = await readState();
+    const frame1Text = await zhFrame(1, 1);
+    evidence.states.narrationStep = narrationStep;
+    check(
+      'Step triggers the new keyframe narration',
+      narrationStep.keyframe === 1 &&
+        narrationStep.caption === frame1Text &&
+        narrationStep.narration.last &&
+        narrationStep.narration.last.text === frame1Text &&
+        ['speech', 'none'].includes(narrationStep.narration.channel),
+      JSON.stringify({
+        keyframe: narrationStep.keyframe,
+        caption: narrationStep.caption,
+        narration: narrationStep.narration,
+      })
+    );
+
+    await cdp.send('Page.reload', { ignoreCache: true });
+    await waitForReady();
+    await sleep(500);
+    const restored = await readState();
+    evidence.states.narrationRestored = restored;
+    check(
+      'the narration choice survives a reload',
+      restored.narration.enabled === true &&
+        restored.narration.label === '配音 开' &&
+        restored.narration.stored === 'on' &&
+        restored.keyframe === 0,
+      JSON.stringify({
+        keyframe: restored.keyframe,
+        narration: restored.narration,
+      })
+    );
+
+    await click('#narration');
+    const narrationOff = await readState();
+    evidence.states.narrationOff = narrationOff;
+    check(
+      'the 🔊 switch turns narration off again',
+      narrationOff.narration.enabled === false &&
+        narrationOff.narration.label === '配音 关' &&
+        narrationOff.narration.stored === 'off' &&
+        narrationOff.narration.channel === '',
+      JSON.stringify(narrationOff.narration)
+    );
+
     // Play at 2x for ~1s, then pause: the timeline must advance by ~2s.
     await setSpeed(2);
     const startedAt = (await readState()).time;
@@ -461,7 +572,7 @@ async function main() {
     );
     check(
       'mid scene caption describes c',
-      /c = 10/.test(midState.caption),
+      /第三个输入 c 等于十/.test(midState.caption),
       midState.caption
     );
     await shot('scene1-mid');
@@ -499,8 +610,8 @@ async function main() {
     );
     check(
       'final scene caption explains the chain rule',
-      /a\.grad = b = -3/.test(finalState.caption) &&
-        /b\.grad = a = 2/.test(finalState.caption),
+      /链式法则/.test(finalState.caption) &&
+        /接力/.test(finalState.caption),
       finalState.caption
     );
     await shot('scene1-gradients');
@@ -635,7 +746,7 @@ async function main() {
     );
     check(
       'scene 2 final caption states the chain rule',
-      /chain rule/i.test(s2final.caption) && /∂d\/∂a/.test(s2final.caption),
+      /链式法则/.test(s2final.caption) && /一路相乘/.test(s2final.caption),
       s2final.caption
     );
     evidence.states.scene2 = {
@@ -751,8 +862,8 @@ async function main() {
     );
     check(
       'scene 3 final caption lists the weight gradients',
-      /w1 = 0\.79/.test(s3final.caption) &&
-        /no training loop here/.test(s3final.caption),
+      /零点七九/.test(s3final.caption) &&
+        /更新参数/.test(s3final.caption),
       s3final.caption
     );
     check(
@@ -792,7 +903,7 @@ async function main() {
       s4loss.nodeCount === 17 &&
         s4loss.edgeCount === 16 &&
         s4loss.nodes.some((node) => node.key === 'loss') &&
-        /0\.29/.test(s4loss.caption),
+        /零点二九/.test(s4loss.caption),
       'nodes=' + s4loss.nodeCount + ' edges=' + s4loss.edgeCount
     );
 
@@ -941,6 +1052,12 @@ async function main() {
     );
     await shot('scene5-learned');
 
+    check(
+      'scene 5 final caption is the Chinese narration',
+      /训练结束/.test(s5finalState.caption) && /四个点全对/.test(s5finalState.caption),
+      s5finalState.caption
+    );
+
     const lossHistory = await cdp.evaluate(
       'globalThis.MGViz.app.scenes[4].losses'
     );
@@ -962,6 +1079,99 @@ async function main() {
       fastForward10: s5ff10,
       final: s5finalState,
     };
+
+    // Channel B + audio-driven durations: load the committed sample manifest
+    // through the page's own handle, then turn narration on.
+    const sampleManifest = JSON.parse(
+      readFileSync(
+        join(root, 'test/fixtures/narration/zh/manifest.json'),
+        'utf8'
+      )
+    );
+    const browserManifest = {
+      segments: sampleManifest.segments.map((segment) => ({
+        ...segment,
+        src: pathToFileURL(
+          join(root, 'test/fixtures/narration/zh', segment.src)
+        ).href,
+      })),
+    };
+    const manifestAccepted = await cdp.evaluate(
+      'globalThis.MGViz.app.setNarrationManifest(' +
+        JSON.stringify(browserManifest) +
+        ')'
+    );
+    await click('#narration');
+    await sleep(500);
+    const timed = await readState();
+    const timedInfo = await cdp.evaluate(
+      `({
+        duration: globalThis.MGViz.app.timeline.duration,
+        sceneDurations: globalThis.MGViz.app.timeline.scenes.map((scene) => scene.duration),
+        firstKeyframeTimes: globalThis.MGViz.app.timeline.scenes[0].keyframes.map((keyframe) => keyframe.at),
+        progressMax: document.getElementById('progress').max
+      })`
+    );
+    evidence.states.narrationTimed = { state: timed, info: timedInfo };
+    check(
+      'the channel B manifest stretches the audio-driven timeline',
+      manifestAccepted === true &&
+        Math.abs(timedInfo.duration - 113.4) < 1e-6 &&
+        Math.abs(timedInfo.sceneDurations[0] - 15.1) < 1e-6 &&
+        Math.abs(timedInfo.sceneDurations[1] - 16.3) < 1e-6 &&
+        Math.abs(Number(timedInfo.progressMax) - 113.4) < 1e-6 &&
+        /113\.4s/.test(timed.timeLabel),
+      JSON.stringify({ manifestAccepted, info: timedInfo, timeLabel: timed.timeLabel })
+    );
+
+    await seek(0);
+    await sleep(400);
+    const timedFrame0 = await readState();
+    evidence.states.narrationTimedFrame0 = timedFrame0;
+    const sampleText = await zhFrame(1, 0);
+    check(
+      'loaded audio segments play as channel B on keyframe entry',
+      timedFrame0.narration.channel === 'audio' &&
+        timedFrame0.narration.last &&
+        timedFrame0.narration.last.text === sampleText &&
+        timedFrame0.caption === sampleText,
+      JSON.stringify(timedFrame0.narration)
+    );
+
+    await click('#step');
+    const timedStep = await readState();
+    check(
+      'Step follows the audio-driven keyframe times',
+      timedStep.keyframe === 1 && Math.abs(timedStep.time - 2.8) < 1e-6,
+      'keyframe=' + timedStep.keyframe + ' time=' + timedStep.time
+    );
+
+    await seek(20);
+    const timedSeek = await readState();
+    check(
+      'the scrubber and time label use the recomputed total',
+      Math.abs(timedSeek.time - 20) < 1e-6 &&
+        /20\.0s \/ 113\.4s/.test(timedSeek.timeLabel),
+      timedSeek.timeLabel
+    );
+    await shot('narration-timed');
+
+    await click('#narration');
+    await sleep(300);
+    const timedOff = await readState();
+    const restoredDuration = await cdp.evaluate(
+      'globalThis.MGViz.app.timeline.duration'
+    );
+    check(
+      'turning narration off restores the original timing',
+      timedOff.narration.enabled === false &&
+        Math.abs(restoredDuration - 110.5) < 1e-6 &&
+        /110\.5s$/.test(timedOff.timeLabel),
+      JSON.stringify({
+        duration: restoredDuration,
+        timeLabel: timedOff.timeLabel,
+      })
+    );
 
     check(
       'no page exceptions or console errors',
@@ -1006,7 +1216,7 @@ async function main() {
   if (stderr.includes('DevTools listening')) {
     console.log('Chrome DevTools endpoint was ready.');
   }
-  process.exitCode = failures.length === 0 ? 0 : 1;
+  process.exit(failures.length === 0 ? 0 : 1);
 }
 
 await main();

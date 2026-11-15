@@ -3,10 +3,18 @@
  * active scene's graph (or training plot) when a keyframe changes, and drives
  * play / pause / step / speed / seek / fast-forward.
  *
+ * Narration is layered on top: each keyframe enters with its Chinese line in
+ * the caption (the English originals live in narration/en.json), and when the
+ * 🔊 switch is on the line is spoken (channel A) or played from a
+ * pre-synthesised segment (channel B). A loaded manifest also stretches the
+ * affected keyframe durations so audio always fits.
+ *
  * Browser classic script + importable ESM (see src/value.js for the reason).
  */
 (function (global) {
   'use strict';
+
+  const AUDIO_BASE = 'assets/narration/zh/';
 
   function formatSeconds(value) {
     return value.toFixed(1) + 's';
@@ -28,15 +36,30 @@
       createScene5,
       renderGraph,
       renderTrainingView,
+      NarrationController,
+      createSpeechEngine,
+      createAudioEngine,
+      loadNarrationManifest,
+      parseManifest,
+      scenesForNarration,
     } = global.MGViz;
-    const scenes = [
+    const baseScenes = [
       createScene1(),
       createScene2(),
       createScene3(),
       createScene4(),
       createScene5(),
     ];
-    const timeline = new Timeline({ scenes });
+    const narrationEntries = Array.isArray(global.MGViz.narrationZh)
+      ? global.MGViz.narrationZh
+      : [];
+    const storage = (() => {
+      try {
+        return global.localStorage;
+      } catch (error) {
+        return null;
+      }
+    })();
 
     const svg = document.getElementById('graph');
     const plot = document.getElementById('plot');
@@ -56,15 +79,37 @@
     const skipControls = document.getElementById('skip-controls');
     const skipSelect = document.getElementById('skip');
     const fastForwardButton = document.getElementById('fast-forward');
+    const narrationButton = document.getElementById('narration');
+    const narrationLabel = document.getElementById('narration-label');
 
-    progress.max = String(timeline.duration);
-
+    let manifest = null;
+    let timeline = null;
+    let scenes = baseScenes;
     let lastSceneIndex = -1;
     let lastKeyframeIndex = -1;
     let stepChips = [];
-    const trainingSceneIndex = scenes.findIndex(
+    const trainingSceneIndex = baseScenes.findIndex(
       (scene) => scene.kind === 'training'
     );
+
+    const narrator = new NarrationController({
+      narration: narrationEntries,
+      speech: createSpeechEngine(global),
+      audio: createAudioEngine(global, AUDIO_BASE),
+      storage,
+      onEnabledChange: () => {
+        // Audio-driven durations depend on the toggle, so rebuild when it moves.
+        rebuildTimeline();
+        syncNarrationUi();
+      },
+    });
+
+    function syncNarrationUi() {
+      narrationButton.setAttribute('aria-pressed', String(narrator.enabled));
+      narrationButton.classList.toggle('is-on', narrator.enabled);
+      narrationLabel.textContent = narrator.enabled ? '配音 开' : '配音 关';
+      document.body.dataset.narration = String(narrator.enabled);
+    }
 
     function buildSteps(sceneData, offset) {
       stepsRail.textContent = '';
@@ -179,8 +224,15 @@
             updates: state.updates,
           });
         }
-        caption.textContent = state.caption || '';
+        const sceneNumber = snapshot.sceneIndex + 1;
+        const narrationText = narrator.textFor(
+          sceneNumber,
+          snapshot.keyframeIndex
+        );
+        caption.textContent = narrationText || state.caption || '';
+        document.body.dataset.captionLang = narrationText ? 'zh' : 'en';
         renderReadout(state.readout || null);
+        narrator.onKeyframe(sceneNumber, snapshot.keyframeIndex);
         stepChips.forEach((chip, index) => {
           chip.classList.toggle('is-active', index === snapshot.keyframeIndex);
           chip.classList.toggle('is-done', index < snapshot.keyframeIndex);
@@ -234,6 +286,9 @@
       document.body.dataset.playing = String(snapshot.playing);
       document.body.dataset.speed = String(snapshot.speed);
       document.body.dataset.time = snapshot.time.toFixed(2);
+      document.body.dataset.narrationChannel = narrator.last
+        ? narrator.last.channel
+        : '';
       if (trainingState) {
         document.body.dataset.epoch = String(trainingState.epoch);
         document.body.dataset.loss = String(trainingState.loss);
@@ -241,6 +296,62 @@
         delete document.body.dataset.epoch;
         delete document.body.dataset.loss;
       }
+    }
+
+    /**
+     * Swaps the timeline's scenes for audio-driven ones (or back), keeping the
+     * viewer on the same keyframe and preserving play/speed.
+     */
+    function rebuildTimeline() {
+      const snapshot = timeline.snapshot();
+      const nextScenes = scenesForNarration(
+        baseScenes,
+        manifest,
+        narrator.enabled
+      );
+      const next = new Timeline({ scenes: nextScenes });
+      const targetScene = next.scenes[snapshot.sceneIndex];
+      const frameIndex = Math.min(
+        snapshot.keyframeIndex,
+        targetScene.keyframes.length - 1
+      );
+      let offset = 0;
+      for (let index = 0; index < snapshot.sceneIndex; index++) {
+        offset += next.scenes[index].duration;
+      }
+      timeline.destroy();
+      timeline = next;
+      scenes = nextScenes;
+      progress.max = String(timeline.duration);
+      lastSceneIndex = -1;
+      lastKeyframeIndex = -1;
+      if (snapshot.ended) {
+        timeline.seek(timeline.duration);
+      } else {
+        timeline.seek(offset + targetScene.keyframes[frameIndex].at);
+      }
+      timeline.setSpeed(snapshot.speed);
+      if (!snapshot.ended && snapshot.playing) timeline.play();
+      timeline.subscribe(render);
+      if (global.MGViz.app) {
+        global.MGViz.app.timeline = timeline;
+        global.MGViz.app.scenes = scenes;
+        global.MGViz.app.narration = narrator;
+      }
+      syncNarrationUi();
+      render(timeline.snapshot());
+    }
+
+    /**
+     * Evidence/test handle: point the page at a manifest without a reload.
+     * The same path the async loader takes, so channel B + audio timing can be
+     * exercised from the browser harness with the committed sample.
+     */
+    function setNarrationManifest(raw) {
+      manifest = raw ? parseManifest(raw) : null;
+      narrator.setManifest(manifest);
+      if (narrator.enabled) rebuildTimeline();
+      return Boolean(manifest);
     }
 
     function fastForward() {
@@ -261,9 +372,13 @@
       timeline.seek(offset + sceneData.keyframes[target].at);
     }
 
+    timeline = new Timeline({ scenes: baseScenes });
+    progress.max = String(timeline.duration);
+
     playButton.addEventListener('click', () => timeline.toggle());
     stepButton.addEventListener('click', () => timeline.step());
     fastForwardButton.addEventListener('click', fastForward);
+    narrationButton.addEventListener('click', () => narrator.toggle());
     skipSelect.addEventListener('change', () => {
       fastForwardButton.textContent =
         'Fast-forward ' + skipSelect.value + ' epochs';
@@ -290,12 +405,31 @@
       }
     });
 
+    syncNarrationUi();
     timeline.subscribe(render);
     render(timeline.snapshot());
     // Debug/evidence handle: the browser harness reads scene durations and
     // keyframe times from the live timeline instead of hard-coding them.
-    global.MGViz.app = { timeline, scenes };
+    global.MGViz.app = {
+      timeline,
+      scenes,
+      narration: narrator,
+      setNarrationManifest,
+    };
     document.documentElement.dataset.ready = 'true';
+
+    // Channel B is preferred when its manifest can be loaded. On file:// there
+    // is no fetch, so a manifest classic script can inject MGViz.narrationManifest.
+    loadNarrationManifest({ path: 'assets/narration/zh/manifest.json' })
+      .then((loaded) => {
+        if (!loaded) return;
+        manifest = loaded;
+        narrator.setManifest(loaded);
+        if (narrator.enabled) rebuildTimeline();
+      })
+      .catch(() => {
+        // No manifest is the normal channel-A path.
+      });
   }
 
   if (document.readyState === 'loading') {

@@ -1,0 +1,517 @@
+/*
+ * Generated from narration/zh.json by tools/sync-narration.mjs.
+ * Loaded as a classic script so the page still speaks from file://, where
+ * fetch() of a local JSON file is blocked. Do not edit by hand.
+ */
+(function (global) {
+  'use strict';
+  global.MGViz = Object.assign(global.MGViz || {}, {
+    narrationZh: [
+      {
+        "scene": 1,
+        "keyframe": 0,
+        "text": "先看一个数，a 等于二。每个数都带着梯度，像路标，指着该往哪挪。"
+      },
+      {
+        "scene": 1,
+        "keyframe": 1,
+        "text": "再加一个输入，b 等于负三。它们还只是孤立的数，没有连线。"
+      },
+      {
+        "scene": 1,
+        "keyframe": 2,
+        "text": "把两个数相乘，得到负六。乘法节点记住两个操作数，于是连出两条边。"
+      },
+      {
+        "scene": 1,
+        "keyframe": 3,
+        "text": "第三个输入 c 等于十，也放上来。"
+      },
+      {
+        "scene": 1,
+        "keyframe": 4,
+        "text": "把它们加起来，d 等于四。这就是要求导的整个表达式。"
+      },
+      {
+        "scene": 1,
+        "keyframe": 5,
+        "text": "反向传播从 d 开始，就是从结果倒着走。链式法则像接力，梯度一路乘回去。"
+      },
+      {
+        "scene": 2,
+        "keyframe": 0,
+        "text": "反向传播从结果倒着走，一路回到每个输入。这张图已经算好了。"
+      },
+      {
+        "scene": 2,
+        "keyframe": 1,
+        "text": "只给运算编号：加法是一，乘法是二。乘法要等加法传完，梯度才齐全。"
+      },
+      {
+        "scene": 2,
+        "keyframe": 2,
+        "text": "先把输出 d 的梯度设成一。其他梯度都还是零。"
+      },
+      {
+        "scene": 2,
+        "keyframe": 3,
+        "text": "处理加法：两条边把梯度原样传下去。乘法和 c 各拿到一。"
+      },
+      {
+        "scene": 2,
+        "keyframe": 4,
+        "text": "处理乘法：局部导数是 b 和 a。梯度分别乘上负三和二。"
+      },
+      {
+        "scene": 2,
+        "keyframe": 5,
+        "text": "a 的梯度是负三，b 的梯度是二。一路相乘，这就是链式法则。"
+      },
+      {
+        "scene": 3,
+        "keyframe": 0,
+        "text": "神经元先算加权和，再做压缩。像小算盘：输入乘权重，再相加。"
+      },
+      {
+        "scene": 3,
+        "keyframe": 1,
+        "text": "先把每个权重乘上对应输入。三个乘积是零点五、负零点五和负二。"
+      },
+      {
+        "scene": 3,
+        "keyframe": 2,
+        "text": "把三个乘积相加，再加偏置二点五。偏置像底数，和是零点五。"
+      },
+      {
+        "scene": 3,
+        "keyframe": 3,
+        "text": "用 tanh 压一下，输出约零点四六。前向计算到此结束。"
+      },
+      {
+        "scene": 3,
+        "keyframe": 4,
+        "text": "开始反向传播，输出的梯度设成一。运算按逆序编号，谁先被用到谁先算。"
+      },
+      {
+        "scene": 3,
+        "keyframe": 5,
+        "text": "先过 tanh：局部导数是一减 y 平方。梯度变成零点七九。"
+      },
+      {
+        "scene": 3,
+        "keyframe": 6,
+        "text": "过加法：梯度平均分给两项。偏置和 dot2 都拿到零点七九。"
+      },
+      {
+        "scene": 3,
+        "keyframe": 7,
+        "text": "再过一层加法，dot2 的梯度继续平分。"
+      },
+      {
+        "scene": 3,
+        "keyframe": 8,
+        "text": "再过一层，dot1 的梯度平分给 p1 和 p2。"
+      },
+      {
+        "scene": 3,
+        "keyframe": 9,
+        "text": "过第一个乘法：w1 的梯度是 x1 乘零点七九。得到零点七九。"
+      },
+      {
+        "scene": 3,
+        "keyframe": 10,
+        "text": "第二个乘法：w2 的梯度是零点三九。x2 的梯度是负零点七九。"
+      },
+      {
+        "scene": 3,
+        "keyframe": 11,
+        "text": "第三个乘法：w3 的梯度是负零点七九。x3 的梯度变成一点五七。"
+      },
+      {
+        "scene": 3,
+        "keyframe": 12,
+        "text": "三个权重梯度：零点七九、零点三九、负零点七九。下一步就是拿它们去更新参数。"
+      },
+      {
+        "scene": 4,
+        "keyframe": 0,
+        "text": "还是这个神经元，这次有标准答案。目标是 t 等于一，参数像旋钮，训练来调。"
+      },
+      {
+        "scene": 4,
+        "keyframe": 1,
+        "text": "先做前向：z 是零点五，y 约零点四六。"
+      },
+      {
+        "scene": 4,
+        "keyframe": 2,
+        "text": "算损失：预测减目标再平方，得零点二九。损失就是误差打分，越大错得越多。"
+      },
+      {
+        "scene": 4,
+        "keyframe": 3,
+        "text": "反向传播从损失开始，先把它梯度设成一。"
+      },
+      {
+        "scene": 4,
+        "keyframe": 4,
+        "text": "平方求导，梯度是二乘差值。所以 y 拿到负一点零八。"
+      },
+      {
+        "scene": 4,
+        "keyframe": 5,
+        "text": "减法求导：y 的梯度是负一点零八。目标 t 不是参数，也会拿到梯度。"
+      },
+      {
+        "scene": 4,
+        "keyframe": 6,
+        "text": "过 tanh：局部导数是零点七九。z 的梯度变成负零点八五。"
+      },
+      {
+        "scene": 4,
+        "keyframe": 7,
+        "text": "过加法：梯度平分给 dot2 和偏置。"
+      },
+      {
+        "scene": 4,
+        "keyframe": 8,
+        "text": "加法后，dot2 的梯度分给 dot1 和 p3。"
+      },
+      {
+        "scene": 4,
+        "keyframe": 9,
+        "text": "再过一层，dot1 的梯度分给 p1 和 p2。"
+      },
+      {
+        "scene": 4,
+        "keyframe": 10,
+        "text": "第一个乘法：w1 的梯度是负零点八五。x1 的梯度到此为止。"
+      },
+      {
+        "scene": 4,
+        "keyframe": 11,
+        "text": "第二个乘法：w2 的梯度是负零点四二。"
+      },
+      {
+        "scene": 4,
+        "keyframe": 12,
+        "text": "第三个乘法：w3 的梯度是零点八五。所有参数的梯度都齐了。"
+      },
+      {
+        "scene": 4,
+        "keyframe": 13,
+        "text": "做一步梯度下降：参数减去学习率乘梯度。学习率是零点一，就是每步走多大。"
+      },
+      {
+        "scene": 4,
+        "keyframe": 14,
+        "text": "一步之后，损失从零点二九降到零点一二。梯度清零，下一轮再继续。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 0,
+        "text": "训练开始前，权重随机，损失一点三二。四个点里只对了两个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 1,
+        "text": "第 1 轮：损失一点一二。四个点里对了二个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 2,
+        "text": "第 2 轮：损失一。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 3,
+        "text": "第 3 轮：损失零点九一。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 4,
+        "text": "第 4 轮：损失零点八四。四个点里对了二个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 5,
+        "text": "第 5 轮：损失零点七八。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 6,
+        "text": "第 6 轮：损失零点七三。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 7,
+        "text": "第 7 轮：损失零点七。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 8,
+        "text": "第 8 轮：损失零点六六。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 9,
+        "text": "第 9 轮：损失零点六四。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 10,
+        "text": "第 10 轮：损失零点六二。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 11,
+        "text": "第 11 轮：损失零点六。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 12,
+        "text": "第 12 轮：损失零点五八。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 13,
+        "text": "第 13 轮：损失零点五六。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 14,
+        "text": "第 14 轮：损失零点五五。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 15,
+        "text": "第 15 轮：损失零点五四。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 16,
+        "text": "第 16 轮：损失零点五三。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 17,
+        "text": "第 17 轮：损失零点五二。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 18,
+        "text": "第 18 轮：损失零点五一。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 19,
+        "text": "第 19 轮：损失零点五。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 20,
+        "text": "第 20 轮：损失零点四九。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 21,
+        "text": "第 21 轮：损失零点四八。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 22,
+        "text": "第 22 轮：损失零点四七。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 23,
+        "text": "第 23 轮：损失零点四七。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 24,
+        "text": "第 24 轮：损失零点四六。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 25,
+        "text": "第 25 轮：损失零点四五。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 26,
+        "text": "第 26 轮：损失零点四五。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 27,
+        "text": "第 27 轮：损失零点四四。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 28,
+        "text": "第 28 轮：损失零点四三。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 29,
+        "text": "第 29 轮：损失零点四三。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 30,
+        "text": "第 30 轮：损失零点四二。四个点里对了三个。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 31,
+        "text": "第 31 轮：损失零点四二。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 32,
+        "text": "第 32 轮：损失零点四一。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 33,
+        "text": "第 33 轮：损失零点四一。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 34,
+        "text": "第 34 轮：损失零点四。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 35,
+        "text": "第 35 轮：损失零点四。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 36,
+        "text": "第 36 轮：损失零点三九。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 37,
+        "text": "第 37 轮：损失零点三九。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 38,
+        "text": "第 38 轮：损失零点三八。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 39,
+        "text": "第 39 轮：损失零点三八。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 40,
+        "text": "第 40 轮：损失零点三七。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 41,
+        "text": "第 41 轮：损失零点三七。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 42,
+        "text": "第 42 轮：损失零点三六。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 43,
+        "text": "第 43 轮：损失零点三六。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 44,
+        "text": "第 44 轮：损失零点三六。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 45,
+        "text": "第 45 轮：损失零点三五。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 46,
+        "text": "第 46 轮：损失零点三五。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 47,
+        "text": "第 47 轮：损失零点三四。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 48,
+        "text": "第 48 轮：损失零点三四。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 49,
+        "text": "第 49 轮：损失零点三四。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 50,
+        "text": "第 50 轮：损失零点三三。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 51,
+        "text": "第 51 轮：损失零点三三。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 52,
+        "text": "第 52 轮：损失零点三三。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 53,
+        "text": "第 53 轮：损失零点三二。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 54,
+        "text": "第 54 轮：损失零点三二。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 55,
+        "text": "第 55 轮：损失零点三二。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 56,
+        "text": "第 56 轮：损失零点三一。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 57,
+        "text": "第 57 轮：损失零点三一。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 58,
+        "text": "第 58 轮：损失零点三一。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 59,
+        "text": "第 59 轮：损失零点三。四个点全对了。"
+      },
+      {
+        "scene": 5,
+        "keyframe": 60,
+        "text": "训练结束，损失从一点三二降到零点三。四个点全对，网络学会了。"
+      }
+    ],
+  });
+})(globalThis);

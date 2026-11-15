@@ -619,6 +619,16 @@ input[type="range"]:focus-visible {
   line-height: 1;
 }
 
+.narration-toggle.is-on {
+  color: var(--teal);
+  background: rgba(94, 234, 212, 0.1);
+  border-color: rgba(94, 234, 212, 0.55);
+}
+
+.narration-toggle.is-on .icon {
+  filter: drop-shadow(0 0 6px rgba(94, 234, 212, 0.55));
+}
+
 .speed {
   display: inline-flex;
   align-items: center;

@@ -51,7 +51,7 @@
             ></svg>
           </div>
 
-          <p id="caption" class="caption" aria-live="polite"></p>
+          <p id="caption" class="caption" aria-live="polite" lang="zh-CN"></p>
           <div id="readout" class="readout" aria-live="polite" hidden></div>
         </section>
 
@@ -66,6 +66,16 @@
             <span id="play-label">Play</span>
           </button>
           <button id="step" class="button" type="button">Step</button>
+          <button
+            id="narration"
+            class="button narration-toggle"
+            type="button"
+            aria-pressed="false"
+            title="中文配音：进入关键帧时朗读讲稿"
+          >
+            <span class="icon" aria-hidden="true">🔊</span>
+            <span id="narration-label">配音 关</span>
+          </button>
           <span id="skip-controls" class="skip-controls" hidden>
             <button id="fast-forward" class="button" type="button">
               Fast-forward 10 epochs
@@ -152,6 +162,7 @@
     <script defer src="./src/backward.js"></script>
     <script defer src="./src/graph.js"></script>
     <script defer src="./src/timeline.js"></script>
+    <script defer src="./src/narration.js"></script>
     <script defer src="./src/train.js"></script>
     <script defer src="./src/nn.js"></script>
     <script defer src="./src/plot.js"></script>
@@ -160,6 +171,9 @@
     <script defer src="./src/scenes/scene3.js"></script>
     <script defer src="./src/scenes/scene4.js"></script>
     <script defer src="./src/scenes/scene5.js"></script>
+    <!-- Chinese narration script: a classic script because file:// cannot
+         fetch a local JSON file. narration/zh.json is the canonical data. -->
+    <script defer src="./narration/zh.js"></script>
     <script defer src="./src/main.js"></script>
   </body>
 </html>

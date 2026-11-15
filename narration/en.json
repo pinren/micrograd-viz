@@ -1,0 +1,507 @@
+[
+  {
+    "scene": 1,
+    "keyframe": 0,
+    "text": "Start with a = 2. A Value holds one number (data) and one gradient (grad), which is still zero."
+  },
+  {
+    "scene": 1,
+    "keyframe": 1,
+    "text": "Add b = -3. Inputs are plain Values; no operation connects them yet."
+  },
+  {
+    "scene": 1,
+    "keyframe": 2,
+    "text": "Multiply: mul = a × b = -6. The new node remembers its two operands, so the graph now has edges."
+  },
+  {
+    "scene": 1,
+    "keyframe": 3,
+    "text": "Add the third input: c = 10."
+  },
+  {
+    "scene": 1,
+    "keyframe": 4,
+    "text": "Add: d = a × b + c = 4. This root node is the expression we will differentiate."
+  },
+  {
+    "scene": 1,
+    "keyframe": 5,
+    "text": "Backward pass: d.grad = 1. Then mul.grad = 1 and c.grad = 1; the chain rule gives a.grad = b = -3 and b.grad = a = 2."
+  },
+  {
+    "scene": 2,
+    "keyframe": 0,
+    "text": "We already have d = a × b + c = 4. Backward starts at the output and walks the graph in reverse topological order, accumulating each node’s grad."
+  },
+  {
+    "scene": 2,
+    "keyframe": 1,
+    "text": "Only operations are numbered: ① + must run before ② ×. The × node’s gradient has to be complete before it can pass anything back to a and b — that is the reverse topological order."
+  },
+  {
+    "scene": 2,
+    "keyframe": 2,
+    "text": "Seed the output: d.grad = 1 (∂d/∂d). Every other grad is still zero."
+  },
+  {
+    "scene": 2,
+    "keyframe": 3,
+    "text": "Process ① +: d.grad = 1 flows back along both edges. The local derivatives are ∂d/∂mul = 1 and ∂d/∂c = 1, so mul.grad = 1 and c.grad = 1."
+  },
+  {
+    "scene": 2,
+    "keyframe": 4,
+    "text": "Process ② ×: mul.grad = 1 flows to a and b. The local derivatives are ∂mul/∂a = b = -3 and ∂mul/∂b = a = 2, so a.grad = 1 × -3 = -3 and b.grad = 1 × 2 = 2."
+  },
+  {
+    "scene": 2,
+    "keyframe": 5,
+    "text": "Done. Chain rule along a → mul → d: ∂d/∂a = ∂d/∂mul · ∂mul/∂a = 1 · b = -3. Reverse topological order made mul.grad complete before it was used."
+  },
+  {
+    "scene": 3,
+    "keyframe": 0,
+    "text": "A neuron computes y = tanh(w · x + b) with three inputs. Start with the inputs x, the weights w, and the bias b — all plain Values."
+  },
+  {
+    "scene": 3,
+    "keyframe": 1,
+    "text": "Multiply each weight by its input: p1 = w1 × x1 = 0.5, p2 = w2 × x2 = -0.5, p3 = w3 × x3 = -2."
+  },
+  {
+    "scene": 3,
+    "keyframe": 2,
+    "text": "Sum the products and add the bias: z = (0.5 + -0.5) + -2 + 2.5 = 0.5."
+  },
+  {
+    "scene": 3,
+    "keyframe": 3,
+    "text": "Squash with tanh: y = tanh(0.5) = 0.46. Forward pass done — now send the gradient back."
+  },
+  {
+    "scene": 3,
+    "keyframe": 4,
+    "text": "Backward starts at the output: y.grad = 1 (∂y/∂y). Operations are numbered in reverse topological order; each one runs only after every node that consumes its result. The weight gradients are still zero."
+  },
+  {
+    "scene": 3,
+    "keyframe": 5,
+    "text": "Process tanh: ∂y/∂z = 1 − y² = 0.79. Chain rule: z.grad = y.grad × 0.79 = 0.79."
+  },
+  {
+    "scene": 3,
+    "keyframe": 6,
+    "text": "Process +: z.grad splits equally into dot2 and b because both local derivatives are 1. dot2.grad = b.grad = 0.79."
+  },
+  {
+    "scene": 3,
+    "keyframe": 7,
+    "text": "Process +: dot2.grad splits into dot1 and p3; both local derivatives are 1."
+  },
+  {
+    "scene": 3,
+    "keyframe": 8,
+    "text": "Process +: dot1.grad splits into p1 and p2; both local derivatives are 1."
+  },
+  {
+    "scene": 3,
+    "keyframe": 9,
+    "text": "Process ×: p1.grad flows into w1 and x1. ∂p1/∂w1 = x1 = 1, so w1.grad = 1 × 0.79 = 0.79; ∂p1/∂x1 = w1 = 0.5, so x1.grad = 0.5 × 0.79 = 0.39."
+  },
+  {
+    "scene": 3,
+    "keyframe": 10,
+    "text": "Process ×: w2.grad = x2 × p2.grad = 0.5 × 0.79 = 0.39; x2.grad = w2 × p2.grad = -1 × 0.79 = -0.79."
+  },
+  {
+    "scene": 3,
+    "keyframe": 11,
+    "text": "Process ×: w3.grad = x3 × p3.grad = -1 × 0.79 = -0.79; x3.grad = w3 × p3.grad = 2 × 0.79 = 1.57."
+  },
+  {
+    "scene": 3,
+    "keyframe": 12,
+    "text": "All three weight gradients: w1 = 0.79, w2 = 0.39, w3 = -0.79. Gradient descent would subtract a small multiple of each (ticket 3); no training loop here."
+  },
+  {
+    "scene": 4,
+    "keyframe": 0,
+    "text": "The same neuron as scene 3: y = tanh(w · x + b). This time we know the answer we want: a target t = 1. The parameters w and b are the Values that training will change."
+  },
+  {
+    "scene": 4,
+    "keyframe": 1,
+    "text": "Forward pass: z = 0.5, so y = tanh(0.5) = 0.46. The prediction is a Value, built out of Values."
+  },
+  {
+    "scene": 4,
+    "keyframe": 2,
+    "text": "Measure the error: loss = (y − t)² = (0.46 − 1)² = 0.29. A bigger miss gives a bigger loss."
+  },
+  {
+    "scene": 4,
+    "keyframe": 3,
+    "text": "Backward starts at the loss: loss.grad = 1. Operations run in reverse topological order, so each node receives every contribution before it passes its gradient on."
+  },
+  {
+    "scene": 4,
+    "keyframe": 4,
+    "text": "Differentiate the square: ∂loss/∂diff = 2 × diff = -1.08, so diff.grad = -1.08."
+  },
+  {
+    "scene": 4,
+    "keyframe": 5,
+    "text": "Differentiate the subtraction: ∂diff/∂y = 1 and ∂diff/∂t = −1, so y.grad = -1.08 and t.grad = 1.08. The target is an input, not a parameter."
+  },
+  {
+    "scene": 4,
+    "keyframe": 6,
+    "text": "Through tanh: ∂y/∂z = 1 − y² = 0.79, so z.grad = y.grad × 0.79 = -0.85."
+  },
+  {
+    "scene": 4,
+    "keyframe": 7,
+    "text": "Through the bias add: z.grad splits equally into dot2 and b, so each gets -0.85."
+  },
+  {
+    "scene": 4,
+    "keyframe": 8,
+    "text": "Through the second add: dot2.grad splits into dot1 and p3 (both local derivatives are 1)."
+  },
+  {
+    "scene": 4,
+    "keyframe": 9,
+    "text": "Through the first add: dot1.grad splits into p1 and p2 (both local derivatives are 1)."
+  },
+  {
+    "scene": 4,
+    "keyframe": 10,
+    "text": "Through the first product: w1.grad = x1 × p1.grad = 1 × -0.85 = 0; x1 is an input, so its gradient stops here."
+  },
+  {
+    "scene": 4,
+    "keyframe": 11,
+    "text": "Through the second product: w2.grad = x2 × p2.grad = 0.5 × -0.85 = 0."
+  },
+  {
+    "scene": 4,
+    "keyframe": 12,
+    "text": "Through the third product: w3.grad = x3 × p3.grad = -1 × -0.85 = 0. All parameter gradients are now complete."
+  },
+  {
+    "scene": 4,
+    "keyframe": 13,
+    "text": "Gradient descent takes one step along the negative gradient: p ← p − lr · g with lr = 0.1. Each parameter annotation shows −g and the new data; the table lists every weight before and after."
+  },
+  {
+    "scene": 4,
+    "keyframe": 14,
+    "text": "After one update the loss fell from 0.29 to 0.12. w₁ moved +0.08 because its gradient was -0.85. Gradients are cleared with zeroGrad() before the next forward pass. Scene 5 repeats this loop until the network learns."
+  },
+  {
+    "scene": 5,
+    "keyframe": 0,
+    "text": "Before training: the weights are random, so the loss is 1.32 and the dashed boundary misclassifies points. The loop will now run forward → loss → backward → step."
+  },
+  {
+    "scene": 5,
+    "keyframe": 1,
+    "text": "Epoch 1: loss 1.12, 2 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 2,
+    "text": "Epoch 2: loss 1, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 3,
+    "text": "Epoch 3: loss 0.91, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 4,
+    "text": "Epoch 4: loss 0.84, 2 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 5,
+    "text": "Epoch 5: loss 0.78, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 6,
+    "text": "Epoch 6: loss 0.73, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 7,
+    "text": "Epoch 7: loss 0.7, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 8,
+    "text": "Epoch 8: loss 0.66, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 9,
+    "text": "Epoch 9: loss 0.64, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 10,
+    "text": "Epoch 10: loss 0.62, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 11,
+    "text": "Epoch 11: loss 0.6, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 12,
+    "text": "Epoch 12: loss 0.58, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 13,
+    "text": "Epoch 13: loss 0.56, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 14,
+    "text": "Epoch 14: loss 0.55, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 15,
+    "text": "Epoch 15: loss 0.54, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 16,
+    "text": "Epoch 16: loss 0.53, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 17,
+    "text": "Epoch 17: loss 0.52, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 18,
+    "text": "Epoch 18: loss 0.51, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 19,
+    "text": "Epoch 19: loss 0.5, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 20,
+    "text": "Epoch 20: loss 0.49, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 21,
+    "text": "Epoch 21: loss 0.48, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 22,
+    "text": "Epoch 22: loss 0.47, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 23,
+    "text": "Epoch 23: loss 0.47, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 24,
+    "text": "Epoch 24: loss 0.46, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 25,
+    "text": "Epoch 25: loss 0.45, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 26,
+    "text": "Epoch 26: loss 0.45, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 27,
+    "text": "Epoch 27: loss 0.44, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 28,
+    "text": "Epoch 28: loss 0.43, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 29,
+    "text": "Epoch 29: loss 0.43, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 30,
+    "text": "Epoch 30: loss 0.42, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 31,
+    "text": "Epoch 31: loss 0.42, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 32,
+    "text": "Epoch 32: loss 0.41, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 33,
+    "text": "Epoch 33: loss 0.41, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 34,
+    "text": "Epoch 34: loss 0.4, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 35,
+    "text": "Epoch 35: loss 0.4, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 36,
+    "text": "Epoch 36: loss 0.39, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 37,
+    "text": "Epoch 37: loss 0.39, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 38,
+    "text": "Epoch 38: loss 0.38, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 39,
+    "text": "Epoch 39: loss 0.38, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 40,
+    "text": "Epoch 40: loss 0.37, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 41,
+    "text": "Epoch 41: loss 0.37, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 42,
+    "text": "Epoch 42: loss 0.36, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 43,
+    "text": "Epoch 43: loss 0.36, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 44,
+    "text": "Epoch 44: loss 0.36, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 45,
+    "text": "Epoch 45: loss 0.35, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 46,
+    "text": "Epoch 46: loss 0.35, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 47,
+    "text": "Epoch 47: loss 0.34, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 48,
+    "text": "Epoch 48: loss 0.34, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 49,
+    "text": "Epoch 49: loss 0.34, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 50,
+    "text": "Epoch 50: loss 0.33, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 51,
+    "text": "Epoch 51: loss 0.33, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 52,
+    "text": "Epoch 52: loss 0.33, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 53,
+    "text": "Epoch 53: loss 0.32, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 54,
+    "text": "Epoch 54: loss 0.32, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 55,
+    "text": "Epoch 55: loss 0.32, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 56,
+    "text": "Epoch 56: loss 0.31, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 57,
+    "text": "Epoch 57: loss 0.31, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 58,
+    "text": "Epoch 58: loss 0.31, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 59,
+    "text": "Epoch 59: loss 0.3, 4 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients."
+  },
+  {
+    "scene": 5,
+    "keyframe": 60,
+    "text": "Epoch 60: the loss fell from 1.32 to 0.3 and all four points are on the correct side of the boundary. The loop has learned the pattern: forward → loss → backward → step."
+  }
+]

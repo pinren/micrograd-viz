@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-15T00:56:01.564Z",
-  "url": "file:///Users/pinren/src/micrograd-viz-work/training-sgd-scenes-71cec43341db/index.html",
+  "generatedAt": "2026-11-15T02:15:49.267Z",
+  "url": "file:///Users/pinren/src/micrograd-viz-work/narration-dual-audio-f43700195df3/index.html",
   "command": "node tools/capture-evidence.mjs",
   "viewport": {
     "width": 1280,
@@ -8,6 +8,7 @@
   },
   "screenshots": [
     "docs/evidence/scene1-start.png",
+    "docs/evidence/narration-on.png",
     "docs/evidence/scene1-mid.png",
     "docs/evidence/scene1-gradients.png",
     "docs/evidence/scene2-backprop.png",
@@ -17,7 +18,8 @@
     "docs/evidence/scene4-step.png",
     "docs/evidence/scene4-after.png",
     "docs/evidence/scene5-start.png",
-    "docs/evidence/scene5-learned.png"
+    "docs/evidence/scene5-learned.png",
+    "docs/evidence/narration-timed.png"
   ],
   "states": {
     "initial": {
@@ -37,7 +39,7 @@
         "2"
       ],
       "speedValue": "1",
-      "caption": "Start with a = 2. A Value holds one number (data) and one gradient (grad), which is still zero.",
+      "caption": "先看一个数，a 等于二。每个数都带着梯度，像路标，指着该往哪挪。",
       "badge": "KEYFRAME 1 / 6",
       "sceneTitle": "Scene 1 · Build the expression graph",
       "chips": [
@@ -124,6 +126,489 @@
         "value": "10",
         "label": "Fast-forward 10 epochs",
         "disabled": false
+      },
+      "narration": {
+        "enabled": false,
+        "label": "配音 关",
+        "channel": "",
+        "captionLang": "zh",
+        "stored": null,
+        "last": null
+      }
+    },
+    "narrationOn": {
+      "ready": true,
+      "scene": "scene-1",
+      "keyframe": 0,
+      "playing": false,
+      "speed": 1,
+      "time": 0,
+      "timeLabel": "0.0s / 110.5s",
+      "playLabel": "Play",
+      "playPressed": "false",
+      "stepDisabled": false,
+      "speedOptions": [
+        "0.5",
+        "1",
+        "2"
+      ],
+      "speedValue": "1",
+      "caption": "先看一个数，a 等于二。每个数都带着梯度，像路标，指着该往哪挪。",
+      "badge": "KEYFRAME 1 / 6",
+      "sceneTitle": "Scene 1 · Build the expression graph",
+      "chips": [
+        {
+          "index": 0,
+          "label": "a",
+          "active": true,
+          "done": false
+        },
+        {
+          "index": 1,
+          "label": "b",
+          "active": false,
+          "done": false
+        },
+        {
+          "index": 2,
+          "label": "a × b",
+          "active": false,
+          "done": false
+        },
+        {
+          "index": 3,
+          "label": "c",
+          "active": false,
+          "done": false
+        },
+        {
+          "index": 4,
+          "label": "a × b + c",
+          "active": false,
+          "done": false
+        },
+        {
+          "index": 5,
+          "label": "grads",
+          "active": false,
+          "done": false
+        }
+      ],
+      "showGrads": false,
+      "backward": false,
+      "visibleNodes": "a",
+      "showGradsDataset": "false",
+      "gradsDataset": "",
+      "topoDataset": "",
+      "updatesDataset": "",
+      "dataDataset": "a=2",
+      "ariaLabel": "Expression graph. 1 of 5 nodes visible; a=2",
+      "viewBox": "0 0 648 382",
+      "nodeCount": 1,
+      "edgeCount": 0,
+      "nodes": [
+        {
+          "key": "a",
+          "label": "a",
+          "data": "data 2",
+          "grad": "grad -3",
+          "hasGrad": false,
+          "topo": "",
+          "transform": "translate(44 44)",
+          "active": true
+        }
+      ],
+      "edges": [],
+      "graphHidden": false,
+      "plot": {
+        "hidden": true,
+        "epoch": null,
+        "loss": null,
+        "accuracy": null,
+        "predictions": [],
+        "boundarySegments": 0
+      },
+      "readout": {
+        "hidden": true,
+        "title": "",
+        "stats": [],
+        "headers": [],
+        "rows": []
+      },
+      "skip": {
+        "hidden": true,
+        "value": "10",
+        "label": "Fast-forward 10 epochs",
+        "disabled": false
+      },
+      "narration": {
+        "enabled": true,
+        "label": "配音 开",
+        "channel": "speech",
+        "captionLang": "zh",
+        "stored": "on",
+        "last": {
+          "text": "先看一个数，a 等于二。每个数都带着梯度，像路标，指着该往哪挪。",
+          "channel": "speech"
+        }
+      }
+    },
+    "narrationStep": {
+      "ready": true,
+      "scene": "scene-1",
+      "keyframe": 1,
+      "playing": false,
+      "speed": 1,
+      "time": 2,
+      "timeLabel": "2.0s / 110.5s",
+      "playLabel": "Play",
+      "playPressed": "false",
+      "stepDisabled": false,
+      "speedOptions": [
+        "0.5",
+        "1",
+        "2"
+      ],
+      "speedValue": "1",
+      "caption": "再加一个输入，b 等于负三。它们还只是孤立的数，没有连线。",
+      "badge": "KEYFRAME 2 / 6",
+      "sceneTitle": "Scene 1 · Build the expression graph",
+      "chips": [
+        {
+          "index": 0,
+          "label": "a",
+          "active": false,
+          "done": true
+        },
+        {
+          "index": 1,
+          "label": "b",
+          "active": true,
+          "done": false
+        },
+        {
+          "index": 2,
+          "label": "a × b",
+          "active": false,
+          "done": false
+        },
+        {
+          "index": 3,
+          "label": "c",
+          "active": false,
+          "done": false
+        },
+        {
+          "index": 4,
+          "label": "a × b + c",
+          "active": false,
+          "done": false
+        },
+        {
+          "index": 5,
+          "label": "grads",
+          "active": false,
+          "done": false
+        }
+      ],
+      "showGrads": false,
+      "backward": false,
+      "visibleNodes": "a,b",
+      "showGradsDataset": "false",
+      "gradsDataset": "",
+      "topoDataset": "",
+      "updatesDataset": "",
+      "dataDataset": "a=2,b=-3",
+      "ariaLabel": "Expression graph. 2 of 5 nodes visible; a=2, b=-3",
+      "viewBox": "0 0 648 382",
+      "nodeCount": 2,
+      "edgeCount": 0,
+      "nodes": [
+        {
+          "key": "a",
+          "label": "a",
+          "data": "data 2",
+          "grad": "grad -3",
+          "hasGrad": false,
+          "topo": "",
+          "transform": "translate(44 44)",
+          "active": false
+        },
+        {
+          "key": "b",
+          "label": "b",
+          "data": "data -3",
+          "grad": "grad 2",
+          "hasGrad": false,
+          "topo": "",
+          "transform": "translate(44 152)",
+          "active": true
+        }
+      ],
+      "edges": [],
+      "graphHidden": false,
+      "plot": {
+        "hidden": true,
+        "epoch": null,
+        "loss": null,
+        "accuracy": null,
+        "predictions": [],
+        "boundarySegments": 0
+      },
+      "readout": {
+        "hidden": true,
+        "title": "",
+        "stats": [],
+        "headers": [],
+        "rows": []
+      },
+      "skip": {
+        "hidden": true,
+        "value": "10",
+        "label": "Fast-forward 10 epochs",
+        "disabled": false
+      },
+      "narration": {
+        "enabled": true,
+        "label": "配音 开",
+        "channel": "speech",
+        "captionLang": "zh",
+        "stored": "on",
+        "last": {
+          "text": "再加一个输入，b 等于负三。它们还只是孤立的数，没有连线。",
+          "channel": "speech"
+        }
+      }
+    },
+    "narrationRestored": {
+      "ready": true,
+      "scene": "scene-1",
+      "keyframe": 0,
+      "playing": false,
+      "speed": 1,
+      "time": 0,
+      "timeLabel": "0.0s / 110.5s",
+      "playLabel": "Play",
+      "playPressed": "false",
+      "stepDisabled": false,
+      "speedOptions": [
+        "0.5",
+        "1",
+        "2"
+      ],
+      "speedValue": "1",
+      "caption": "先看一个数，a 等于二。每个数都带着梯度，像路标，指着该往哪挪。",
+      "badge": "KEYFRAME 1 / 6",
+      "sceneTitle": "Scene 1 · Build the expression graph",
+      "chips": [
+        {
+          "index": 0,
+          "label": "a",
+          "active": true,
+          "done": false
+        },
+        {
+          "index": 1,
+          "label": "b",
+          "active": false,
+          "done": false
+        },
+        {
+          "index": 2,
+          "label": "a × b",
+          "active": false,
+          "done": false
+        },
+        {
+          "index": 3,
+          "label": "c",
+          "active": false,
+          "done": false
+        },
+        {
+          "index": 4,
+          "label": "a × b + c",
+          "active": false,
+          "done": false
+        },
+        {
+          "index": 5,
+          "label": "grads",
+          "active": false,
+          "done": false
+        }
+      ],
+      "showGrads": false,
+      "backward": false,
+      "visibleNodes": "a",
+      "showGradsDataset": "false",
+      "gradsDataset": "",
+      "topoDataset": "",
+      "updatesDataset": "",
+      "dataDataset": "a=2",
+      "ariaLabel": "Expression graph. 1 of 5 nodes visible; a=2",
+      "viewBox": "0 0 648 382",
+      "nodeCount": 1,
+      "edgeCount": 0,
+      "nodes": [
+        {
+          "key": "a",
+          "label": "a",
+          "data": "data 2",
+          "grad": "grad -3",
+          "hasGrad": false,
+          "topo": "",
+          "transform": "translate(44 44)",
+          "active": true
+        }
+      ],
+      "edges": [],
+      "graphHidden": false,
+      "plot": {
+        "hidden": true,
+        "epoch": null,
+        "loss": null,
+        "accuracy": null,
+        "predictions": [],
+        "boundarySegments": 0
+      },
+      "readout": {
+        "hidden": true,
+        "title": "",
+        "stats": [],
+        "headers": [],
+        "rows": []
+      },
+      "skip": {
+        "hidden": true,
+        "value": "10",
+        "label": "Fast-forward 10 epochs",
+        "disabled": false
+      },
+      "narration": {
+        "enabled": true,
+        "label": "配音 开",
+        "channel": "speech",
+        "captionLang": "zh",
+        "stored": "on",
+        "last": {
+          "text": "先看一个数，a 等于二。每个数都带着梯度，像路标，指着该往哪挪。",
+          "channel": "speech"
+        }
+      }
+    },
+    "narrationOff": {
+      "ready": true,
+      "scene": "scene-1",
+      "keyframe": 0,
+      "playing": false,
+      "speed": 1,
+      "time": 0,
+      "timeLabel": "0.0s / 110.5s",
+      "playLabel": "Play",
+      "playPressed": "false",
+      "stepDisabled": false,
+      "speedOptions": [
+        "0.5",
+        "1",
+        "2"
+      ],
+      "speedValue": "1",
+      "caption": "先看一个数，a 等于二。每个数都带着梯度，像路标，指着该往哪挪。",
+      "badge": "KEYFRAME 1 / 6",
+      "sceneTitle": "Scene 1 · Build the expression graph",
+      "chips": [
+        {
+          "index": 0,
+          "label": "a",
+          "active": true,
+          "done": false
+        },
+        {
+          "index": 1,
+          "label": "b",
+          "active": false,
+          "done": false
+        },
+        {
+          "index": 2,
+          "label": "a × b",
+          "active": false,
+          "done": false
+        },
+        {
+          "index": 3,
+          "label": "c",
+          "active": false,
+          "done": false
+        },
+        {
+          "index": 4,
+          "label": "a × b + c",
+          "active": false,
+          "done": false
+        },
+        {
+          "index": 5,
+          "label": "grads",
+          "active": false,
+          "done": false
+        }
+      ],
+      "showGrads": false,
+      "backward": false,
+      "visibleNodes": "a",
+      "showGradsDataset": "false",
+      "gradsDataset": "",
+      "topoDataset": "",
+      "updatesDataset": "",
+      "dataDataset": "a=2",
+      "ariaLabel": "Expression graph. 1 of 5 nodes visible; a=2",
+      "viewBox": "0 0 648 382",
+      "nodeCount": 1,
+      "edgeCount": 0,
+      "nodes": [
+        {
+          "key": "a",
+          "label": "a",
+          "data": "data 2",
+          "grad": "grad -3",
+          "hasGrad": false,
+          "topo": "",
+          "transform": "translate(44 44)",
+          "active": true
+        }
+      ],
+      "edges": [],
+      "graphHidden": false,
+      "plot": {
+        "hidden": true,
+        "epoch": null,
+        "loss": null,
+        "accuracy": null,
+        "predictions": [],
+        "boundarySegments": 0
+      },
+      "readout": {
+        "hidden": true,
+        "title": "",
+        "stats": [],
+        "headers": [],
+        "rows": []
+      },
+      "skip": {
+        "hidden": true,
+        "value": "10",
+        "label": "Fast-forward 10 epochs",
+        "disabled": false
+      },
+      "narration": {
+        "enabled": false,
+        "label": "配音 关",
+        "channel": "",
+        "captionLang": "zh",
+        "stored": "off",
+        "last": null
       }
     },
     "after2xPlay": {
@@ -144,7 +629,7 @@
           "2"
         ],
         "speedValue": "2",
-        "caption": "Start with a = 2. A Value holds one number (data) and one gradient (grad), which is still zero.",
+        "caption": "先看一个数，a 等于二。每个数都带着梯度，像路标，指着该往哪挪。",
         "badge": "KEYFRAME 1 / 6",
         "sceneTitle": "Scene 1 · Build the expression graph",
         "chips": [
@@ -231,6 +716,14 @@
           "value": "10",
           "label": "Fast-forward 10 epochs",
           "disabled": false
+        },
+        "narration": {
+          "enabled": false,
+          "label": "配音 关",
+          "channel": "",
+          "captionLang": "zh",
+          "stored": "off",
+          "last": null
         }
       },
       "afterPlay": {
@@ -250,7 +743,7 @@
           "2"
         ],
         "speedValue": "2",
-        "caption": "Add b = -3. Inputs are plain Values; no operation connects them yet.",
+        "caption": "再加一个输入，b 等于负三。它们还只是孤立的数，没有连线。",
         "badge": "KEYFRAME 2 / 6",
         "sceneTitle": "Scene 1 · Build the expression graph",
         "chips": [
@@ -347,6 +840,14 @@
           "value": "10",
           "label": "Fast-forward 10 epochs",
           "disabled": false
+        },
+        "narration": {
+          "enabled": false,
+          "label": "配音 关",
+          "channel": "",
+          "captionLang": "zh",
+          "stored": "off",
+          "last": null
         }
       },
       "afterPause": {
@@ -366,7 +867,7 @@
           "2"
         ],
         "speedValue": "2",
-        "caption": "Add b = -3. Inputs are plain Values; no operation connects them yet.",
+        "caption": "再加一个输入，b 等于负三。它们还只是孤立的数，没有连线。",
         "badge": "KEYFRAME 2 / 6",
         "sceneTitle": "Scene 1 · Build the expression graph",
         "chips": [
@@ -463,6 +964,14 @@
           "value": "10",
           "label": "Fast-forward 10 epochs",
           "disabled": false
+        },
+        "narration": {
+          "enabled": false,
+          "label": "配音 关",
+          "channel": "",
+          "captionLang": "zh",
+          "stored": "off",
+          "last": null
         }
       }
     },
@@ -483,7 +992,7 @@
         "2"
       ],
       "speedValue": "1",
-      "caption": "Add the third input: c = 10.",
+      "caption": "第三个输入 c 等于十，也放上来。",
       "badge": "KEYFRAME 4 / 6",
       "sceneTitle": "Scene 1 · Build the expression graph",
       "chips": [
@@ -613,6 +1122,14 @@
         "value": "10",
         "label": "Fast-forward 10 epochs",
         "disabled": false
+      },
+      "narration": {
+        "enabled": false,
+        "label": "配音 关",
+        "channel": "",
+        "captionLang": "zh",
+        "stored": "off",
+        "last": null
       }
     },
     "final": {
@@ -632,7 +1149,7 @@
         "2"
       ],
       "speedValue": "1",
-      "caption": "Backward pass: d.grad = 1. Then mul.grad = 1 and c.grad = 1; the chain rule gives a.grad = b = -3 and b.grad = a = 2.",
+      "caption": "反向传播从 d 开始，就是从结果倒着走。链式法则像接力，梯度一路乘回去。",
       "badge": "KEYFRAME 6 / 6",
       "sceneTitle": "Scene 1 · Build the expression graph",
       "chips": [
@@ -784,6 +1301,14 @@
         "value": "10",
         "label": "Fast-forward 10 epochs",
         "disabled": false
+      },
+      "narration": {
+        "enabled": false,
+        "label": "配音 关",
+        "channel": "",
+        "captionLang": "zh",
+        "stored": "off",
+        "last": null
       }
     },
     "scene2": {
@@ -804,7 +1329,7 @@
           "2"
         ],
         "speedValue": "1",
-        "caption": "We already have d = a × b + c = 4. Backward starts at the output and walks the graph in reverse topological order, accumulating each node’s grad.",
+        "caption": "反向传播从结果倒着走，一路回到每个输入。这张图已经算好了。",
         "badge": "KEYFRAME 1 / 6",
         "sceneTitle": "Scene 2 · Where gradients come from",
         "chips": [
@@ -956,6 +1481,14 @@
           "value": "10",
           "label": "Fast-forward 10 epochs",
           "disabled": false
+        },
+        "narration": {
+          "enabled": false,
+          "label": "配音 关",
+          "channel": "",
+          "captionLang": "zh",
+          "stored": "off",
+          "last": null
         }
       },
       "playing": {
@@ -975,7 +1508,7 @@
           "2"
         ],
         "speedValue": "2",
-        "caption": "We already have d = a × b + c = 4. Backward starts at the output and walks the graph in reverse topological order, accumulating each node’s grad.",
+        "caption": "反向传播从结果倒着走，一路回到每个输入。这张图已经算好了。",
         "badge": "KEYFRAME 1 / 6",
         "sceneTitle": "Scene 2 · Where gradients come from",
         "chips": [
@@ -1127,6 +1660,14 @@
           "value": "10",
           "label": "Fast-forward 10 epochs",
           "disabled": false
+        },
+        "narration": {
+          "enabled": false,
+          "label": "配音 关",
+          "channel": "",
+          "captionLang": "zh",
+          "stored": "off",
+          "last": null
         }
       },
       "topo": {
@@ -1146,7 +1687,7 @@
           "2"
         ],
         "speedValue": "1",
-        "caption": "Only operations are numbered: ① + must run before ② ×. The × node’s gradient has to be complete before it can pass anything back to a and b — that is the reverse topological order.",
+        "caption": "只给运算编号：加法是一，乘法是二。乘法要等加法传完，梯度才齐全。",
         "badge": "KEYFRAME 2 / 6",
         "sceneTitle": "Scene 2 · Where gradients come from",
         "chips": [
@@ -1298,6 +1839,14 @@
           "value": "10",
           "label": "Fast-forward 10 epochs",
           "disabled": false
+        },
+        "narration": {
+          "enabled": false,
+          "label": "配音 关",
+          "channel": "",
+          "captionLang": "zh",
+          "stored": "off",
+          "last": null
         }
       },
       "seed": {
@@ -1317,7 +1866,7 @@
           "2"
         ],
         "speedValue": "1",
-        "caption": "Seed the output: d.grad = 1 (∂d/∂d). Every other grad is still zero.",
+        "caption": "先把输出 d 的梯度设成一。其他梯度都还是零。",
         "badge": "KEYFRAME 3 / 6",
         "sceneTitle": "Scene 2 · Where gradients come from",
         "chips": [
@@ -1469,6 +2018,14 @@
           "value": "10",
           "label": "Fast-forward 10 epochs",
           "disabled": false
+        },
+        "narration": {
+          "enabled": false,
+          "label": "配音 关",
+          "channel": "",
+          "captionLang": "zh",
+          "stored": "off",
+          "last": null
         }
       },
       "throughAdd": {
@@ -1488,7 +2045,7 @@
           "2"
         ],
         "speedValue": "1",
-        "caption": "Process ① +: d.grad = 1 flows back along both edges. The local derivatives are ∂d/∂mul = 1 and ∂d/∂c = 1, so mul.grad = 1 and c.grad = 1.",
+        "caption": "处理加法：两条边把梯度原样传下去。乘法和 c 各拿到一。",
         "badge": "KEYFRAME 4 / 6",
         "sceneTitle": "Scene 2 · Where gradients come from",
         "chips": [
@@ -1640,6 +2197,14 @@
           "value": "10",
           "label": "Fast-forward 10 epochs",
           "disabled": false
+        },
+        "narration": {
+          "enabled": false,
+          "label": "配音 关",
+          "channel": "",
+          "captionLang": "zh",
+          "stored": "off",
+          "last": null
         }
       },
       "throughMul": {
@@ -1659,7 +2224,7 @@
           "2"
         ],
         "speedValue": "1",
-        "caption": "Process ② ×: mul.grad = 1 flows to a and b. The local derivatives are ∂mul/∂a = b = -3 and ∂mul/∂b = a = 2, so a.grad = 1 × -3 = -3 and b.grad = 1 × 2 = 2.",
+        "caption": "处理乘法：局部导数是 b 和 a。梯度分别乘上负三和二。",
         "badge": "KEYFRAME 5 / 6",
         "sceneTitle": "Scene 2 · Where gradients come from",
         "chips": [
@@ -1811,6 +2376,14 @@
           "value": "10",
           "label": "Fast-forward 10 epochs",
           "disabled": false
+        },
+        "narration": {
+          "enabled": false,
+          "label": "配音 关",
+          "channel": "",
+          "captionLang": "zh",
+          "stored": "off",
+          "last": null
         }
       },
       "final": {
@@ -1830,7 +2403,7 @@
           "2"
         ],
         "speedValue": "1",
-        "caption": "Done. Chain rule along a → mul → d: ∂d/∂a = ∂d/∂mul · ∂mul/∂a = 1 · b = -3. Reverse topological order made mul.grad complete before it was used.",
+        "caption": "a 的梯度是负三，b 的梯度是二。一路相乘，这就是链式法则。",
         "badge": "KEYFRAME 6 / 6",
         "sceneTitle": "Scene 2 · Where gradients come from",
         "chips": [
@@ -1982,6 +2555,14 @@
           "value": "10",
           "label": "Fast-forward 10 epochs",
           "disabled": false
+        },
+        "narration": {
+          "enabled": false,
+          "label": "配音 关",
+          "channel": "",
+          "captionLang": "zh",
+          "stored": "off",
+          "last": null
         }
       }
     },
@@ -2003,7 +2584,7 @@
           "2"
         ],
         "speedValue": "1",
-        "caption": "A neuron computes y = tanh(w · x + b) with three inputs. Start with the inputs x, the weights w, and the bias b — all plain Values.",
+        "caption": "神经元先算加权和，再做压缩。像小算盘：输入乘权重，再相加。",
         "badge": "KEYFRAME 1 / 13",
         "sceneTitle": "Scene 3 · One neuron: y = tanh(w · x + b)",
         "chips": [
@@ -2192,6 +2773,14 @@
           "value": "10",
           "label": "Fast-forward 10 epochs",
           "disabled": false
+        },
+        "narration": {
+          "enabled": false,
+          "label": "配音 关",
+          "channel": "",
+          "captionLang": "zh",
+          "stored": "off",
+          "last": null
         }
       },
       "playing": {
@@ -2211,7 +2800,7 @@
           "2"
         ],
         "speedValue": "2",
-        "caption": "A neuron computes y = tanh(w · x + b) with three inputs. Start with the inputs x, the weights w, and the bias b — all plain Values.",
+        "caption": "神经元先算加权和，再做压缩。像小算盘：输入乘权重，再相加。",
         "badge": "KEYFRAME 1 / 13",
         "sceneTitle": "Scene 3 · One neuron: y = tanh(w · x + b)",
         "chips": [
@@ -2400,6 +2989,14 @@
           "value": "10",
           "label": "Fast-forward 10 epochs",
           "disabled": false
+        },
+        "narration": {
+          "enabled": false,
+          "label": "配音 关",
+          "channel": "",
+          "captionLang": "zh",
+          "stored": "off",
+          "last": null
         }
       },
       "forward": {
@@ -2419,7 +3016,7 @@
           "2"
         ],
         "speedValue": "1",
-        "caption": "Squash with tanh: y = tanh(0.5) = 0.46. Forward pass done — now send the gradient back.",
+        "caption": "用 tanh 压一下，输出约零点四六。前向计算到此结束。",
         "badge": "KEYFRAME 4 / 13",
         "sceneTitle": "Scene 3 · One neuron: y = tanh(w · x + b)",
         "chips": [
@@ -2757,6 +3354,14 @@
           "value": "10",
           "label": "Fast-forward 10 epochs",
           "disabled": false
+        },
+        "narration": {
+          "enabled": false,
+          "label": "配音 关",
+          "channel": "",
+          "captionLang": "zh",
+          "stored": "off",
+          "last": null
         }
       },
       "seed": {
@@ -2776,7 +3381,7 @@
           "2"
         ],
         "speedValue": "1",
-        "caption": "Backward starts at the output: y.grad = 1 (∂y/∂y). Operations are numbered in reverse topological order; each one runs only after every node that consumes its result. The weight gradients are still zero.",
+        "caption": "开始反向传播，输出的梯度设成一。运算按逆序编号，谁先被用到谁先算。",
         "badge": "KEYFRAME 5 / 13",
         "sceneTitle": "Scene 3 · One neuron: y = tanh(w · x + b)",
         "chips": [
@@ -3114,6 +3719,14 @@
           "value": "10",
           "label": "Fast-forward 10 epochs",
           "disabled": false
+        },
+        "narration": {
+          "enabled": false,
+          "label": "配音 关",
+          "channel": "",
+          "captionLang": "zh",
+          "stored": "off",
+          "last": null
         }
       },
       "throughW1": {
@@ -3133,7 +3746,7 @@
           "2"
         ],
         "speedValue": "1",
-        "caption": "Process ×: p1.grad flows into w1 and x1. ∂p1/∂w1 = x1 = 1, so w1.grad = 1 × 0.79 = 0.79; ∂p1/∂x1 = w1 = 0.5, so x1.grad = 0.5 × 0.79 = 0.39.",
+        "caption": "过第一个乘法：w1 的梯度是 x1 乘零点七九。得到零点七九。",
         "badge": "KEYFRAME 10 / 13",
         "sceneTitle": "Scene 3 · One neuron: y = tanh(w · x + b)",
         "chips": [
@@ -3471,6 +4084,14 @@
           "value": "10",
           "label": "Fast-forward 10 epochs",
           "disabled": false
+        },
+        "narration": {
+          "enabled": false,
+          "label": "配音 关",
+          "channel": "",
+          "captionLang": "zh",
+          "stored": "off",
+          "last": null
         }
       },
       "final": {
@@ -3490,7 +4111,7 @@
           "2"
         ],
         "speedValue": "1",
-        "caption": "All three weight gradients: w1 = 0.79, w2 = 0.39, w3 = -0.79. Gradient descent would subtract a small multiple of each (ticket 3); no training loop here.",
+        "caption": "三个权重梯度：零点七九、零点三九、负零点七九。下一步就是拿它们去更新参数。",
         "badge": "KEYFRAME 13 / 13",
         "sceneTitle": "Scene 3 · One neuron: y = tanh(w · x + b)",
         "chips": [
@@ -3828,6 +4449,14 @@
           "value": "10",
           "label": "Fast-forward 10 epochs",
           "disabled": false
+        },
+        "narration": {
+          "enabled": false,
+          "label": "配音 关",
+          "channel": "",
+          "captionLang": "zh",
+          "stored": "off",
+          "last": null
         }
       }
     },
@@ -3849,7 +4478,7 @@
           "2"
         ],
         "speedValue": "1",
-        "caption": "The same neuron as scene 3: y = tanh(w · x + b). This time we know the answer we want: a target t = 1. The parameters w and b are the Values that training will change.",
+        "caption": "还是这个神经元，这次有标准答案。目标是 t 等于一，参数像旋钮，训练来调。",
         "badge": "KEYFRAME 1 / 15",
         "sceneTitle": "Scene 4 · One SGD step: follow the negative gradient",
         "chips": [
@@ -4050,6 +4679,14 @@
           "value": "10",
           "label": "Fast-forward 10 epochs",
           "disabled": false
+        },
+        "narration": {
+          "enabled": false,
+          "label": "配音 关",
+          "channel": "",
+          "captionLang": "zh",
+          "stored": "off",
+          "last": null
         }
       },
       "loss": {
@@ -4069,7 +4706,7 @@
           "2"
         ],
         "speedValue": "1",
-        "caption": "Measure the error: loss = (y − t)² = (0.46 − 1)² = 0.29. A bigger miss gives a bigger loss.",
+        "caption": "算损失：预测减目标再平方，得零点二九。损失就是误差打分，越大错得越多。",
         "badge": "KEYFRAME 3 / 15",
         "sceneTitle": "Scene 4 · One SGD step: follow the negative gradient",
         "chips": [
@@ -4467,6 +5104,14 @@
           "value": "10",
           "label": "Fast-forward 10 epochs",
           "disabled": false
+        },
+        "narration": {
+          "enabled": false,
+          "label": "配音 关",
+          "channel": "",
+          "captionLang": "zh",
+          "stored": "off",
+          "last": null
         }
       },
       "step": {
@@ -4486,7 +5131,7 @@
           "2"
         ],
         "speedValue": "1",
-        "caption": "Gradient descent takes one step along the negative gradient: p ← p − lr · g with lr = 0.1. Each parameter annotation shows −g and the new data; the table lists every weight before and after.",
+        "caption": "做一步梯度下降：参数减去学习率乘梯度。学习率是零点一，就是每步走多大。",
         "badge": "KEYFRAME 14 / 15",
         "sceneTitle": "Scene 4 · One SGD step: follow the negative gradient",
         "chips": [
@@ -4932,6 +5577,14 @@
           "value": "10",
           "label": "Fast-forward 10 epochs",
           "disabled": false
+        },
+        "narration": {
+          "enabled": false,
+          "label": "配音 关",
+          "channel": "",
+          "captionLang": "zh",
+          "stored": "off",
+          "last": null
         }
       },
       "after": {
@@ -4951,7 +5604,7 @@
           "2"
         ],
         "speedValue": "1",
-        "caption": "After one update the loss fell from 0.29 to 0.12. w₁ moved +0.08 because its gradient was -0.85. Gradients are cleared with zeroGrad() before the next forward pass. Scene 5 repeats this loop until the network learns.",
+        "caption": "一步之后，损失从零点二九降到零点一二。梯度清零，下一轮再继续。",
         "badge": "KEYFRAME 15 / 15",
         "sceneTitle": "Scene 4 · One SGD step: follow the negative gradient",
         "chips": [
@@ -5397,6 +6050,14 @@
           "value": "10",
           "label": "Fast-forward 10 epochs",
           "disabled": false
+        },
+        "narration": {
+          "enabled": false,
+          "label": "配音 关",
+          "channel": "",
+          "captionLang": "zh",
+          "stored": "off",
+          "last": null
         }
       }
     },
@@ -5418,7 +6079,7 @@
           "2"
         ],
         "speedValue": "1",
-        "caption": "Before training: the weights are random, so the loss is 1.32 and the dashed boundary misclassifies points. The loop will now run forward → loss → backward → step.",
+        "caption": "训练开始前，权重随机，损失一点三二。四个点里只对了两个。",
         "badge": "KEYFRAME 1 / 61",
         "sceneTitle": "Scene 5 · Loop until it learns: MLP + SGD",
         "chips": [
@@ -6114,6 +6775,14 @@
           "value": "10",
           "label": "Fast-forward 10 epochs",
           "disabled": false
+        },
+        "narration": {
+          "enabled": false,
+          "label": "配音 关",
+          "channel": "",
+          "captionLang": "zh",
+          "stored": "off",
+          "last": null
         }
       },
       "fastForward10": {
@@ -6133,7 +6802,7 @@
           "2"
         ],
         "speedValue": "1",
-        "caption": "Epoch 10: loss 0.62, 3 / 4 points correct. The boundary moves a little each round as the weights follow their negative gradients.",
+        "caption": "第 10 轮：损失零点六二。四个点里对了三个。",
         "badge": "KEYFRAME 11 / 61",
         "sceneTitle": "Scene 5 · Loop until it learns: MLP + SGD",
         "chips": [
@@ -6829,6 +7498,14 @@
           "value": "10",
           "label": "Fast-forward 10 epochs",
           "disabled": false
+        },
+        "narration": {
+          "enabled": false,
+          "label": "配音 关",
+          "channel": "",
+          "captionLang": "zh",
+          "stored": "off",
+          "last": null
         }
       },
       "final": {
@@ -6848,7 +7525,7 @@
           "2"
         ],
         "speedValue": "1",
-        "caption": "Epoch 60: the loss fell from 1.32 to 0.3 and all four points are on the correct side of the boundary. The loop has learned the pattern: forward → loss → backward → step.",
+        "caption": "训练结束，损失从一点三二降到零点三。四个点全对，网络学会了。",
         "badge": "KEYFRAME 61 / 61",
         "sceneTitle": "Scene 5 · Loop until it learns: MLP + SGD",
         "chips": [
@@ -7544,6 +8221,883 @@
           "value": "50",
           "label": "Fast-forward 50 epochs",
           "disabled": true
+        },
+        "narration": {
+          "enabled": false,
+          "label": "配音 关",
+          "channel": "",
+          "captionLang": "zh",
+          "stored": "off",
+          "last": null
+        }
+      }
+    },
+    "narrationTimed": {
+      "state": {
+        "ready": true,
+        "scene": "scene-5",
+        "keyframe": 60,
+        "playing": false,
+        "speed": 1,
+        "time": 112.4,
+        "timeLabel": "112.4s / 113.4s",
+        "playLabel": "Play",
+        "playPressed": "false",
+        "stepDisabled": true,
+        "speedOptions": [
+          "0.5",
+          "1",
+          "2"
+        ],
+        "speedValue": "1",
+        "caption": "训练结束，损失从一点三二降到零点三。四个点全对，网络学会了。",
+        "badge": "KEYFRAME 61 / 61",
+        "sceneTitle": "Scene 5 · Loop until it learns: MLP + SGD",
+        "chips": [
+          {
+            "index": 0,
+            "label": "epoch 0",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 1,
+            "label": "epoch 1",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 2,
+            "label": "epoch 2",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 3,
+            "label": "epoch 3",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 4,
+            "label": "epoch 4",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 5,
+            "label": "epoch 5",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 6,
+            "label": "epoch 6",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 7,
+            "label": "epoch 7",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 8,
+            "label": "epoch 8",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 9,
+            "label": "epoch 9",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 10,
+            "label": "epoch 10",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 11,
+            "label": "epoch 11",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 12,
+            "label": "epoch 12",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 13,
+            "label": "epoch 13",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 14,
+            "label": "epoch 14",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 15,
+            "label": "epoch 15",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 16,
+            "label": "epoch 16",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 17,
+            "label": "epoch 17",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 18,
+            "label": "epoch 18",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 19,
+            "label": "epoch 19",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 20,
+            "label": "epoch 20",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 21,
+            "label": "epoch 21",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 22,
+            "label": "epoch 22",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 23,
+            "label": "epoch 23",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 24,
+            "label": "epoch 24",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 25,
+            "label": "epoch 25",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 26,
+            "label": "epoch 26",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 27,
+            "label": "epoch 27",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 28,
+            "label": "epoch 28",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 29,
+            "label": "epoch 29",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 30,
+            "label": "epoch 30",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 31,
+            "label": "epoch 31",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 32,
+            "label": "epoch 32",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 33,
+            "label": "epoch 33",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 34,
+            "label": "epoch 34",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 35,
+            "label": "epoch 35",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 36,
+            "label": "epoch 36",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 37,
+            "label": "epoch 37",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 38,
+            "label": "epoch 38",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 39,
+            "label": "epoch 39",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 40,
+            "label": "epoch 40",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 41,
+            "label": "epoch 41",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 42,
+            "label": "epoch 42",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 43,
+            "label": "epoch 43",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 44,
+            "label": "epoch 44",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 45,
+            "label": "epoch 45",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 46,
+            "label": "epoch 46",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 47,
+            "label": "epoch 47",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 48,
+            "label": "epoch 48",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 49,
+            "label": "epoch 49",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 50,
+            "label": "epoch 50",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 51,
+            "label": "epoch 51",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 52,
+            "label": "epoch 52",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 53,
+            "label": "epoch 53",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 54,
+            "label": "epoch 54",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 55,
+            "label": "epoch 55",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 56,
+            "label": "epoch 56",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 57,
+            "label": "epoch 57",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 58,
+            "label": "epoch 58",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 59,
+            "label": "epoch 59",
+            "active": false,
+            "done": true
+          },
+          {
+            "index": 60,
+            "label": "epoch 60",
+            "active": true,
+            "done": false
+          }
+        ],
+        "showGrads": false,
+        "backward": false,
+        "visibleNodes": "w1,x1,p1,w2,x2,p2,dot1,w3,x3,p3,dot2,b,zb,y,t,diff,loss",
+        "showGradsDataset": "false",
+        "gradsDataset": "",
+        "topoDataset": "",
+        "updatesDataset": "w1=-g 0.85 → 0.58,w2=-g 0.42 → -0.96,w3=-g -0.85 → 1.92,b=-g 0.85 → 2.58",
+        "dataDataset": "w1=0.58,x1=1,p1=0.58,w2=-0.96,x2=0.5,p2=-0.48,dot1=0.11,w3=1.92,x3=-1,p3=-1.92,dot2=-1.81,b=2.58,zb=0.77,y=0.65,t=1,diff=-0.35,loss=0.12",
+        "ariaLabel": "Expression graph. 17 of 17 nodes visible; w1=0.58, x1=1, p1=0.58, w2=-0.96, x2=0.5, p2=-0.48, dot1=0.11, w3=1.92, x3=-1, p3=-1.92, dot2=-1.81, b=2.58, zb=0.77, y=0.65, t=1, diff=-0.35, loss=0.12",
+        "viewBox": "0 0 1090 754",
+        "nodeCount": 17,
+        "edgeCount": 16,
+        "nodes": [
+          {
+            "key": "b",
+            "label": "b",
+            "data": "data 2.58",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 576)",
+            "active": false
+          },
+          {
+            "key": "w1",
+            "label": "w₁",
+            "data": "data 0.58",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 24)",
+            "active": false
+          },
+          {
+            "key": "x1",
+            "label": "x₁",
+            "data": "data 1",
+            "grad": "grad -0.42",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 116)",
+            "active": false
+          },
+          {
+            "key": "w2",
+            "label": "w₂",
+            "data": "data -0.96",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 208)",
+            "active": false
+          },
+          {
+            "key": "x2",
+            "label": "x₂",
+            "data": "data 0.5",
+            "grad": "grad 0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 300)",
+            "active": false
+          },
+          {
+            "key": "w3",
+            "label": "w₃",
+            "data": "data 1.92",
+            "grad": "grad 0",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 392)",
+            "active": false
+          },
+          {
+            "key": "x3",
+            "label": "x₃",
+            "data": "data -1",
+            "grad": "grad -1.69",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 484)",
+            "active": false
+          },
+          {
+            "key": "p1",
+            "label": "×",
+            "data": "data 0.58",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(158 254)",
+            "active": false
+          },
+          {
+            "key": "p2",
+            "label": "×",
+            "data": "data -0.48",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(158 346)",
+            "active": false
+          },
+          {
+            "key": "dot1",
+            "label": "+",
+            "data": "data 0.11",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(292 346)",
+            "active": false
+          },
+          {
+            "key": "p3",
+            "label": "×",
+            "data": "data -1.92",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(158 438)",
+            "active": false
+          },
+          {
+            "key": "dot2",
+            "label": "+",
+            "data": "data -1.81",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(426 346)",
+            "active": false
+          },
+          {
+            "key": "zb",
+            "label": "+",
+            "data": "data 0.77",
+            "grad": "grad -0.85",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(560 346)",
+            "active": false
+          },
+          {
+            "key": "y",
+            "label": "tanh",
+            "data": "data 0.65",
+            "grad": "grad -1.08",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(694 346)",
+            "active": false
+          },
+          {
+            "key": "t",
+            "label": "t",
+            "data": "data 1",
+            "grad": "grad 1.08",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(24 668)",
+            "active": false
+          },
+          {
+            "key": "diff",
+            "label": "−",
+            "data": "data -0.35",
+            "grad": "grad -1.08",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(828 346)",
+            "active": false
+          },
+          {
+            "key": "loss",
+            "label": "loss",
+            "data": "data 0.12",
+            "grad": "grad 1",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(962 346)",
+            "active": true
+          }
+        ],
+        "edges": [
+          {
+            "key": "w1->p1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x1->p1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "w2->p2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x2->p2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p1->dot1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p2->dot1",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "w3->p3",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "x3->p3",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "dot1->dot2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "p3->dot2",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "dot2->zb",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "b->zb",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "zb->y",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "y->diff",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "t->diff",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "diff->loss",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          }
+        ],
+        "graphHidden": true,
+        "plot": {
+          "hidden": false,
+          "epoch": 60,
+          "loss": 0.3001617388714038,
+          "accuracy": 4,
+          "predictions": [
+            0.248,
+            -0.924,
+            -0.207,
+            0.99
+          ],
+          "boundarySegments": 124
+        },
+        "readout": {
+          "hidden": false,
+          "title": "Training loop · 3 hidden units · full-batch SGD · lr = 0.1",
+          "stats": [
+            {
+              "label": "epoch",
+              "value": "60 / 60"
+            },
+            {
+              "label": "loss",
+              "value": "0.3"
+            },
+            {
+              "label": "accuracy",
+              "value": "4 / 4"
+            },
+            {
+              "label": "parameters",
+              "value": "13"
+            }
+          ],
+          "headers": [],
+          "rows": []
+        },
+        "skip": {
+          "hidden": false,
+          "value": "50",
+          "label": "Fast-forward 50 epochs",
+          "disabled": true
+        },
+        "narration": {
+          "enabled": true,
+          "label": "配音 开",
+          "channel": "speech",
+          "captionLang": "zh",
+          "stored": "on",
+          "last": {
+            "text": "训练结束，损失从一点三二降到零点三。四个点全对，网络学会了。",
+            "channel": "speech"
+          }
+        }
+      },
+      "info": {
+        "duration": 113.4,
+        "sceneDurations": [
+          15.100000000000001,
+          16.3,
+          30,
+          27,
+          25
+        ],
+        "firstKeyframeTimes": [
+          0,
+          2.8,
+          4.8,
+          6.8,
+          8.8,
+          11.3
+        ],
+        "progressMax": "113.4"
+      }
+    },
+    "narrationTimedFrame0": {
+      "ready": true,
+      "scene": "scene-1",
+      "keyframe": 0,
+      "playing": false,
+      "speed": 1,
+      "time": 0,
+      "timeLabel": "0.0s / 113.4s",
+      "playLabel": "Play",
+      "playPressed": "false",
+      "stepDisabled": false,
+      "speedOptions": [
+        "0.5",
+        "1",
+        "2"
+      ],
+      "speedValue": "1",
+      "caption": "先看一个数，a 等于二。每个数都带着梯度，像路标，指着该往哪挪。",
+      "badge": "KEYFRAME 1 / 6",
+      "sceneTitle": "Scene 1 · Build the expression graph",
+      "chips": [
+        {
+          "index": 0,
+          "label": "a",
+          "active": true,
+          "done": false
+        },
+        {
+          "index": 1,
+          "label": "b",
+          "active": false,
+          "done": false
+        },
+        {
+          "index": 2,
+          "label": "a × b",
+          "active": false,
+          "done": false
+        },
+        {
+          "index": 3,
+          "label": "c",
+          "active": false,
+          "done": false
+        },
+        {
+          "index": 4,
+          "label": "a × b + c",
+          "active": false,
+          "done": false
+        },
+        {
+          "index": 5,
+          "label": "grads",
+          "active": false,
+          "done": false
+        }
+      ],
+      "showGrads": false,
+      "backward": false,
+      "visibleNodes": "a",
+      "showGradsDataset": "false",
+      "gradsDataset": "",
+      "topoDataset": "",
+      "updatesDataset": "",
+      "dataDataset": "a=2",
+      "ariaLabel": "Expression graph. 1 of 5 nodes visible; a=2",
+      "viewBox": "0 0 648 382",
+      "nodeCount": 1,
+      "edgeCount": 0,
+      "nodes": [
+        {
+          "key": "a",
+          "label": "a",
+          "data": "data 2",
+          "grad": "grad -3",
+          "hasGrad": false,
+          "topo": "",
+          "transform": "translate(44 44)",
+          "active": true
+        }
+      ],
+      "edges": [],
+      "graphHidden": false,
+      "plot": {
+        "hidden": true,
+        "epoch": 60,
+        "loss": 0.3001617388714038,
+        "accuracy": 4,
+        "predictions": [
+          0.248,
+          -0.924,
+          -0.207,
+          0.99
+        ],
+        "boundarySegments": 124
+      },
+      "readout": {
+        "hidden": true,
+        "title": "",
+        "stats": [],
+        "headers": [],
+        "rows": []
+      },
+      "skip": {
+        "hidden": true,
+        "value": "50",
+        "label": "Fast-forward 50 epochs",
+        "disabled": true
+      },
+      "narration": {
+        "enabled": true,
+        "label": "配音 开",
+        "channel": "audio",
+        "captionLang": "zh",
+        "stored": "on",
+        "last": {
+          "text": "先看一个数，a 等于二。每个数都带着梯度，像路标，指着该往哪挪。",
+          "channel": "audio"
         }
       }
     }
@@ -7564,6 +9118,26 @@
       "pass": true,
       "detail": "0.5,1,2"
     },
+    "narration defaults off while the caption is the Chinese script": {
+      "pass": true,
+      "detail": "{\"narration\":{\"enabled\":false,\"label\":\"配音 关\",\"channel\":\"\",\"captionLang\":\"zh\",\"stored\":null,\"last\":null},\"caption\":\"先看一个数，a 等于二。每个数都带着梯度，像路标，指着该往哪挪。\"}"
+    },
+    "the 🔊 switch turns narration on, speaks the current frame and persists": {
+      "pass": true,
+      "detail": "{\"enabled\":true,\"label\":\"配音 开\",\"channel\":\"speech\",\"captionLang\":\"zh\",\"stored\":\"on\",\"last\":{\"text\":\"先看一个数，a 等于二。每个数都带着梯度，像路标，指着该往哪挪。\",\"channel\":\"speech\"}}"
+    },
+    "Step triggers the new keyframe narration": {
+      "pass": true,
+      "detail": "{\"keyframe\":1,\"caption\":\"再加一个输入，b 等于负三。它们还只是孤立的数，没有连线。\",\"narration\":{\"enabled\":true,\"label\":\"配音 开\",\"channel\":\"speech\",\"captionLang\":\"zh\",\"stored\":\"on\",\"last\":{\"text\":\"再加一个输入，b 等于负三。它们还只是孤立的数，没有连线。\",\"channel\":\"speech\"}}}"
+    },
+    "the narration choice survives a reload": {
+      "pass": true,
+      "detail": "{\"keyframe\":0,\"narration\":{\"enabled\":true,\"label\":\"配音 开\",\"channel\":\"speech\",\"captionLang\":\"zh\",\"stored\":\"on\",\"last\":{\"text\":\"先看一个数，a 等于二。每个数都带着梯度，像路标，指着该往哪挪。\",\"channel\":\"speech\"}}}"
+    },
+    "the 🔊 switch turns narration off again": {
+      "pass": true,
+      "detail": "{\"enabled\":false,\"label\":\"配音 关\",\"channel\":\"\",\"captionLang\":\"zh\",\"stored\":\"off\",\"last\":null}"
+    },
     "play button enters playing state": {
       "pass": true,
       "detail": "label=Pause"
@@ -7582,7 +9156,7 @@
     },
     "mid scene caption describes c": {
       "pass": true,
-      "detail": "Add the third input: c = 10."
+      "detail": "第三个输入 c 等于十，也放上来。"
     },
     "final keyframe shows all five nodes and four edges": {
       "pass": true,
@@ -7597,7 +9171,7 @@
     },
     "final scene caption explains the chain rule": {
       "pass": true,
-      "detail": "Backward pass: d.grad = 1. Then mul.grad = 1 and c.grad = 1; the chain rule gives a.grad = b = -3 and b.grad = a = 2."
+      "detail": "反向传播从 d 开始，就是从结果倒着走。链式法则像接力，梯度一路乘回去。"
     },
     "five scenes with five keyframe rails are loaded": {
       "pass": true,
@@ -7645,7 +9219,7 @@
     },
     "scene 2 final caption states the chain rule": {
       "pass": true,
-      "detail": "Done. Chain rule along a → mul → d: ∂d/∂a = ∂d/∂mul · ∂mul/∂a = 1 · b = -3. Reverse topological order made mul.grad complete before it was used."
+      "detail": "a 的梯度是负三，b 的梯度是二。一路相乘，这就是链式法则。"
     },
     "scene 3 starts with the seven input nodes": {
       "pass": true,
@@ -7685,7 +9259,7 @@
     },
     "scene 3 final caption lists the weight gradients": {
       "pass": true,
-      "detail": "All three weight gradients: w1 = 0.79, w2 = 0.39, w3 = -0.79. Gradient descent would subtract a small multiple of each (ticket 3); no training loop here."
+      "detail": "三个权重梯度：零点七九、零点三九、负零点七九。下一步就是拿它们去更新参数。"
     },
     "Step stays enabled after scene 3 because scenes 4 and 5 follow": {
       "pass": true,
@@ -7747,9 +9321,33 @@
       "pass": true,
       "detail": "stepDisabled=true skipDisabled=true loss=0.3001617388714038"
     },
+    "scene 5 final caption is the Chinese narration": {
+      "pass": true,
+      "detail": "训练结束，损失从一点三二降到零点三。四个点全对，网络学会了。"
+    },
     "scene 5 loss history is monotonic and ends below 40% of its start": {
       "pass": true,
       "detail": "first=1.3221 last=0.3002"
+    },
+    "the channel B manifest stretches the audio-driven timeline": {
+      "pass": true,
+      "detail": "{\"manifestAccepted\":true,\"info\":{\"duration\":113.4,\"sceneDurations\":[15.100000000000001,16.3,30,27,25],\"firstKeyframeTimes\":[0,2.8,4.8,6.8,8.8,11.3],\"progressMax\":\"113.4\"},\"timeLabel\":\"112.4s / 113.4s\"}"
+    },
+    "loaded audio segments play as channel B on keyframe entry": {
+      "pass": true,
+      "detail": "{\"enabled\":true,\"label\":\"配音 开\",\"channel\":\"audio\",\"captionLang\":\"zh\",\"stored\":\"on\",\"last\":{\"text\":\"先看一个数，a 等于二。每个数都带着梯度，像路标，指着该往哪挪。\",\"channel\":\"audio\"}}"
+    },
+    "Step follows the audio-driven keyframe times": {
+      "pass": true,
+      "detail": "keyframe=1 time=2.8"
+    },
+    "the scrubber and time label use the recomputed total": {
+      "pass": true,
+      "detail": "20.0s / 113.4s"
+    },
+    "turning narration off restores the original timing": {
+      "pass": true,
+      "detail": "{\"duration\":110.5,\"timeLabel\":\"15.5s / 110.5s\"}"
     },
     "no page exceptions or console errors": {
       "pass": true,
