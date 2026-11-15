@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-15T00:22:15.113Z",
+  "generatedAt": "2026-11-15T00:23:17.831Z",
   "url": "file:///Users/pinren/src/micrograd-viz-work/backprop-neuron-scene-ea6924d5a2dd/index.html",
   "command": "node tools/capture-evidence.mjs",
   "viewport": {
@@ -656,6 +656,153 @@
           "2"
         ],
         "speedValue": "1",
+        "caption": "We already have d = a × b + c = 4. Backward starts at the output and walks the graph in reverse topological order, accumulating each node’s grad.",
+        "badge": "KEYFRAME 1 / 6",
+        "sceneTitle": "Scene 2 · Where gradients come from",
+        "chips": [
+          {
+            "index": 0,
+            "label": "setup",
+            "active": true,
+            "done": false
+          },
+          {
+            "index": 1,
+            "label": "reverse topo",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 2,
+            "label": "seed",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 3,
+            "label": "through +",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 4,
+            "label": "through ×",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 5,
+            "label": "chain rule",
+            "active": false,
+            "done": false
+          }
+        ],
+        "showGrads": false,
+        "backward": false,
+        "visibleNodes": "a,b,mul,c,add",
+        "showGradsDataset": "false",
+        "gradsDataset": "",
+        "topoDataset": "",
+        "ariaLabel": "Expression graph. 5 of 5 nodes visible; a=2, b=-3, mul=-6, c=10, add=4",
+        "viewBox": "0 0 648 382",
+        "nodeCount": 5,
+        "edgeCount": 4,
+        "nodes": [
+          {
+            "key": "a",
+            "label": "a",
+            "data": "data 2",
+            "grad": "grad -3",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(44 44)",
+            "active": false
+          },
+          {
+            "key": "b",
+            "label": "b",
+            "data": "data -3",
+            "grad": "grad 2",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(44 152)",
+            "active": false
+          },
+          {
+            "key": "mul",
+            "label": "×",
+            "data": "data -6",
+            "grad": "grad 1",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(258 152)",
+            "active": false
+          },
+          {
+            "key": "c",
+            "label": "c",
+            "data": "data 10",
+            "grad": "grad 1",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(44 260)",
+            "active": false
+          },
+          {
+            "key": "add",
+            "label": "+",
+            "data": "data 4",
+            "grad": "grad 1",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(472 152)",
+            "active": false
+          }
+        ],
+        "edges": [
+          {
+            "key": "a->mul",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "b->mul",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "mul->add",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          },
+          {
+            "key": "c->add",
+            "active": false,
+            "label": "",
+            "hasLabel": false
+          }
+        ]
+      },
+      "playing": {
+        "ready": true,
+        "scene": "scene-2",
+        "keyframe": 0,
+        "playing": true,
+        "speed": 2,
+        "time": 14.37,
+        "timeLabel": "14.4s / 58.5s",
+        "playLabel": "Pause",
+        "playPressed": "true",
+        "stepDisabled": false,
+        "speedOptions": [
+          "0.5",
+          "1",
+          "2"
+        ],
+        "speedValue": "2",
         "caption": "We already have d = a × b + c = 4. Backward starts at the output and walks the graph in reverse topological order, accumulating each node’s grad.",
         "badge": "KEYFRAME 1 / 6",
         "sceneTitle": "Scene 2 · Where gradients come from",
@@ -1540,6 +1687,190 @@
           "2"
         ],
         "speedValue": "1",
+        "caption": "A neuron computes y = tanh(w · x + b) with three inputs. Start with the inputs x, the weights w, and the bias b — all plain Values.",
+        "badge": "KEYFRAME 1 / 13",
+        "sceneTitle": "Scene 3 · One neuron: y = tanh(w · x + b)",
+        "chips": [
+          {
+            "index": 0,
+            "label": "inputs",
+            "active": true,
+            "done": false
+          },
+          {
+            "index": 1,
+            "label": "products",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 2,
+            "label": "sum + b",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 3,
+            "label": "tanh",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 4,
+            "label": "seed",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 5,
+            "label": "through tanh",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 6,
+            "label": "through + b",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 7,
+            "label": "through + p3",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 8,
+            "label": "through + p2",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 9,
+            "label": "through × w1",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 10,
+            "label": "through × w2",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 11,
+            "label": "through × w3",
+            "active": false,
+            "done": false
+          },
+          {
+            "index": 12,
+            "label": "weight grads",
+            "active": false,
+            "done": false
+          }
+        ],
+        "showGrads": false,
+        "backward": false,
+        "visibleNodes": "w1,x1,w2,x2,w3,x3,b",
+        "showGradsDataset": "false",
+        "gradsDataset": "",
+        "topoDataset": "",
+        "ariaLabel": "Expression graph. 7 of 14 nodes visible; w1=0.5, x1=1, w2=-1, x2=0.5, w3=2, x3=-1, b=2.5",
+        "viewBox": "0 0 1050 630",
+        "nodeCount": 7,
+        "edgeCount": 0,
+        "nodes": [
+          {
+            "key": "b",
+            "label": "b",
+            "data": "data 2.5",
+            "grad": "grad 0.79",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 528)",
+            "active": false
+          },
+          {
+            "key": "w1",
+            "label": "w₁",
+            "data": "data 0.5",
+            "grad": "grad 0.79",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 36)",
+            "active": false
+          },
+          {
+            "key": "x1",
+            "label": "x₁",
+            "data": "data 1",
+            "grad": "grad 0.39",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 118)",
+            "active": false
+          },
+          {
+            "key": "w2",
+            "label": "w₂",
+            "data": "data -1",
+            "grad": "grad 0.39",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 200)",
+            "active": false
+          },
+          {
+            "key": "x2",
+            "label": "x₂",
+            "data": "data 0.5",
+            "grad": "grad -0.79",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 282)",
+            "active": false
+          },
+          {
+            "key": "w3",
+            "label": "w₃",
+            "data": "data 2",
+            "grad": "grad -0.79",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 364)",
+            "active": false
+          },
+          {
+            "key": "x3",
+            "label": "x₃",
+            "data": "data -1",
+            "grad": "grad 1.57",
+            "hasGrad": false,
+            "topo": "",
+            "transform": "translate(36 446)",
+            "active": false
+          }
+        ],
+        "edges": []
+      },
+      "playing": {
+        "ready": true,
+        "scene": "scene-3",
+        "keyframe": 0,
+        "playing": true,
+        "speed": 2,
+        "time": 29.87,
+        "timeLabel": "29.9s / 58.5s",
+        "playLabel": "Pause",
+        "playPressed": "true",
+        "stepDisabled": false,
+        "speedOptions": [
+          "0.5",
+          "1",
+          "2"
+        ],
+        "speedValue": "2",
         "caption": "A neuron computes y = tanh(w · x + b) with three inputs. Start with the inputs x, the weights w, and the bias b — all plain Values.",
         "badge": "KEYFRAME 1 / 13",
         "sceneTitle": "Scene 3 · One neuron: y = tanh(w · x + b)",
@@ -3104,6 +3435,10 @@
       "pass": true,
       "detail": "nodes=5 grads={}"
     },
+    "scene 2 plays inside its own timeline segment": {
+      "pass": true,
+      "detail": "scene=scene-2 time=14.37 playing=true"
+    },
     "scene 2 badges operations in reverse topological order": {
       "pass": true,
       "detail": "topo=add,mul badges=add:1,mul:2"
@@ -3139,6 +3474,10 @@
     "scene 3 starts with the seven input nodes": {
       "pass": true,
       "detail": "nodes=7 edges=0"
+    },
+    "scene 3 plays inside its own timeline segment": {
+      "pass": true,
+      "detail": "scene=scene-3 time=29.87 playing=true"
     },
     "scene 3 forward pass renders the whole neuron": {
       "pass": true,

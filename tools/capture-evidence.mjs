@@ -513,6 +513,26 @@ async function main() {
         JSON.stringify(gradsOf(scene2Entry))
     );
 
+    await setSpeed(2);
+    await click('#play');
+    await sleep(700);
+    const scene2Playing = await readState();
+    await click('#play');
+    await setSpeed(1);
+    check(
+      'scene 2 plays inside its own timeline segment',
+      scene2Playing.scene === 'scene-2' &&
+        scene2Playing.playing === true &&
+        scene2Playing.time > 13.4 &&
+        scene2Playing.time < 16,
+      'scene=' +
+        scene2Playing.scene +
+        ' time=' +
+        scene2Playing.time +
+        ' playing=' +
+        scene2Playing.playing
+    );
+
     const s2topo = await seekScene(1, 'reverse topo');
     const topoBadges = s2topo.nodes
       .filter((node) => node.topo)
@@ -589,6 +609,7 @@ async function main() {
     );
     evidence.states.scene2 = {
       entry: scene2Entry,
+      playing: scene2Playing,
       topo: s2topo,
       seed: s2seed,
       throughAdd: s2add,
@@ -608,6 +629,26 @@ async function main() {
         s3inputs.nodeCount +
         ' edges=' +
         s3inputs.edgeCount
+    );
+
+    await setSpeed(2);
+    await click('#play');
+    await sleep(700);
+    const scene3Playing = await readState();
+    await click('#play');
+    await setSpeed(1);
+    check(
+      'scene 3 plays inside its own timeline segment',
+      scene3Playing.scene === 'scene-3' &&
+        scene3Playing.playing === true &&
+        scene3Playing.time > 28.9 &&
+        scene3Playing.time < 31,
+      'scene=' +
+        scene3Playing.scene +
+        ' time=' +
+        scene3Playing.time +
+        ' playing=' +
+        scene3Playing.playing
     );
 
     const s3forward = await seekScene(2, 'tanh');
@@ -690,6 +731,7 @@ async function main() {
     );
     evidence.states.scene3 = {
       inputs: s3inputs,
+      playing: scene3Playing,
       forward: s3forward,
       seed: s3seed,
       throughW1: s3w1,

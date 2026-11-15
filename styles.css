@@ -218,12 +218,14 @@ body[data-scene="scene-3"] #graph {
   transition: opacity 0.45s ease;
 }
 
-.show-grads .grad-text {
-  opacity: 1;
-}
-
 .node.has-grad .grad-text {
   opacity: 1;
+  transition-delay: 0.18s;
+}
+
+.show-grads .grad-text {
+  opacity: 1;
+  transition-delay: 0.18s;
 }
 
 .topo-badge {
@@ -292,6 +294,7 @@ body[data-scene="scene-3"] #graph {
 
 .edge.has-label .edge-label {
   opacity: 1;
+  transition-delay: 0.08s;
 }
 
 .edge.is-active .edge-line {
