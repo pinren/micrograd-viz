@@ -329,11 +329,9 @@
         timeline.seek(timeline.duration);
       } else {
         timeline.seek(offset + targetScene.keyframes[frameIndex].at);
-        if (snapshot.playing) {
-          timeline.setSpeed(snapshot.speed);
-          timeline.play();
-        }
       }
+      timeline.setSpeed(snapshot.speed);
+      if (!snapshot.ended && snapshot.playing) timeline.play();
       timeline.subscribe(render);
       if (global.MGViz.app) {
         global.MGViz.app.timeline = timeline;
