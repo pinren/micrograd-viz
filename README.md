@@ -35,7 +35,8 @@ order → one SGD step → a training loop that keeps going until an MLP learns.
 ## Run it
 
 Open `index.html` by double-clicking it. No server, no install, no network.
-Five scenes share one 110.5 s timeline.
+Five scenes share one 110.5 s timeline (it stretches when narration audio is
+loaded — see below).
 
 - **Play / Pause** — run or hold the timeline (or press `Space`).
 - **Step** — jump to the next keyframe and pause (or press `→`).
@@ -44,6 +45,51 @@ Five scenes share one 110.5 s timeline.
   scene.
 - **Fast-forward N epochs** — scene 5 only; jumps N training rounds ahead and
   pauses.
+- **🔊 配音** — Chinese narration, off by default. When on, every keyframe
+  entry (play, Step, scrub or a chip) speaks its line; the choice is remembered
+  in `localStorage`.
+
+## Chinese narration
+
+Every keyframe has a short Chinese line shown in the caption area. The English
+originals stay in `narration/en.json` for reference; the page shows the Chinese
+script.
+
+- `narration/zh.json` — the canonical data: `{ scene, keyframe, text }` for all
+  **101** keyframes (6 + 6 + 13 + 15 + 61). Sentences are short (≤2 sentences,
+  ≤25 characters each), jargon gets a plain-language comparison on first use,
+  and numbers are written the way they are spoken (`0.30` → `零点三`).
+- `narration/zh.js` — a classic-script twin of that JSON, because `file://`
+  blocks `fetch()` of a local JSON file. `tools/sync-narration.mjs` regenerates
+  it (and `en.json`); a test asserts they stay in sync.
+
+Narration has two channels:
+
+- **Channel A (no assets):** `speechSynthesis` with `zh-CN`, one utterance per
+  keyframe. Zero dependencies; works from `file://`.
+- **Channel B (preferred):** pre-synthesised audio segments from
+  `assets/narration/zh/manifest.json`:
+
+  ```json
+  {
+    "segments": [
+      { "scene": 1, "keyframe": 0, "src": "scene-1-0.mp3", "duration": 3.6 }
+    ]
+  }
+  ```
+
+  `src` is relative to `assets/narration/zh/`, scene numbers are 1-based, and
+  `duration` is seconds. Frames without a segment fall back to channel A.
+  Because `file://` cannot fetch the JSON, ticket 5's asset pipeline should also
+  emit `assets/narration/zh/manifest.js` that publishes the same object as
+  `MGViz.narrationManifest`; over HTTP the page fetches `manifest.json` directly.
+  This ticket ships a hand-made WAV sample only under `test/fixtures/`, so the
+  page itself still starts on channel A.
+
+When a manifest is loaded **and** narration is on, each covered keyframe lasts
+`max(original duration, audio duration + 0.8 s)`. The scene duration, total
+timeline, progress bar, Step and speed all follow the rebuilt timeline. With no
+manifest, or with narration off, the 110.5 s timing is unchanged.
 
 ## Test it
 
@@ -51,7 +97,7 @@ Five scenes share one 110.5 s timeline.
 npm test
 ```
 
-Node 22+ runs the suites with no dependencies (106 tests):
+Node 22+ runs the suites with no dependencies (122 tests):
 
 - `test/value.test.js` — forward values, chain rule, shared subexpressions,
   repeatable backward passes, activation edge cases.
@@ -86,6 +132,11 @@ Node 22+ runs the suites with no dependencies (106 tests):
   agreeing with its plain-number snapshot.
 - `test/series.test.js` — the five scenes form one strictly increasing
   110.5 s timeline and `Step` walks across every scene boundary.
+- `test/narration.test.js` — zh.json covers every scene × keyframe (101 lines),
+  sentence-length and plain-language-jargon rules, spoken number formats,
+  `en.json` and `zh.js` sync, audio-driven duration recomputation (fixture
+  manifest with hand-made WAVs), the narration-off/no-manifest fallback,
+  localStorage memory, both playback channels, and manifest loading.
 
 ## How the training loop works
 
@@ -184,11 +235,17 @@ its usual place. Current capture:
   2/4 correct
 - `docs/evidence/scene5-learned.png` — epoch 60: loss 0.300, 4/4 correct,
   separated boundary and descending loss curve
+- `docs/evidence/narration-on.png` — scene 1 with the 🔊 配音 switch on: the
+  Chinese caption and the remembered toggle state
+- `docs/evidence/narration-timed.png` — the same page with the sample channel-B
+  manifest loaded: the timeline is stretched to 113.4 s and the scrubber/time
+  label follow it
 - `docs/evidence/browser-check.json` — node/edge counts, gradient text per
   scene, update annotations, readout tables, plot epoch/loss/accuracy/prediction
-  state, fast-forward behaviour, the 61-value loss history, playback timing, and
-  the no-network check
-- `docs/evidence/npm-test.txt` — current `npm test` output (106 tests)
+  state, fast-forward behaviour, the 61-value loss history, playback timing, the
+  Chinese captions, the narration toggle/localStorage/channel state, and the
+  no-network check
+- `docs/evidence/npm-test.txt` — current `npm test` output (122 tests)
 
 ## Layout
 
@@ -199,6 +256,7 @@ src/value.js                Value autograd: + − * ** tanh relu exp, zeroGrad, 
 src/backward.js             stepwise backward trace for the animation
 src/graph.js                pure DAG layout + render model + keyed SVG renderer
 src/timeline.js             scenes + keyframes engine, play/pause/step/speed/seek
+src/narration.js            Chinese script lookup, channel A/B, audio timing
 src/train.js                trainStep / train loop, MSE and hinge losses
 src/nn.js                   Neuron / Layer / MLP, seeded init, numeric snapshot
 src/plot.js                 decision-boundary sampling + scene 5 SVG plot
@@ -208,8 +266,13 @@ src/scenes/scene3.js        scene 3: y = tanh(w·x + b) neuron, forward + backwa
 src/scenes/scene4.js        scene 4: loss, one SGD step, before/after comparison
 src/scenes/scene5.js        scene 5: 2-3-1 MLP training loop, 60 epochs
 src/main.js                 wires the engine to the DOM controls
+narration/zh.json           canonical Chinese script, one line per keyframe
+narration/zh.js             classic-script twin loaded by the page (file://)
+narration/en.json           archived English captions
 test/                       node:test suites (zero dependencies)
+test/fixtures/narration/    hand-made WAV + manifest sample for channel B/timing
 tools/capture-evidence.mjs  headless-Chrome UI evidence capture
+tools/sync-narration.mjs    regenerates narration/zh.js and narration/en.json
 ```
 
 ## Zero build, and `file://`

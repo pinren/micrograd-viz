@@ -1,0 +1,30 @@
+{
+  "voice": "zh-CN sample (440 Hz tone, 8 kHz 8-bit mono WAV)",
+  "note": "Minimal hand-made sample for ticket 4 tests; ticket 5 replaces it with real TTS audio.",
+  "segments": [
+    {
+      "scene": 1,
+      "keyframe": 0,
+      "src": "scene-1-0.wav",
+      "duration": 2
+    },
+    {
+      "scene": 1,
+      "keyframe": 1,
+      "src": "scene-1-1.wav",
+      "duration": 0.25
+    },
+    {
+      "scene": 1,
+      "keyframe": 5,
+      "src": "scene-1-5.wav",
+      "duration": 3
+    },
+    {
+      "scene": 2,
+      "keyframe": 0,
+      "src": "scene-2-0.wav",
+      "duration": 2.5
+    }
+  ]
+}
